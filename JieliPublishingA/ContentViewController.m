@@ -26,7 +26,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.contentBgImageView setImage:[PicNameMc imageFromImageName:F_image_woodFrame]];
+//    [self.contentBgImageView setImage:[PicNameMc imageFromImageName:F_image_woodFrame]];
+    [self.contentBgImageView setImage:[UIImage imageNamed:@"F_image_woodFrame@2x.png"]];
 
 }
 -(void)loadBookInfo:(BookInfo *)info{
