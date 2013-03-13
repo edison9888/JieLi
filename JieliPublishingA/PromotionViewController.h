@@ -32,4 +32,7 @@
 
 @property (strong,nonatomic) DataBrain *dataBrain;
 @property (strong,nonatomic) UIAlertView *alertView;
+
+@property (unsafe_unretained, nonatomic) IBOutlet UIActivityIndicatorView *ActI;
+
 @end

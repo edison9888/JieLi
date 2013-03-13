@@ -72,7 +72,8 @@
     // Do any additional setup after loading the view from its nib.
     if (![self.dataBrain.promotionList count]) {
         [self.dataBrain getPromotionList];
-
+        
+        [self.ActI startAnimating];
     }
     else{
         [self loadPersonalitySubView:self.dataBrain.promotionList];
@@ -210,6 +211,8 @@
     [self loadPersonalitySubView:self.dataBrain.promotionList];
     
 //    [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
+    [self.ActI stopAnimating];
+    [self.ActI removeFromSuperview];
 }
 
 
@@ -235,6 +238,7 @@
     [self setMyScrollerView:nil];
     [self setMyTopBar:nil];
     [self setMyBgImageView:nil];
+    [self setActI:nil];
     [super viewDidUnload];
 }
 @end
