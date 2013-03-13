@@ -42,6 +42,7 @@
 
 @property (strong,nonatomic) DataBrain *dataBrain;
 
+@property (unsafe_unretained, nonatomic) IBOutlet UIActivityIndicatorView *actI;
 
 
 

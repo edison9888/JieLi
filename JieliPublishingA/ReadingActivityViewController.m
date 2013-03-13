@@ -79,6 +79,7 @@ enum{
 
     [self.dataBrain getActivityList];
     self.dataBrain.getListDelegate = self;
+    [self.actI startAnimating];
 }
 
 -(void)setTextByKey:(NSString *)key withDic:(NSDictionary *)dic withLabel:(UILabel *)label isCover:(BOOL)isCover{
@@ -196,6 +197,8 @@ enum{
 -(void)finishGetListWithArray:(NSArray *)bookList withType:(int)type{
     NSLog(@"%@",bookList);
     [self loadReadingCard:bookList];
+    [self.actI stopAnimating];
+    [self.actI removeFromSuperview];
 }
 
 
@@ -247,6 +250,7 @@ enum{
     [self setMyScrollView:nil];
     [self setMyPageControl:nil];
     [self setMyRootImageView:nil];
+    [self setActI:nil];
     [super viewDidUnload];
 }
 @end
