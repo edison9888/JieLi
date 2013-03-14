@@ -292,6 +292,7 @@
 		3E492BA6162D557F00BAF7D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E492BA5162D557F00BAF7D4 /* QuartzCore.framework */; };
 		3E492BA9162D558900BAF7D4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E492BA8162D558900BAF7D4 /* MapKit.framework */; };
 		3E492BB2162D568200BAF7D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E492BB1162D568200BAF7D4 /* CoreLocation.framework */; };
+		85930A6516F220CA0085A5B9 /* ReadEventOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85930A6416F220CA0085A5B9 /* ReadEventOperation.m */; };
 		85DFD17F16EB19E300F210BD /* CBuyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DFD17E16EB19E300F210BD /* CBuyOperation.m */; };
 		85DFD18616EB23FC00F210BD /* CommentPoeration.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DFD18516EB23FC00F210BD /* CommentPoeration.m */; };
 /* End PBXBuildFile section */
@@ -652,6 +653,8 @@
 		3E492BA5162D557F00BAF7D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3E492BA8162D558900BAF7D4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3E492BB1162D568200BAF7D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		85930A6316F220CA0085A5B9 /* ReadEventOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadEventOperation.h; sourceTree = "<group>"; };
+		85930A6416F220CA0085A5B9 /* ReadEventOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadEventOperation.m; sourceTree = "<group>"; };
 		85DFD17D16EB19E300F210BD /* CBuyOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBuyOperation.h; sourceTree = "<group>"; };
 		85DFD17E16EB19E300F210BD /* CBuyOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBuyOperation.m; sourceTree = "<group>"; };
 		85DFD18416EB23FC00F210BD /* CommentPoeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentPoeration.h; sourceTree = "<group>"; };
@@ -1328,6 +1331,8 @@
 				85DFD18516EB23FC00F210BD /* CommentPoeration.m */,
 				2609E11B16EEBAEE00108ECA /* SearchPoeration.h */,
 				2609E11C16EEBAEE00108ECA /* SearchPoeration.m */,
+				85930A6316F220CA0085A5B9 /* ReadEventOperation.h */,
+				85930A6416F220CA0085A5B9 /* ReadEventOperation.m */,
 			);
 			name = operations;
 			sourceTree = "<group>";
@@ -1670,6 +1675,7 @@
 				261C383A16F039DF0052592F /* RegViewController.m in Sources */,
 				261C383E16F055470052592F /* BasicOperation.m in Sources */,
 				26C5451916F1AF900094F197 /* SubComView.m in Sources */,
+				85930A6516F220CA0085A5B9 /* ReadEventOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1827,8 +1833,8 @@
 					"\"$(SRCROOT)/../../../../50b3125a/lib/armv7-armv7s/iflyMSC.framework\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "551935AF-C06F-42F4-97DA-1AC7B032577B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "551935AF-C06F-42F4-97DA-1AC7B032577B";
+				PROVISIONING_PROFILE = "38DC5722-F1F8-43C0-86F3-DD9789F075E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38DC5722-F1F8-43C0-86F3-DD9789F075E8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

@@ -9,6 +9,7 @@
 #import "CommentViewController.h"
 #import "CommentPoeration.h"
 #import "AppDelegate.h"
+#import "SubComView.h"
 
 #define ISLOGED [AppDelegate dAccountName]?1:0
 @interface CommentViewController ()
@@ -28,6 +29,12 @@
     return self;
 }
 -(void)iWantComment{
+    SubComView *sc = [[SubComView alloc] init];
+    [sc show];
+    
+    
+    
+    /*
     UIActionSheet *actionSheet;
     NSString *title;
     NSString *message;
@@ -45,6 +52,7 @@
     actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:@"返回" destructiveButtonTitle:message otherButtonTitles: nil];
     actionSheet.tag = tag;
     [actionSheet showInView:self.view.superview.superview];
+    */
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSLog(@"%d",buttonIndex);

@@ -24,6 +24,38 @@
     }
     return self;
 }
+
+-(void)getDouBanInformation{
+    ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:self.activityId];
+    op.delegate = self;
+    [[AppDelegate shareQueue] addOperation:op];
+    
+
+    
+}
+-(void)finishPoeration:(id)result{
+    GetImageOperation *op = [[GetImageOperation alloc] initWithImageId:self.activityId url:[result objectForKey:@"image"] withFloderName:ActivityImage];
+    op.delegate = self;
+    [[AppDelegate shareQueue] addOperation:op];
+    
+    [self.myTitleLabel setText:[result objectForKey:@"title"]];
+    [self.myTime setText:[NSString stringWithFormat:@"%@--%@",[result objectForKey:@"begin_time"],[result objectForKey:@"end_time"]]];
+    [self.myAdress setText:[result objectForKey:@"address"]];
+    [self.myTextView setText:[result objectForKey:@"content"]];
+    CGSize size = [self.myTextView.text sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(320, self.myTextView.text.length) lineBreakMode:UILineBreakModeWordWrap];
+    self.myTextView.frame = CGRectMake(self.myTextView.frame.origin.x, self.myTextView.frame.origin.y, [UIScreen mainScreen].bounds.size.width, size.height+20);
+    self.myScrollView.contentSize = CGSizeMake(0, MAX(self.myTextView.frame.origin.y+size.height+20, [UIScreen mainScreen].bounds.size.height));
+    
+    NSDictionary *dic = [result objectForKey:@"owner"];
+    [self.mySponsor setText:[dic objectForKey:@"name"]];
+
+
+}
+-(void)finishGetImage:(UIImage *)image{
+    [self.myImageView setImage:image];
+}
+
+
 -(void)getInformation{
     NSLog(@"从网络获取读书活动详情");
     NSString *urlString = [NSString stringWithFormat:@"?c=Activity&m=getActivityDetail&activityId=%d",self.activityId];
@@ -211,7 +243,8 @@
     
     
     
-    [self getInformation];
+//    [self getInformation];
+    [self getDouBanInformation];
     
 }
 

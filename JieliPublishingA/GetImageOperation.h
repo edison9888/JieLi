@@ -15,6 +15,5 @@
 @end
 @interface GetImageOperation : NSOperation
 @property (strong) id<GetImageOperationDelegate> delegate;
--(id)initWithBookInfo:(BookInfo *)bookInfo;
-
+-(id)initWithImageId:(NSInteger)Id url:(NSString *)url withFloderName:(NSString *)fName;
 @end

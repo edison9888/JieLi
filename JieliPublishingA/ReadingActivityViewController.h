@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "DiyTopBar.h"
 #import "AppDelegate.h"
-@interface ReadingCard:UIView
+#import "ReadEventOperation.h"
+#import "GetImageOperation.h"
+
+@interface ReadingCard:UIView<GetImageOperationDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *myBgImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *ThumbImageView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
@@ -26,7 +29,7 @@
 @end 
 
 
-@interface ReadingActivityViewController : UIViewController<UIGestureRecognizerDelegate,UIScrollViewDelegate,DataBrainGetListDelegate>
+@interface ReadingActivityViewController : UIViewController<UIGestureRecognizerDelegate,UIScrollViewDelegate,DataBrainGetListDelegate,ReadEventOperationDelegate>
 @property (strong, nonatomic) IBOutlet DiyTopBar *myTopBar;
 
 

@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DiyTopBar.h"
-@interface DetailInfoOfActivityViewController : UIViewController
+#import "GetImageOperation.h"
+#import "ReadEventOperation.h"
+#import "AppDelegate.h"
+
+@interface DetailInfoOfActivityViewController : UIViewController<GetImageOperationDelegate,ReadEventOperationDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *myImageView;
 @property (strong, nonatomic) IBOutlet UIScrollView *myPhotoScrollView;

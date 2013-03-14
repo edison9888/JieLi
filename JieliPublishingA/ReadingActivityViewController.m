@@ -10,7 +10,7 @@
 #import "DetailInfoOfActivityViewController.h"
 #import "PicNameMc.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "DataBrain.h"
 enum{
     bgImageOnTag,
     bgImageOffTag
@@ -25,7 +25,28 @@ enum{
     [self.shareButton setBackgroundImage:[PicNameMc imageFromImageName:F_btn_shareActivity] forState:UIControlStateNormal];
 
 }
+-(void)loadData:(id)r{
+    GetImageOperation *op = [[GetImageOperation alloc] initWithImageId:[r objectForKey:@"id"] url:[r objectForKey:@"image_lmobile"] withFloderName:ActivityCardImage];
+    op.delegate = self;
+    [[AppDelegate shareQueue] addOperation:op];
+    
+    [self.titleLabel setText:[r objectForKey:@"title"]];
+    [self.timeLabel setText:[NSString stringWithFormat:@"%@--%@",[r objectForKey:@"begin_time"],[r objectForKey:@"end_time"]]];
+    [self.addressLabel setText:[r objectForKey:@"address"]];
+    self.activityId = [[r objectForKey:@"id"] integerValue];
+    
+}
+-(void)finishGetImage:(UIImage *)image{
+    CGSize siz = image.size;
+    float height = self.ThumbImageView.frame.size.height;
+    float width = self.ThumbImageView.frame.size.width;
+            CGRect rect = CGRectMake((siz.width-width)/2, (siz.height-height)/2, width, height);
+            CGImageRef imageRef=CGImageCreateWithImageInRect([image CGImage],rect);
+            UIImage* elementImage=[UIImage imageWithCGImage:imageRef];
+            
 
+    [self.ThumbImageView setImage:elementImage];
+}
 
 @end
 
@@ -54,7 +75,7 @@ enum{
     return self;
 }
 -(void)pushToDetail:(UITapGestureRecognizer *)tap{
-    ReadingCard *readingCardView = (ReadingCard *)[tap view];
+    ReadingCard *readingCardView = (ReadingCard *)[tap view] ;
     NSLog(@".......%d",readingCardView.activityId);
     DetailInfoOfActivityViewController *viewController = [[DetailInfoOfActivityViewController alloc] initWithNibName:@"DetailInfoOfActivityViewController" bundle:nil];
     viewController.activityId = readingCardView.activityId;
@@ -76,10 +97,57 @@ enum{
     [self.myTopBar.backButton addTarget:self action:@selector(popBack:) forControlEvents:UIControlEventTouchUpInside];
     self.button_onLine.tag = bgImageOnTag;
     self.button_offLine.tag = bgImageOffTag;
+    
+    [self.myScrollView setPagingEnabled:YES];
+    [self.myScrollView setShowsHorizontalScrollIndicator:NO];
+    self.myScrollView.delegate = self;
 
-    [self.dataBrain getActivityList];
-    self.dataBrain.getListDelegate = self;
+
+//    [self.dataBrain getActivityList];
+//    self.dataBrain.getListDelegate = self;
     [self.actI startAnimating];
+    
+    int events[5] = {18234559,17758278,17755502,18401705,18228563};
+    for (int i = 0; i<5; i++) {
+        ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:events[i]];
+        op.delegate = self;
+        [[AppDelegate shareQueue] addOperation:op];
+    }
+    self.myPageControl.numberOfPages = 5;
+
+    
+}
+-(void)finishPoeration:(id)result{
+    NSLog(@"%@",result);
+    [self loadDouBanEvent:result];
+}
+
+static float PosX = 0;
+-(void)loadDouBanEvent:(id)r{
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReadingCard" owner:self options:nil];
+    ReadingCard *view = [nib objectAtIndex:0];
+    [view loadData:r];
+    view.frame = CGRectMake(PosX, 0, view.frame.size.width, view.frame.size.height);
+    [self.myScrollView addSubview:view];
+    PosX +=view.frame.size.width;
+
+    [self.myScrollView setContentSize:CGSizeMake(PosX, 0)];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushToDouBanDetail:)];
+    [tap setNumberOfTapsRequired:1];
+    tap.delegate = self;
+    [view addGestureRecognizer:tap];
+
+
+}
+-(void)pushToDouBanDetail:(UITapGestureRecognizer *)tap{
+    ReadingCard *readingCardView = (ReadingCard *)[tap view] ;
+    NSLog(@".......%d",readingCardView.activityId);
+    DetailInfoOfActivityViewController *viewController = [[DetailInfoOfActivityViewController alloc] initWithNibName:@"DetailInfoOfActivityViewController" bundle:nil];
+    viewController.activityId = readingCardView.activityId;
+    [self.navigationController pushViewController:viewController animated:YES];
+    
+
 }
 
 -(void)setTextByKey:(NSString *)key withDic:(NSDictionary *)dic withLabel:(UILabel *)label isCover:(BOOL)isCover{

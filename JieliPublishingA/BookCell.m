@@ -7,6 +7,7 @@
 //
 
 #import "BookCell.h"
+#import "DataBrain.h"
 @implementation BookCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -18,7 +19,7 @@
     return self;
 }
 -(void)loadBook:(BookInfo *)bookInfo{
-    GetImageOperation *op = [[GetImageOperation alloc] initWithBookInfo:bookInfo];
+    GetImageOperation *op = [[GetImageOperation alloc]initWithImageId:bookInfo.bookId url:bookInfo.bookImage withFloderName:BookCoverImage];
     op.delegate = self;
     [[AppDelegate shareQueue] addOperation:op];
     

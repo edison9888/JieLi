@@ -9,30 +9,31 @@
 #import "GetImageOperation.h"
 #import "DataBrain.h"
 @interface GetImageOperation(){
-    int bookId;
-    NSString *bookImageUrl;
+    int imageId;
+    NSString *imageUrl;
+    NSString *floderName;
 }
 @end
 @implementation GetImageOperation
--(id)initWithBookInfo:(BookInfo *)bookInfo{
+-(id)initWithImageId:(NSInteger)Id url:(NSString *)url withFloderName:(NSString *)fName{
     if (self == [super init]) {
-        bookId = bookInfo.bookId;
-        bookImageUrl = bookInfo.bookImage;
+        imageId = Id;
+        imageUrl = url;
+        floderName = fName;
     }
     return self;
 }
 -(void)main{
     
-    NSData *data = [DataBrain readFilewithImageId:bookId withFlolderName:BookCoverImage];
+    NSData *data = [DataBrain readFilewithImageId:imageId withFlolderName:floderName];
     if (data) {
-        NSLog(@"从本地读取图片，ID：%d",bookId);
+        NSLog(@"从本地读取图片，ID：%d",imageId);
         UIImage *image = [UIImage imageWithData:data];
         [self performSelectorOnMainThread:@selector(finish:) withObject:image waitUntilDone:NO];
     }
     else{
-        NSString *imageUrl = bookImageUrl;
         if (imageUrl == nil) {
-            NSLog(@"图片缺失,ID:%d",bookId);
+            NSLog(@"图片缺失,ID:%d",imageId);
         }
         else{
             
