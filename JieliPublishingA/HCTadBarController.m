@@ -172,7 +172,18 @@ static NSArray *actionBtnTexts;
 @implementation HCTadBarController
 
 
-
+-(NSArray *)viewControllers{
+    if (!_viewControllers) {
+        ContentViewController *vc1 = [[ContentViewController alloc] initWithNibName:@"ContentViewController" bundle:nil];
+        ShareViewController *vc2 = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil];
+        CommentViewController *vc3 = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil];
+        vc3.delegate = self;
+        BuyViewController *vc4 = [[BuyViewController alloc] initWithNibName:@"BuyViewController" bundle:nil];
+        
+       _viewControllers = [NSArray arrayWithObjects:vc1, vc2, vc3, vc4, nil];
+    }
+    return _viewControllers;
+}
 
 -(DiyTopBar *)topBar{
     if (!_topBar) {
@@ -212,7 +223,15 @@ static NSArray *actionBtnTexts;
     _selectedIndex = selectedIndex;
     NSString *text = [actionBtnTexts objectAtIndex:selectedIndex];
     UIButton *b = self.bookDetailController.actionButton;
+    b.tag = selectedIndex;
+    if (selectedIndex == 3) {
+        b.hidden = YES;
+    }
+    else{
+        b.hidden = NO;
     [b setImage:[PicNameMc defaultBackgroundImage:@"rb" withWidth:b.frame.size.width withTitle:text withColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+    }
+    NSLog(@"index:%d",selectedIndex);
 
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -294,8 +313,27 @@ static NSArray *actionBtnTexts;
 
 
 -(void)actionPressed:(UIButton *)b{
+    NSLog(@"%d",b.tag);
+    UIViewController *vc =[self.viewControllers objectAtIndex:b.tag];
+    switch (b.tag) {
+        case 0:
+            [(ContentViewController *)vc readOnLine];
+            break;
+        case 1:
+            [(ShareViewController *)vc sendWeiBo];
+            break;
+        case 2:
+            [(CommentViewController *)vc iWantComment];
+            break;
+        default:
+            break;
+    }
     
-    
+}
+
+//--------------
+-(void)pushTo:(LogViewController *)v{
+    [self.navigationController pushViewController:v animated:YES];
 }
 - (void)didReceiveMemoryWarning
 {

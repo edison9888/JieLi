@@ -10,5 +10,5 @@
 #import "BasicOperation.h"
 
 @interface LogViewController : UIViewController<BasicOperationDelegate>
-
+@property (nonatomic) BOOL finishToPop;
 @end

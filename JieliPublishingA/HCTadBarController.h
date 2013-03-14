@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContentViewController.h"
+#import "ShareViewController.h"
+#import "CommentViewController.h"
+#import "BuyViewController.h"
 
 @class HCTabBar;
 @protocol HCTabBarDelegate <NSObject>
@@ -32,7 +36,7 @@
 //-----------------------------
 #import "BookInfo.h"
 #import "BookDetailViewController.h"
-@interface HCTadBarController : UIViewController<UIScrollViewDelegate,HCTabBarDelegate,BookDetailDelegate>
+@interface HCTadBarController : UIViewController<UIScrollViewDelegate,HCTabBarDelegate,BookDetailDelegate,CommentViewControllerDelegate>
 @property (nonatomic,strong) NSArray *viewControllers;
 @property (nonatomic,strong) HCTabBar *tabBar;
 @property (nonatomic, assign) NSUInteger            selectedIndex;

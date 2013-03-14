@@ -239,6 +239,7 @@
 		26AC012A1627E53F00210012 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AC01281627E53F00210012 /* FirstViewController.xib */; };
 		26AC012D1627E53F00210012 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26AC012B1627E53F00210012 /* SecondViewController.xib */; };
 		26AC01371627E6B700210012 /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AC01341627E6B700210012 /* CustomNavigationBar.m */; };
+		26C5451916F1AF900094F197 /* SubComView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C5451816F1AF900094F197 /* SubComView.m */; };
 		26CBFF00169D49F8007CC824 /* F_image_pattren1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26CBFEFC169D49F8007CC824 /* F_image_pattren1@2x.png */; };
 		26CBFF01169D49F8007CC824 /* F_image_pattren2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26CBFEFD169D49F8007CC824 /* F_image_pattren2@2x.png */; };
 		26CBFF02169D49F8007CC824 /* F_image_pattren3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26CBFEFE169D49F8007CC824 /* F_image_pattren3@2x.png */; };
@@ -588,6 +589,8 @@
 		26AC012C1627E53F00210012 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
 		26AC01331627E6B700210012 /* CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
 		26AC01341627E6B700210012 /* CustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
+		26C5451716F1AF900094F197 /* SubComView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubComView.h; sourceTree = "<group>"; };
+		26C5451816F1AF900094F197 /* SubComView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubComView.m; sourceTree = "<group>"; };
 		26CBFEFC169D49F8007CC824 /* F_image_pattren1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F_image_pattren1@2x.png"; sourceTree = "<group>"; };
 		26CBFEFD169D49F8007CC824 /* F_image_pattren2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F_image_pattren2@2x.png"; sourceTree = "<group>"; };
 		26CBFEFE169D49F8007CC824 /* F_image_pattren3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F_image_pattren3@2x.png"; sourceTree = "<group>"; };
@@ -1038,6 +1041,8 @@
 				2624B44416E72AF4009A2DBE /* CommentViewController.h */,
 				2624B44516E72AF5009A2DBE /* CommentViewController.m */,
 				2624B44616E72AF5009A2DBE /* CommentViewController.xib */,
+				26C5451716F1AF900094F197 /* SubComView.h */,
+				26C5451816F1AF900094F197 /* SubComView.m */,
 				2624B44916E72B0B009A2DBE /* BuyViewController.h */,
 				2624B44A16E72B0B009A2DBE /* BuyViewController.m */,
 				2624B44B16E72B0B009A2DBE /* BuyViewController.xib */,
@@ -1664,6 +1669,7 @@
 				261C382416F006130052592F /* LogViewController.m in Sources */,
 				261C383A16F039DF0052592F /* RegViewController.m in Sources */,
 				261C383E16F055470052592F /* BasicOperation.m in Sources */,
+				26C5451916F1AF900094F197 /* SubComView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

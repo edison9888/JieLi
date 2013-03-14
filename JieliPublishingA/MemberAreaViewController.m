@@ -28,26 +28,15 @@
     }
     return self;
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (self.memberInfo) {
-        [self logSuccessWithMemberInfo:self.memberInfo];
-        return;
-    }
-    if (![AppDelegate dAccountName]) {
-        LogViewController *viewController = [[LogViewController alloc] initWithNibName:@"LogViewController" bundle:nil];
-        [self.navigationController pushViewController:viewController animated:YES];
-    }
-    else{
-        NSString *urlString = [NSString stringWithFormat:@"?c=Member&m=login&user=%@&password=%@",[AppDelegate dAccountName],[AppDelegate dPassWord]];
-
-        BasicOperation *op = [[BasicOperation alloc] initWithUrl:urlString];
-        op.delegate = self;
-        [[AppDelegate shareQueue] addOperation:op];
-    }
 
 }
 -(void)finishOperation:(id)result{
+    [self.actI stopAnimating];
+    [self.actI removeFromSuperview];
+
     [self logSuccessWithMemberInfo:result];
 }
 -(void)viewWillDisappear:(BOOL)animated
@@ -101,6 +90,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
     [self.myBgImageView setImage:[PicNameMc imageFromImageName:WoodPattern]];
     [self.meberAreaTopBar setImage:[PicNameMc imageFromImageName:F_image_bgOfVip1]];
 
@@ -146,6 +136,25 @@
     arrayOfCells = [[NSArray alloc] initWithArray:array];
     self.currentType = 0;
     
+    
+    if (self.memberInfo) {
+        [self logSuccessWithMemberInfo:self.memberInfo];
+        return;
+    }
+    if (![AppDelegate dAccountName]) {
+        LogViewController *viewController = [[LogViewController alloc] initWithNibName:@"LogViewController" bundle:nil];
+        [self.navigationController pushViewController:viewController animated:YES];
+        [self.actI removeFromSuperview];
+    }
+    else{
+        NSString *urlString = [NSString stringWithFormat:@"?c=Member&m=login&user=%@&password=%@",[AppDelegate dAccountName],[AppDelegate dPassWord]];
+        
+        BasicOperation *op = [[BasicOperation alloc] initWithUrl:urlString];
+        op.delegate = self;
+        [[AppDelegate shareQueue] addOperation:op];
+        [self.actI startAnimating];
+    }
+
 }
 
 
@@ -275,6 +284,7 @@
     [self setMyMemberAreaView:nil];
     [self setMeberAreaTopBar:nil];
     [self setTableView:nil];
+    [self setActI:nil];
     [super viewDidUnload];
 
 }

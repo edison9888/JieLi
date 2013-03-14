@@ -37,4 +37,5 @@
 @property (strong,nonatomic) MemberInformationView *informationView;
 
 @property (strong,nonatomic) id memberInfo;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *actI;
 @end

@@ -11,5 +11,5 @@
 @interface ContentViewController : BasicBookViewController
 @property (strong, nonatomic) IBOutlet UIImageView *contentBgImageView;
 @property (strong, nonatomic) IBOutlet UITextView *contentTextView;
-
+-(void)readOnLine;
 @end

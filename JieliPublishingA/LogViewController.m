@@ -71,10 +71,14 @@
     if (symble==1) {
         [AppDelegate setdAccountName:accoutName.text];
         [AppDelegate setdPassWord:password.text];
-        
+        if (self.finishToPop) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
         MemberAreaViewController *viewController = [[MemberAreaViewController alloc] initWithNibName:@"MemberAreaViewController" bundle:nil];
         viewController.memberInfo = result;
         [self.navigationController pushViewController:viewController animated:YES];
+        }
     }
     else{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登录失败" message:@"账号或密码错误" delegate:self cancelButtonTitle:@"重试" otherButtonTitles:@"关闭", nil];

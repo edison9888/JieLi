@@ -278,12 +278,6 @@ enum {
     tabBarController.bookInfo = info;
     
     
-    ContentViewController *vc1 = [[ContentViewController alloc] initWithNibName:@"ContentViewController" bundle:nil];
-    ShareViewController *vc2 = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil];
-    CommentViewController *vc3 = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil];
-    BuyViewController *vc4 = [[BuyViewController alloc] initWithNibName:@"BuyViewController" bundle:nil];
-    
-    tabBarController.viewControllers = [NSArray arrayWithObjects:vc1, vc2, vc3, vc4, nil];
     tabBarController.hidesBottomBarWhenPushed = YES;
 
     [self.navigationController pushViewController:tabBarController animated:YES];

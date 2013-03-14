@@ -21,6 +21,16 @@
     }
     return self;
 }
+-(void)readOnLine{
+    NSURL *url = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"testPdf1"] withExtension:@"pdf"];
+    
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 480-44)];
+    [self.view.superview.superview addSubview:webView];
+    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:url];
+    [webView loadRequest:req];
+    
+
+}
 
 - (void)viewDidLoad
 {

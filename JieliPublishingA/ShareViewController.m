@@ -85,7 +85,7 @@
     delegate.sinaweibo.delegate = self;
     return delegate.sinaweibo;
 }
-- (IBAction)sendWeiBo:(id)sender {
+- (void)sendWeiBo{
 
     NSString *sendMessage = self.textView.text;
     [self sendSinaWeiBoWithString:sendMessage withImage:sendImage];

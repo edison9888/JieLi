@@ -77,7 +77,7 @@
     }
     else{
         [self loadPersonalitySubView:self.dataBrain.promotionList];
-
+        [self.ActI removeFromSuperview];
     }
     
     

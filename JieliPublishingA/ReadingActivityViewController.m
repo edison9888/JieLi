@@ -198,7 +198,7 @@ enum{
     NSLog(@"%@",bookList);
     [self loadReadingCard:bookList];
     [self.actI stopAnimating];
-    [self.actI removeFromSuperview];
+//    [self.actI removeFromSuperview];
 }
 
 

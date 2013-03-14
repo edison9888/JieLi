@@ -9,6 +9,8 @@
 #import "CommentViewController.h"
 #import "CommentPoeration.h"
 #import "AppDelegate.h"
+
+#define ISLOGED [AppDelegate dAccountName]?1:0
 @interface CommentViewController ()
 
 @end
@@ -25,12 +27,41 @@
     }
     return self;
 }
+-(void)iWantComment{
+    UIActionSheet *actionSheet;
+    NSString *title;
+    NSString *message;
+    int tag ;
+    if (ISLOGED) {
+        tag = 1;
+        title = [NSString stringWithFormat:@"您已登录:%@",[AppDelegate dAccountName]];
+        message = @"匿名评价";
+    }
+    else {
+        tag = 2;
+        title = @"您尚未登录";
+        message = @"登录评价";
+    }
+    actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:@"返回" destructiveButtonTitle:message otherButtonTitles: nil];
+    actionSheet.tag = tag;
+    [actionSheet showInView:self.view.superview.superview];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"%d",buttonIndex);
+    if (buttonIndex == 0) {
+        if (!ISLOGED) {
+            LogViewController *viewController = [[LogViewController alloc] initWithNibName:@"LogViewController" bundle:nil];
+            viewController.finishToPop = YES;
+            [self.delegate pushTo:viewController];
+
+        }
+    }
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
     
 }
 -(void)loadBookInfo:(BookInfo *)info{

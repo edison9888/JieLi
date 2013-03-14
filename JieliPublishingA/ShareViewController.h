@@ -15,4 +15,6 @@
 @property (strong,nonatomic) SinaWeibo *sinaweibo;
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
+
+- (void)sendWeiBo;
 @end
