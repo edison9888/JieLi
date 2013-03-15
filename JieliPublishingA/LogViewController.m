@@ -69,8 +69,8 @@
     NSLog(@"%@",result);
     int symble = [[result objectForKey:@"result"] integerValue];
     if (symble==1) {
-        [AppDelegate setdAccountName:accoutName.text];
-        [AppDelegate setdPassWord:password.text];
+        NSString *userId = [result objectForKey:@"userId"];
+        [AppDelegate dLogInWithUserId:userId accountName:accoutName.text passWord:password.text];
         if (self.finishToPop) {
             [self.navigationController popViewControllerAnimated:YES];
         }

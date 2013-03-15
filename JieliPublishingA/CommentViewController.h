@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "BasicBookViewController.h"
 #import "BookInfo.h"
-
-
 #import "LogViewController.h"
+#import "CommentPoeration.h"
+
 @protocol CommentViewControllerDelegate <NSObject>
 -(void)pushTo:(LogViewController *)v;
 
 
 @end
-@interface CommentViewController : BasicBookViewController<UIActionSheetDelegate>
+@interface CommentViewController : BasicBookViewController<UIActionSheetDelegate,CommentPoerationDelegate>
 
 @property (strong,nonatomic) BookInfo *bookInfo;
 @property (strong,nonatomic) id<CommentViewControllerDelegate> delegate;

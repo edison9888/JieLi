@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SSubComView.h"
+#import "CommentPoeration.h"
+#import "AppDelegate.h"
+@interface SubComView : UIView<SSubComViewDelegate,CommentPoerationDelegate>
 
-@interface SubComView : UIView
 -(void)show;
 -(void)cancel;
+- (id)initWithBookId:(NSInteger *)bId userId:(NSString *)uId accountName:(NSString *)aName;
+
 @end

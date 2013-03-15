@@ -41,8 +41,7 @@
 
 }
 - (IBAction)disLog:(id)sender {
-    [AppDelegate setdAccountName:nil];
-    [AppDelegate setdPassWord:nil];
+    [AppDelegate dLogOut];
     [self.partentViewController.navigationController popToRootViewControllerAnimated:YES];
 }
 

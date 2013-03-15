@@ -38,9 +38,12 @@
     op.delegate = self;
     [[AppDelegate shareQueue] addOperation:op];
     
+    
+
+    
     [self.myTitleLabel setText:[result objectForKey:@"title"]];
-    [self.myTime setText:[NSString stringWithFormat:@"%@--%@",[result objectForKey:@"begin_time"],[result objectForKey:@"end_time"]]];
-    [self.myAdress setText:[result objectForKey:@"address"]];
+    [self.myTime setText:[self.myTime.text stringByAppendingString:[NSString stringWithFormat:@"%@--%@",[result objectForKey:@"begin_time"],[result objectForKey:@"end_time"]]] ];
+    [self.myAdress setText:[self.myAdress.text stringByAppendingString:[result objectForKey:@"address"]]];
     [self.myTextView setText:[result objectForKey:@"content"]];
     CGSize size = [self.myTextView.text sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(320, self.myTextView.text.length) lineBreakMode:UILineBreakModeWordWrap];
     self.myTextView.frame = CGRectMake(self.myTextView.frame.origin.x, self.myTextView.frame.origin.y, [UIScreen mainScreen].bounds.size.width, size.height+20);

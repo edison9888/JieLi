@@ -15,10 +15,22 @@ static CGFloat kBorderWidth = 10;
 
 @implementation SubComView{
     UIView *modalBackgroundView;
+    UIButton *closeButton;
+    SSubComView *mainView;
+    
+    NSInteger bookId;
+    NSString *userId;
+    NSString *accountName;
 }
 
-- (id)init
+- (id)initWithBookId:(NSInteger *)bId userId:(NSString *)uId accountName:(NSString *)aName
 {
+    bookId = bId;
+    userId = uId;
+    accountName = aName;
+    
+    
+    
     self = [super initWithFrame:CGRectMake(0, 20, 320, 460)];
     if (self) {
         // Initialization code
@@ -26,16 +38,46 @@ static CGFloat kBorderWidth = 10;
         self.autoresizesSubviews = YES;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.contentMode = UIViewContentModeRedraw;
+        
+        
+        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"SSubComView" owner:self options:nil];
+        mainView = [nibs objectAtIndex:0];
+        mainView.delegate = self;
+        mainView.frame = CGRectMake(10, 10, mainView.frame.size.width, mainView.frame.size.height);
+        [self addSubview:mainView];
+        
+        
+        closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        UIImage* closeImage = [UIImage imageNamed:@"SinaWeibo.bundle/images/close"];
+        UIColor* color = [UIColor colorWithRed:167.0/255 green:184.0/255 blue:216.0/255 alpha:1];
+        [closeButton setImage:closeImage forState:UIControlStateNormal];
+        [closeButton setTitleColor:color forState:UIControlStateNormal];
+        [closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [closeButton addTarget:self action:@selector(cancel)
+              forControlEvents:UIControlEventTouchUpInside];
+        closeButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+        closeButton.showsTouchWhenHighlighted = YES;
+        closeButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+
+        [self addSubview:closeButton];
 
         
-        
-        
+
         modalBackgroundView = [[UIView alloc] init];
 
     }
     return self;
 }
+-(void)sendCommentWith:(NSString *)content starNumber:(NSInteger)number{
+    CommentPoeration *op = [CommentPoeration sendWithTaget:self userId:userId name:accountName BookId:bookId content:content stars:number];
+    op.delegate = self;
+    [[AppDelegate shareQueue] addOperation:op];
+}
 
+-(void)sendCommentFinish:(id)r{
+    NSLog(@"sendCommentFinish::::%@",r);
+    
+}
 -(void)show{
     UIWindow* window = [UIApplication sharedApplication].keyWindow;
     if (!window)
@@ -46,8 +88,7 @@ static CGFloat kBorderWidth = 10;
     [modalBackgroundView addSubview:self];
     [window addSubview:modalBackgroundView];
     
-//    self.frame = window.frame;
-//    [window addSubview:self];
+    
 
     self.transform = CGAffineTransformScale([self transformForOrientation], 0.001, 0.001);
     [UIView beginAnimations:nil context:nil];
@@ -58,9 +99,11 @@ static CGFloat kBorderWidth = 10;
     [UIView commitAnimations];
 
 }
--(void)cancel{
-    
+- (void)cancel
+{
+    [modalBackgroundView removeFromSuperview];
 }
+
 
 - (CGAffineTransform)transformForOrientation
 {

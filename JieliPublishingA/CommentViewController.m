@@ -7,7 +7,6 @@
 //
 
 #import "CommentViewController.h"
-#import "CommentPoeration.h"
 #import "AppDelegate.h"
 #import "SubComView.h"
 
@@ -29,30 +28,22 @@
     return self;
 }
 -(void)iWantComment{
-    SubComView *sc = [[SubComView alloc] init];
-    [sc show];
-    
-    
-    
-    /*
     UIActionSheet *actionSheet;
     NSString *title;
-    NSString *message;
+    NSString *messageA =@"登录评价";
+    NSString *messageB =@"匿名评价";
     int tag ;
     if (ISLOGED) {
         tag = 1;
         title = [NSString stringWithFormat:@"您已登录:%@",[AppDelegate dAccountName]];
-        message = @"匿名评价";
     }
     else {
         tag = 2;
-        title = @"您尚未登录";
-        message = @"登录评价";
     }
-    actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:@"返回" destructiveButtonTitle:message otherButtonTitles: nil];
+    actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:@"返回" destructiveButtonTitle:messageA otherButtonTitles:messageB, nil];
     actionSheet.tag = tag;
     [actionSheet showInView:self.view.superview.superview];
-    */
+    
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSLog(@"%d",buttonIndex);
@@ -61,11 +52,29 @@
             LogViewController *viewController = [[LogViewController alloc] initWithNibName:@"LogViewController" bundle:nil];
             viewController.finishToPop = YES;
             [self.delegate pushTo:viewController];
-
+        }
+        else{
+            [self toSubComViewWithBookId:self.bookInfo.bookId useId:[AppDelegate dUserId] userName:[AppDelegate dAccountName]];
         }
     }
-}
+    else if (buttonIndex == 1){
+        [self toSubComViewWithBookId:self.bookInfo.bookId useId:nil userName:nil];
 
+    }
+    
+    
+    
+    
+    
+
+}
+-(void)toSubComViewWithBookId:(NSInteger)bookId useId:(NSString *)userId userName:(NSString *)userName{
+    
+    SubComView *sc = [[SubComView alloc] initWithBookId:bookId userId:userId accountName:userName];
+    [sc show];
+
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -74,12 +83,14 @@
 }
 -(void)loadBookInfo:(BookInfo *)info{
     self.bookInfo = info;
-    CommentPoeration *po = [[CommentPoeration alloc] initWithTaget:self withBookId:self.bookInfo.bookId];
-    [[AppDelegate shareQueue] addOperation:po];
+    CommentPoeration *op = [CommentPoeration getWithTaget:self withBookId:info.bookId];
+    op.delegate = self;
+    [[AppDelegate shareQueue] addOperation:op];
     
 }
--(void)loadData:(id)result{
-    NSLog(@"%@",result);
+-(void)getCommentFinish:(id)r{
+    NSLog(@"getCommentFinish:::%@",r);
+
 }
 - (void)didReceiveMemoryWarning
 {

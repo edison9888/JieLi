@@ -26,7 +26,8 @@ enum{
 
 }
 -(void)loadData:(id)r{
-    GetImageOperation *op = [[GetImageOperation alloc] initWithImageId:[r objectForKey:@"id"] url:[r objectForKey:@"image_lmobile"] withFloderName:ActivityCardImage];
+    
+    GetImageOperation *op = [[GetImageOperation alloc] initWithImageId:[[r objectForKey:@"id"] integerValue] url:[r objectForKey:@"image_lmobile"] withFloderName:ActivityCardImage];
     op.delegate = self;
     [[AppDelegate shareQueue] addOperation:op];
     
@@ -106,7 +107,7 @@ enum{
 //    [self.dataBrain getActivityList];
 //    self.dataBrain.getListDelegate = self;
     [self.actI startAnimating];
-    
+    PosX = 0;
     int events[5] = {18234559,17758278,17755502,18401705,18228563};
     for (int i = 0; i<5; i++) {
         ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:events[i]];
@@ -115,10 +116,19 @@ enum{
     }
     self.myPageControl.numberOfPages = 5;
 
-    
+//    ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:events[0]];
+//    op.delegate = self;
+//    [[AppDelegate shareQueue] addOperation:op];
+//    
+//    NSString *urlString = [@"https://api.douban.com/v2/event/" stringByAppendingString:[NSString stringWithFormat:@"%d",18234559]];
+//    NSURL *url = [NSURL URLWithString:@"https://api.douban.com/v2/event/18234559"];
+//
+//    NSData *data = [NSData dataWithContentsOfURL:url];
+//    NSLog(@"123:%@",data);
+
 }
 -(void)finishPoeration:(id)result{
-    NSLog(@"%@",result);
+    NSLog(@"result:%@",result);
     [self loadDouBanEvent:result];
 }
 
@@ -143,6 +153,7 @@ static float PosX = 0;
 -(void)pushToDouBanDetail:(UITapGestureRecognizer *)tap{
     ReadingCard *readingCardView = (ReadingCard *)[tap view] ;
     NSLog(@".......%d",readingCardView.activityId);
+    
     DetailInfoOfActivityViewController *viewController = [[DetailInfoOfActivityViewController alloc] initWithNibName:@"DetailInfoOfActivityViewController" bundle:nil];
     viewController.activityId = readingCardView.activityId;
     [self.navigationController pushViewController:viewController animated:YES];

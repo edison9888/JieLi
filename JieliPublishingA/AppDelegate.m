@@ -20,6 +20,26 @@ static NSOperationQueue *queue;
 
 @implementation AppDelegate
 
+
++(void)dLogInWithUserId:(NSString *)userId accountName:(NSString *)accountName passWord:(NSString *)passWord{
+    [AppDelegate setdUserId:userId];
+    [AppDelegate setdAccountName:accountName];
+    [AppDelegate setdPassWord:passWord];
+
+}
++(void)dLogOut{
+    [AppDelegate setdUserId:nil];
+    [AppDelegate setdAccountName:nil];
+    [AppDelegate setdPassWord:nil];
+}
+
++(NSString *)dUserId{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+}
++(void)setdUserId:(NSString *)v{
+    [[NSUserDefaults standardUserDefaults] setObject:v forKey:@"userId"];
+}
+
 +(NSString *)dAccountName{
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"accountName"];
 }

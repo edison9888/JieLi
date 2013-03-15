@@ -38,6 +38,7 @@
         else{
             
             NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
+            [DataBrain writeFile:data withIndex:imageId withFlolderName:floderName];
             [self performSelectorOnMainThread:@selector(finish:) withObject:[UIImage imageWithData:data] waitUntilDone:NO];
         }
     }

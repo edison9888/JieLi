@@ -8,9 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol CommentPoerationDelegate <NSObject>
+
+-(void)getCommentFinish:(id)r;
+-(void)sendCommentFinish:(id)r;
+
+
+@end
+
+
+typedef enum {
+    CommentGet,
+    CommentSend,
+}CommentType;
+
 @interface CommentPoeration : NSOperation{
     id target;
-    int bookId;
+    NSURL *url;
+    CommentType type;
+    
 }
--(id)initWithTaget:(id)cv withBookId:(int)bookid;
+@property (strong) id<CommentPoerationDelegate> delegate;
++(id)sendWithTaget:(id)cv userId:(int)userid name:(NSString *)name BookId:(int)bookid content:(NSString *)content stars:(int)starsnumber;
++(id)getWithTaget:(id)cv withBookId:(int)bookid;
+
 @end

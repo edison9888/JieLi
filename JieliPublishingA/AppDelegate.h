@@ -27,4 +27,9 @@
 +(void)setdAccountName:(NSString *)v;
 +(NSString *)dPassWord;
 +(void)setdPassWord:(NSString *)v;
++(NSString *)dUserId;
++(void)setdUserId:(NSString *)v;
++(void)dLogOut;
++(void)dLogInWithUserId:(NSString *)userId accountName:(NSString *)accountName passWord:(NSString *)passWord;
+
 @end
