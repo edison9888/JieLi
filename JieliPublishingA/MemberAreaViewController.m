@@ -13,6 +13,7 @@
 #import "LogViewController.h"
 @interface MemberAreaViewController (){
     NSArray *arrayOfCells;
+    UIScrollView *scrollView;
 }
 @property (strong,nonatomic) UIView *bgImageView;
 
@@ -50,6 +51,8 @@
     UIImage *image;
     self.currentType = index-1;
     [self.tableView reloadData];
+    scrollView.hidden = YES;
+
     if (index ==1) {
         self.tableView.hidden = YES;
         self.informationView.hidden = NO;
@@ -57,6 +60,10 @@
     else{
         self.tableView.hidden = NO;
         self.informationView.hidden = YES;
+        if (index == 3) {
+            self.tableView.hidden = YES;
+            scrollView.hidden = NO;
+        }
     }
     switch (index) {
         case 1:
@@ -102,6 +109,16 @@
     self.barButon2.tag = 2;
     self.barButon3.tag = 3;
     self.barButon4.tag = 4;
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:self.tableView.frame];
+    UIImageView *jiFen = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"The rules"]];
+    jiFen.frame = CGRectMake(10, 0, 300, 1185);
+    [scrollView addSubview:jiFen];
+    scrollView.hidden = YES;
+    [self.myMemberAreaView addSubview:scrollView];
+    scrollView.contentSize = CGSizeMake(0, 1185);
+    [self.myMemberAreaView bringSubviewToFront:self.meberAreaTopBar];
+    [scrollView setShowsVerticalScrollIndicator:NO];
     
     
     
