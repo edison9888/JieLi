@@ -14,7 +14,6 @@ enum {
 };
 
 #import "GoodBookViewController.h"
-#import "MKHorizMenu.h"
 #import "HCBookShelf.h"
 #import "BookViewController.h"
 #import "DiyTopBar.h"

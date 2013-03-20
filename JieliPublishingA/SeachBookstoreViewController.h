@@ -11,10 +11,16 @@
 #import <CoreLocation/CoreLocation.h>
 #import "PositionAnnotation.h"
 #import "DiyTopBar.h"
-@interface SeachBookstoreViewController : UIViewController<CLLocationManagerDelegate>
+#import "BMapKit.h"
 
-@property (nonatomic,retain) CLLocationManager *locationManager;
-@property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
-@property (retain, nonatomic) IBOutlet MKMapView *mapView;
+@interface SeachBookstoreViewController : UIViewController<CLLocationManagerDelegate,BMKMapViewDelegate,BMKSearchDelegate>{
+    BMKSearch *_search;
+    BMKMapView *_mapView;
+
+}
+
+//@property (nonatomic,retain) CLLocationManager *locationManager;
+//@property (nonatomic, assign) CLLocationCoordinate2D currentCoordinate;
+//@property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet DiyTopBar *myTopBar;
 @end

@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "DataBrain.h"
 #import "SinaWeibo.h"
+#import "BMapKit.h"
+
 #define kAppKey             @"1121796814"
 #define kAppSecret          @"152a12ee831277740fb7ef7708ca65eb"
 #define kAppRedirectURI     @"http://www.apple.com"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate,UINavigationControllerDelegate,SinaWeiboDelegate>{
+    BMKMapManager *_mapManager;
 
 }
 @property (strong, nonatomic) SinaWeibo *sinaweibo;

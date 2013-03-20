@@ -14,6 +14,7 @@
 #import "ForthViewController.h"
 
 #import "CustomNavigationBar.h"
+#define BMAPAPIKEY @"206AC53E67C539B6539AF6C41F48AB42562BDE6B"
 
 
 static NSOperationQueue *queue;
@@ -71,6 +72,13 @@ static NSOperationQueue *queue;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    _mapManager = [[BMKMapManager alloc]init];
+    BOOL ret = [_mapManager start:BMAPAPIKEY generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     UIViewController *viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
