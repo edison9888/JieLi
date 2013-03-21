@@ -90,18 +90,24 @@
 }
 
 -(void)finishPoeration:(id)result{
+    if (!result) {
+        return;
+    }
     NSLog(@"%@",result);
     NSArray *array = [BookInfo bookInfoWithJSON:result];
-    if (!self.tC) {
+    if (self.tC) {
+        [self.tC.view removeFromSuperview];
+        self.tC = nil;
+    }
+    
         self.tC = [[BookShelfTableViewController alloc] initWithStyle:UITableViewStylePlain];
         self.tC.delegate = self;
         [self.tC.tableView setBackgroundColor:[UIColor clearColor]];
         [self.tC.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.tC.tableView setShowsVerticalScrollIndicator:NO]; 
         [self.tC loadBooks:array];
         [self.tC.tableView setFrame:CGRectMake(0, 85, 320,326)];
         [self.view addSubview:self.tC.tableView];
-        
-    }
 }
 
 -(void)pushOut:(HCTadBarController *)tab{
