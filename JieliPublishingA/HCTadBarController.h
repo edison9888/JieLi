@@ -12,6 +12,9 @@
 #import "CommentViewController.h"
 #import "BuyViewController.h"
 
+
+//#import "EPubViewController.h"
+
 @class HCTabBar;
 @protocol HCTabBarDelegate <NSObject>
 

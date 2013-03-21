@@ -7,6 +7,8 @@
 //
 
 #import "ContentViewController.h"
+//#import "EPubViewController.h"
+
 @interface ContentViewController ()
 
 @end
@@ -28,6 +30,11 @@
     [self.view.superview.superview addSubview:webView];
     NSURLRequest *req = [[NSURLRequest alloc] initWithURL:url];
     [webView loadRequest:req];
+    
+//    EPubViewController *epub;
+//    [epub loadEpub:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"vhugo" ofType:@"epub"]]];
+
+    
     
 
 }

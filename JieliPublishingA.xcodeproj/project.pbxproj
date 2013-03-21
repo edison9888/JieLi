@@ -105,8 +105,6 @@
 		2634F34B165CBCC800C42CE5 /* BookInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2634F34A165CBCC800C42CE5 /* BookInfo.m */; };
 		263716C916E86FC600C7EF03 /* BackGroundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 263716C816E86FC500C7EF03 /* BackGroundImageView.m */; };
 		263822DA16F9417500B4C093 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 263822D716F9417500B4C093 /* mapapi.bundle */; };
-		263822E716F945EE00B4C093 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263822E416F945EE00B4C093 /* libbaidumapapi.a */; };
-		263822E816F945EE00B4C093 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263822E616F945EE00B4C093 /* libbaidumapapi.a */; };
 		263959B91684520D007CAAEC /* WeiBoBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 263959B81684520D007CAAEC /* WeiBoBar.xib */; };
 		263959BD16845273007CAAEC /* WeiBoBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 263959BC16845273007CAAEC /* WeiBoBar.m */; };
 		263C1B4C162CF55100E14CDF /* PromotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263C1B4A162CF55100E14CDF /* PromotionViewController.m */; };
@@ -310,6 +308,48 @@
 		85930A6516F220CA0085A5B9 /* ReadEventOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85930A6416F220CA0085A5B9 /* ReadEventOperation.m */; };
 		85DFD17F16EB19E300F210BD /* CBuyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DFD17E16EB19E300F210BD /* CBuyOperation.m */; };
 		85DFD18616EB23FC00F210BD /* CommentPoeration.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DFD18516EB23FC00F210BD /* CommentPoeration.m */; };
+		85FCBF3116FB5FD3001C6EFD /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FCBF2F16FB5FD3001C6EFD /* libz.1.1.3.dylib */; };
+		85FCBF3216FB5FD3001C6EFD /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FCBF3016FB5FD3001C6EFD /* libz.1.2.5.dylib */; };
+		85FCBF5816FB62C6001C6EFD /* AePubReaderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF3516FB62C6001C6EFD /* AePubReaderAppDelegate.m */; };
+		85FCBF5916FB62C6001C6EFD /* Chapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF3716FB62C6001C6EFD /* Chapter.m */; };
+		85FCBF5A16FB62C6001C6EFD /* ChapterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF3916FB62C6001C6EFD /* ChapterListViewController.m */; };
+		85FCBF5B16FB62C6001C6EFD /* ChapterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FCBF3A16FB62C6001C6EFD /* ChapterListViewController.xib */; };
+		85FCBF5C16FB62C6001C6EFD /* EPub.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF3C16FB62C6001C6EFD /* EPub.m */; };
+		85FCBF5D16FB62C6001C6EFD /* EPubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FCBF3D16FB62C6001C6EFD /* EPubView.xib */; };
+		85FCBF5E16FB62C6001C6EFD /* EPubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF3F16FB62C6001C6EFD /* EPubViewController.m */; };
+		85FCBF5F16FB62C6001C6EFD /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF4216FB62C6001C6EFD /* GTMNSString+HTML.m */; };
+		85FCBF6016FB62C6001C6EFD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF4516FB62C6001C6EFD /* ioapi.c */; };
+		85FCBF6116FB62C6001C6EFD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF4716FB62C6001C6EFD /* mztools.c */; };
+		85FCBF6216FB62C6001C6EFD /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF4916FB62C6001C6EFD /* unzip.c */; };
+		85FCBF6316FB62C6001C6EFD /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF4B16FB62C6001C6EFD /* zip.c */; };
+		85FCBF6416FB62C6001C6EFD /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF4E16FB62C6001C6EFD /* NSString+HTML.m */; };
+		85FCBF6516FB62C6001C6EFD /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF5016FB62C6001C6EFD /* SearchResult.m */; };
+		85FCBF6616FB62C6001C6EFD /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF5216FB62C6001C6EFD /* SearchResultsViewController.m */; };
+		85FCBF6716FB62C6001C6EFD /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FCBF5316FB62C6001C6EFD /* SearchResultsViewController.xib */; };
+		85FCBF6816FB62C6001C6EFD /* UIWebView+SearchWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF5516FB62C6001C6EFD /* UIWebView+SearchWebView.m */; };
+		85FCBF6916FB62C6001C6EFD /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF5716FB62C6001C6EFD /* ZipArchive.mm */; };
+		85FCBF6F16FB62D5001C6EFD /* orangeslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FCBF6A16FB62D5001C6EFD /* orangeslide.png */; };
+		85FCBF7016FB62D5001C6EFD /* SearchWebView.js in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF6B16FB62D5001C6EFD /* SearchWebView.js */; };
+		85FCBF7116FB62D5001C6EFD /* slider_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FCBF6C16FB62D5001C6EFD /* slider_ball.png */; };
+		85FCBF7216FB62D5001C6EFD /* vhugo.epub in Resources */ = {isa = PBXBuildFile; fileRef = 85FCBF6D16FB62D5001C6EFD /* vhugo.epub */; };
+		85FCBF7316FB62D5001C6EFD /* yellowslide.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FCBF6E16FB62D5001C6EFD /* yellowslide.png */; };
+		85FCBFA016FB6534001C6EFD /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF7716FB6312001C6EFD /* CXMLDocument_CreationExtensions.m */; };
+		85FCBFA216FB6534001C6EFD /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF7916FB6312001C6EFD /* CXMLNode_CreationExtensions.m */; };
+		85FCBFA416FB6534001C6EFD /* CXHTMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF7B16FB6312001C6EFD /* CXHTMLDocument.m */; };
+		85FCBFA616FB6534001C6EFD /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF7D16FB6312001C6EFD /* CXMLDocument_PrivateExtensions.m */; };
+		85FCBFA816FB6534001C6EFD /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF7F16FB6312001C6EFD /* CXMLDocument.m */; };
+		85FCBFAA16FB6534001C6EFD /* CXMLElement_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF8116FB6312001C6EFD /* CXMLElement_CreationExtensions.m */; };
+		85FCBFAC16FB6534001C6EFD /* CXMLElement_ElementTreeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF8316FB6312001C6EFD /* CXMLElement_ElementTreeExtensions.m */; };
+		85FCBFAE16FB6534001C6EFD /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF8516FB6312001C6EFD /* CXMLElement.m */; };
+		85FCBFB016FB6534001C6EFD /* CXMLNamespaceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF8716FB6312001C6EFD /* CXMLNamespaceNode.m */; };
+		85FCBFB216FB6534001C6EFD /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF8916FB6312001C6EFD /* CXMLNode_PrivateExtensions.m */; };
+		85FCBFB416FB6534001C6EFD /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF8B16FB6312001C6EFD /* CXMLNode_XPathExtensions.m */; };
+		85FCBFB616FB6534001C6EFD /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF8D16FB6312001C6EFD /* CXMLNode.m */; };
+		85FCBFB716FB6545001C6EFD /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBF9016FB6312001C6EFD /* CTidy.m */; };
+		85FCBFBC16FB6890001C6EFD /* NSString+MD5Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBFB916FB6890001C6EFD /* NSString+MD5Addition.m */; };
+		85FCBFBD16FB6890001C6EFD /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FCBFBB16FB6890001C6EFD /* UIDevice+IdentifierAddition.m */; };
+		85FCBFBE16FB6BF0001C6EFD /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263822E616F945EE00B4C093 /* libbaidumapapi.a */; };
+		85FCBFC116FB6C8B001C6EFD /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85FCBFC016FB6C8B001C6EFD /* libbaidumapapi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -467,7 +507,6 @@
 		263822D016F9417500B4C093 /* BMKUserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKUserLocation.h; sourceTree = "<group>"; };
 		263822D116F9417500B4C093 /* BMKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKVersion.h; sourceTree = "<group>"; };
 		263822D716F9417500B4C093 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
-		263822E416F945EE00B4C093 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		263822E616F945EE00B4C093 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		263959B81684520D007CAAEC /* WeiBoBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeiBoBar.xib; sourceTree = "<group>"; };
 		263959BB16845273007CAAEC /* WeiBoBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiBoBar.h; sourceTree = "<group>"; };
@@ -719,6 +758,80 @@
 		85DFD17E16EB19E300F210BD /* CBuyOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBuyOperation.m; sourceTree = "<group>"; };
 		85DFD18416EB23FC00F210BD /* CommentPoeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentPoeration.h; sourceTree = "<group>"; };
 		85DFD18516EB23FC00F210BD /* CommentPoeration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentPoeration.m; sourceTree = "<group>"; };
+		85FCBF2F16FB5FD3001C6EFD /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		85FCBF3016FB5FD3001C6EFD /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		85FCBF3416FB62C6001C6EFD /* AePubReaderAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AePubReaderAppDelegate.h; sourceTree = "<group>"; };
+		85FCBF3516FB62C6001C6EFD /* AePubReaderAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AePubReaderAppDelegate.m; sourceTree = "<group>"; };
+		85FCBF3616FB62C6001C6EFD /* Chapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chapter.h; sourceTree = "<group>"; };
+		85FCBF3716FB62C6001C6EFD /* Chapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chapter.m; sourceTree = "<group>"; };
+		85FCBF3816FB62C6001C6EFD /* ChapterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChapterListViewController.h; sourceTree = "<group>"; };
+		85FCBF3916FB62C6001C6EFD /* ChapterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChapterListViewController.m; sourceTree = "<group>"; };
+		85FCBF3A16FB62C6001C6EFD /* ChapterListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChapterListViewController.xib; sourceTree = "<group>"; };
+		85FCBF3B16FB62C6001C6EFD /* EPub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPub.h; sourceTree = "<group>"; };
+		85FCBF3C16FB62C6001C6EFD /* EPub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPub.m; sourceTree = "<group>"; };
+		85FCBF3D16FB62C6001C6EFD /* EPubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EPubView.xib; sourceTree = "<group>"; };
+		85FCBF3E16FB62C6001C6EFD /* EPubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPubViewController.h; sourceTree = "<group>"; };
+		85FCBF3F16FB62C6001C6EFD /* EPubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPubViewController.m; sourceTree = "<group>"; };
+		85FCBF4016FB62C6001C6EFD /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		85FCBF4116FB62C6001C6EFD /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		85FCBF4216FB62C6001C6EFD /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		85FCBF4416FB62C6001C6EFD /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		85FCBF4516FB62C6001C6EFD /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		85FCBF4616FB62C6001C6EFD /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		85FCBF4716FB62C6001C6EFD /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		85FCBF4816FB62C6001C6EFD /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		85FCBF4916FB62C6001C6EFD /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		85FCBF4A16FB62C6001C6EFD /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		85FCBF4B16FB62C6001C6EFD /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		85FCBF4C16FB62C6001C6EFD /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		85FCBF4D16FB62C6001C6EFD /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		85FCBF4E16FB62C6001C6EFD /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		85FCBF4F16FB62C6001C6EFD /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
+		85FCBF5016FB62C6001C6EFD /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
+		85FCBF5116FB62C6001C6EFD /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
+		85FCBF5216FB62C6001C6EFD /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
+		85FCBF5316FB62C6001C6EFD /* SearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
+		85FCBF5416FB62C6001C6EFD /* UIWebView+SearchWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+SearchWebView.h"; sourceTree = "<group>"; };
+		85FCBF5516FB62C6001C6EFD /* UIWebView+SearchWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+SearchWebView.m"; sourceTree = "<group>"; };
+		85FCBF5616FB62C6001C6EFD /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		85FCBF5716FB62C6001C6EFD /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		85FCBF6A16FB62D5001C6EFD /* orangeslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeslide.png; sourceTree = "<group>"; };
+		85FCBF6B16FB62D5001C6EFD /* SearchWebView.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SearchWebView.js; sourceTree = "<group>"; };
+		85FCBF6C16FB62D5001C6EFD /* slider_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_ball.png; sourceTree = "<group>"; };
+		85FCBF6D16FB62D5001C6EFD /* vhugo.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = vhugo.epub; sourceTree = "<group>"; };
+		85FCBF6E16FB62D5001C6EFD /* yellowslide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowslide.png; sourceTree = "<group>"; };
+		85FCBF7616FB6312001C6EFD /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
+		85FCBF7716FB6312001C6EFD /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
+		85FCBF7816FB6312001C6EFD /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
+		85FCBF7916FB6312001C6EFD /* CXMLNode_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_CreationExtensions.m; sourceTree = "<group>"; };
+		85FCBF7A16FB6312001C6EFD /* CXHTMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXHTMLDocument.h; sourceTree = "<group>"; };
+		85FCBF7B16FB6312001C6EFD /* CXHTMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXHTMLDocument.m; sourceTree = "<group>"; };
+		85FCBF7C16FB6312001C6EFD /* CXMLDocument_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_PrivateExtensions.h; sourceTree = "<group>"; };
+		85FCBF7D16FB6312001C6EFD /* CXMLDocument_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_PrivateExtensions.m; sourceTree = "<group>"; };
+		85FCBF7E16FB6312001C6EFD /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
+		85FCBF7F16FB6312001C6EFD /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
+		85FCBF8016FB6312001C6EFD /* CXMLElement_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement_CreationExtensions.h; sourceTree = "<group>"; };
+		85FCBF8116FB6312001C6EFD /* CXMLElement_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement_CreationExtensions.m; sourceTree = "<group>"; };
+		85FCBF8216FB6312001C6EFD /* CXMLElement_ElementTreeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement_ElementTreeExtensions.h; sourceTree = "<group>"; };
+		85FCBF8316FB6312001C6EFD /* CXMLElement_ElementTreeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement_ElementTreeExtensions.m; sourceTree = "<group>"; };
+		85FCBF8416FB6312001C6EFD /* CXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLElement.h; sourceTree = "<group>"; };
+		85FCBF8516FB6312001C6EFD /* CXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLElement.m; sourceTree = "<group>"; };
+		85FCBF8616FB6312001C6EFD /* CXMLNamespaceNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNamespaceNode.h; sourceTree = "<group>"; };
+		85FCBF8716FB6312001C6EFD /* CXMLNamespaceNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNamespaceNode.m; sourceTree = "<group>"; };
+		85FCBF8816FB6312001C6EFD /* CXMLNode_PrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_PrivateExtensions.h; sourceTree = "<group>"; };
+		85FCBF8916FB6312001C6EFD /* CXMLNode_PrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_PrivateExtensions.m; sourceTree = "<group>"; };
+		85FCBF8A16FB6312001C6EFD /* CXMLNode_XPathExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_XPathExtensions.h; sourceTree = "<group>"; };
+		85FCBF8B16FB6312001C6EFD /* CXMLNode_XPathExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode_XPathExtensions.m; sourceTree = "<group>"; };
+		85FCBF8C16FB6312001C6EFD /* CXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode.h; sourceTree = "<group>"; };
+		85FCBF8D16FB6312001C6EFD /* CXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLNode.m; sourceTree = "<group>"; };
+		85FCBF8F16FB6312001C6EFD /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
+		85FCBF9016FB6312001C6EFD /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
+		85FCBF9116FB6312001C6EFD /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		85FCBFB816FB6890001C6EFD /* NSString+MD5Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Addition.h"; sourceTree = "<group>"; };
+		85FCBFB916FB6890001C6EFD /* NSString+MD5Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Addition.m"; sourceTree = "<group>"; };
+		85FCBFBA16FB6890001C6EFD /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		85FCBFBB16FB6890001C6EFD /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		85FCBFC016FB6C8B001C6EFD /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -726,6 +839,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85FCBF3116FB5FD3001C6EFD /* libz.1.1.3.dylib in Frameworks */,
+				85FCBF3216FB5FD3001C6EFD /* libz.1.2.5.dylib in Frameworks */,
 				2648EF501665F3D000983885 /* SystemConfiguration.framework in Frameworks */,
 				2648EF4E1665F3AE00983885 /* CFNetwork.framework in Frameworks */,
 				2648EF4C1665F39C00983885 /* AudioToolbox.framework in Frameworks */,
@@ -736,8 +851,8 @@
 				26AC01051627E53F00210012 /* Foundation.framework in Frameworks */,
 				26AC01071627E53F00210012 /* CoreGraphics.framework in Frameworks */,
 				2642364B1679787F00910024 /* iflyMSC.framework in Frameworks */,
-				263822E716F945EE00B4C093 /* libbaidumapapi.a in Frameworks */,
-				263822E816F945EE00B4C093 /* libbaidumapapi.a in Frameworks */,
+				85FCBFBE16FB6BF0001C6EFD /* libbaidumapapi.a in Frameworks */,
+				85FCBFC116FB6C8B001C6EFD /* libbaidumapapi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,18 +987,10 @@
 		263822E216F945EE00B4C093 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				263822E316F945EE00B4C093 /* Release-iphoneos */,
+				85FCBFBF16FB6C8B001C6EFD /* Release-iphoneos */,
 				263822E516F945EE00B4C093 /* Release-iphonesimulator */,
 			);
 			path = libs;
-			sourceTree = "<group>";
-		};
-		263822E316F945EE00B4C093 /* Release-iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				263822E416F945EE00B4C093 /* libbaidumapapi.a */,
-			);
-			path = "Release-iphoneos";
 			sourceTree = "<group>";
 		};
 		263822E516F945EE00B4C093 /* Release-iphonesimulator */ = {
@@ -1332,6 +1439,12 @@
 		26AC00F31627E53E00210012 = {
 			isa = PBXGroup;
 			children = (
+				85FCBFB816FB6890001C6EFD /* NSString+MD5Addition.h */,
+				85FCBFB916FB6890001C6EFD /* NSString+MD5Addition.m */,
+				85FCBFBA16FB6890001C6EFD /* UIDevice+IdentifierAddition.h */,
+				85FCBFBB16FB6890001C6EFD /* UIDevice+IdentifierAddition.m */,
+				85FCBF2F16FB5FD3001C6EFD /* libz.1.1.3.dylib */,
+				85FCBF3016FB5FD3001C6EFD /* libz.1.2.5.dylib */,
 				26AC01081627E53F00210012 /* JieliPublishingA */,
 				26AC01011627E53E00210012 /* Frameworks */,
 				26AC00FF1627E53E00210012 /* Products */,
@@ -1366,6 +1479,7 @@
 		26AC01081627E53F00210012 /* JieliPublishingA */ = {
 			isa = PBXGroup;
 			children = (
+				85FCBEC216FB5D23001C6EFD /* epub */,
 				2642365E1679B55400910024 /* JSONKit */,
 				264236611679B55400910024 /* SinaWeibo */,
 				263C67621640C9A500F31DEB /* Source */,
@@ -1474,6 +1588,128 @@
 				85930A6416F220CA0085A5B9 /* ReadEventOperation.m */,
 			);
 			name = operations;
+			sourceTree = "<group>";
+		};
+		85FCBEC216FB5D23001C6EFD /* epub */ = {
+			isa = PBXGroup;
+			children = (
+				85FCBF7416FB62FD001C6EFD /* epubsource */,
+				85FCBF6A16FB62D5001C6EFD /* orangeslide.png */,
+				85FCBF6B16FB62D5001C6EFD /* SearchWebView.js */,
+				85FCBF6C16FB62D5001C6EFD /* slider_ball.png */,
+				85FCBF6D16FB62D5001C6EFD /* vhugo.epub */,
+				85FCBF6E16FB62D5001C6EFD /* yellowslide.png */,
+				85FCBF3316FB62C6001C6EFD /* Classes */,
+			);
+			name = epub;
+			sourceTree = "<group>";
+		};
+		85FCBF3316FB62C6001C6EFD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				85FCBF3416FB62C6001C6EFD /* AePubReaderAppDelegate.h */,
+				85FCBF3516FB62C6001C6EFD /* AePubReaderAppDelegate.m */,
+				85FCBF3616FB62C6001C6EFD /* Chapter.h */,
+				85FCBF3716FB62C6001C6EFD /* Chapter.m */,
+				85FCBF3816FB62C6001C6EFD /* ChapterListViewController.h */,
+				85FCBF3916FB62C6001C6EFD /* ChapterListViewController.m */,
+				85FCBF3A16FB62C6001C6EFD /* ChapterListViewController.xib */,
+				85FCBF3B16FB62C6001C6EFD /* EPub.h */,
+				85FCBF3C16FB62C6001C6EFD /* EPub.m */,
+				85FCBF3D16FB62C6001C6EFD /* EPubView.xib */,
+				85FCBF3E16FB62C6001C6EFD /* EPubViewController.h */,
+				85FCBF3F16FB62C6001C6EFD /* EPubViewController.m */,
+				85FCBF4016FB62C6001C6EFD /* GTMDefines.h */,
+				85FCBF4116FB62C6001C6EFD /* GTMNSString+HTML.h */,
+				85FCBF4216FB62C6001C6EFD /* GTMNSString+HTML.m */,
+				85FCBF4316FB62C6001C6EFD /* minizip */,
+				85FCBF4D16FB62C6001C6EFD /* NSString+HTML.h */,
+				85FCBF4E16FB62C6001C6EFD /* NSString+HTML.m */,
+				85FCBF4F16FB62C6001C6EFD /* SearchResult.h */,
+				85FCBF5016FB62C6001C6EFD /* SearchResult.m */,
+				85FCBF5116FB62C6001C6EFD /* SearchResultsViewController.h */,
+				85FCBF5216FB62C6001C6EFD /* SearchResultsViewController.m */,
+				85FCBF5316FB62C6001C6EFD /* SearchResultsViewController.xib */,
+				85FCBF5416FB62C6001C6EFD /* UIWebView+SearchWebView.h */,
+				85FCBF5516FB62C6001C6EFD /* UIWebView+SearchWebView.m */,
+				85FCBF5616FB62C6001C6EFD /* ZipArchive.h */,
+				85FCBF5716FB62C6001C6EFD /* ZipArchive.mm */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		85FCBF4316FB62C6001C6EFD /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				85FCBF4416FB62C6001C6EFD /* crypt.h */,
+				85FCBF4516FB62C6001C6EFD /* ioapi.c */,
+				85FCBF4616FB62C6001C6EFD /* ioapi.h */,
+				85FCBF4716FB62C6001C6EFD /* mztools.c */,
+				85FCBF4816FB62C6001C6EFD /* mztools.h */,
+				85FCBF4916FB62C6001C6EFD /* unzip.c */,
+				85FCBF4A16FB62C6001C6EFD /* unzip.h */,
+				85FCBF4B16FB62C6001C6EFD /* zip.c */,
+				85FCBF4C16FB62C6001C6EFD /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
+		85FCBF7416FB62FD001C6EFD /* epubsource */ = {
+			isa = PBXGroup;
+			children = (
+				85FCBF7516FB6312001C6EFD /* Creation */,
+				85FCBF7A16FB6312001C6EFD /* CXHTMLDocument.h */,
+				85FCBF7B16FB6312001C6EFD /* CXHTMLDocument.m */,
+				85FCBF7C16FB6312001C6EFD /* CXMLDocument_PrivateExtensions.h */,
+				85FCBF7D16FB6312001C6EFD /* CXMLDocument_PrivateExtensions.m */,
+				85FCBF7E16FB6312001C6EFD /* CXMLDocument.h */,
+				85FCBF7F16FB6312001C6EFD /* CXMLDocument.m */,
+				85FCBF8016FB6312001C6EFD /* CXMLElement_CreationExtensions.h */,
+				85FCBF8116FB6312001C6EFD /* CXMLElement_CreationExtensions.m */,
+				85FCBF8216FB6312001C6EFD /* CXMLElement_ElementTreeExtensions.h */,
+				85FCBF8316FB6312001C6EFD /* CXMLElement_ElementTreeExtensions.m */,
+				85FCBF8416FB6312001C6EFD /* CXMLElement.h */,
+				85FCBF8516FB6312001C6EFD /* CXMLElement.m */,
+				85FCBF8616FB6312001C6EFD /* CXMLNamespaceNode.h */,
+				85FCBF8716FB6312001C6EFD /* CXMLNamespaceNode.m */,
+				85FCBF8816FB6312001C6EFD /* CXMLNode_PrivateExtensions.h */,
+				85FCBF8916FB6312001C6EFD /* CXMLNode_PrivateExtensions.m */,
+				85FCBF8A16FB6312001C6EFD /* CXMLNode_XPathExtensions.h */,
+				85FCBF8B16FB6312001C6EFD /* CXMLNode_XPathExtensions.m */,
+				85FCBF8C16FB6312001C6EFD /* CXMLNode.h */,
+				85FCBF8D16FB6312001C6EFD /* CXMLNode.m */,
+				85FCBF8E16FB6312001C6EFD /* Tidy */,
+				85FCBF9116FB6312001C6EFD /* TouchXML.h */,
+			);
+			name = epubsource;
+			sourceTree = "<group>";
+		};
+		85FCBF7516FB6312001C6EFD /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				85FCBF7616FB6312001C6EFD /* CXMLDocument_CreationExtensions.h */,
+				85FCBF7716FB6312001C6EFD /* CXMLDocument_CreationExtensions.m */,
+				85FCBF7816FB6312001C6EFD /* CXMLNode_CreationExtensions.h */,
+				85FCBF7916FB6312001C6EFD /* CXMLNode_CreationExtensions.m */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
+		85FCBF8E16FB6312001C6EFD /* Tidy */ = {
+			isa = PBXGroup;
+			children = (
+				85FCBF8F16FB6312001C6EFD /* CTidy.h */,
+				85FCBF9016FB6312001C6EFD /* CTidy.m */,
+			);
+			path = Tidy;
+			sourceTree = "<group>";
+		};
+		85FCBFBF16FB6C8B001C6EFD /* Release-iphoneos */ = {
+			isa = PBXGroup;
+			children = (
+				85FCBFC016FB6C8B001C6EFD /* libbaidumapapi.a */,
+			);
+			path = "Release-iphoneos";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1749,6 +1985,13 @@
 				266219A216F318F8008E2AB5 /* 我的书架2.jpg in Resources */,
 				266219A416F31A87008E2AB5 /* The rules.png in Resources */,
 				263822DA16F9417500B4C093 /* mapapi.bundle in Resources */,
+				85FCBF5B16FB62C6001C6EFD /* ChapterListViewController.xib in Resources */,
+				85FCBF5D16FB62C6001C6EFD /* EPubView.xib in Resources */,
+				85FCBF6716FB62C6001C6EFD /* SearchResultsViewController.xib in Resources */,
+				85FCBF6F16FB62D5001C6EFD /* orangeslide.png in Resources */,
+				85FCBF7116FB62D5001C6EFD /* slider_ball.png in Resources */,
+				85FCBF7216FB62D5001C6EFD /* vhugo.epub in Resources */,
+				85FCBF7316FB62D5001C6EFD /* yellowslide.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1828,6 +2071,37 @@
 				26C5451916F1AF900094F197 /* SubComView.m in Sources */,
 				85930A6516F220CA0085A5B9 /* ReadEventOperation.m in Sources */,
 				268C8B8D16F2D204006DA55B /* SSubComView.m in Sources */,
+				85FCBF5816FB62C6001C6EFD /* AePubReaderAppDelegate.m in Sources */,
+				85FCBF5916FB62C6001C6EFD /* Chapter.m in Sources */,
+				85FCBF5A16FB62C6001C6EFD /* ChapterListViewController.m in Sources */,
+				85FCBF5C16FB62C6001C6EFD /* EPub.m in Sources */,
+				85FCBF5E16FB62C6001C6EFD /* EPubViewController.m in Sources */,
+				85FCBF5F16FB62C6001C6EFD /* GTMNSString+HTML.m in Sources */,
+				85FCBF6016FB62C6001C6EFD /* ioapi.c in Sources */,
+				85FCBF6116FB62C6001C6EFD /* mztools.c in Sources */,
+				85FCBF6216FB62C6001C6EFD /* unzip.c in Sources */,
+				85FCBF6316FB62C6001C6EFD /* zip.c in Sources */,
+				85FCBF6416FB62C6001C6EFD /* NSString+HTML.m in Sources */,
+				85FCBF6516FB62C6001C6EFD /* SearchResult.m in Sources */,
+				85FCBF6616FB62C6001C6EFD /* SearchResultsViewController.m in Sources */,
+				85FCBF6816FB62C6001C6EFD /* UIWebView+SearchWebView.m in Sources */,
+				85FCBF6916FB62C6001C6EFD /* ZipArchive.mm in Sources */,
+				85FCBF7016FB62D5001C6EFD /* SearchWebView.js in Sources */,
+				85FCBFA016FB6534001C6EFD /* CXMLDocument_CreationExtensions.m in Sources */,
+				85FCBFA216FB6534001C6EFD /* CXMLNode_CreationExtensions.m in Sources */,
+				85FCBFA416FB6534001C6EFD /* CXHTMLDocument.m in Sources */,
+				85FCBFA616FB6534001C6EFD /* CXMLDocument_PrivateExtensions.m in Sources */,
+				85FCBFA816FB6534001C6EFD /* CXMLDocument.m in Sources */,
+				85FCBFAA16FB6534001C6EFD /* CXMLElement_CreationExtensions.m in Sources */,
+				85FCBFAC16FB6534001C6EFD /* CXMLElement_ElementTreeExtensions.m in Sources */,
+				85FCBFAE16FB6534001C6EFD /* CXMLElement.m in Sources */,
+				85FCBFB016FB6534001C6EFD /* CXMLNamespaceNode.m in Sources */,
+				85FCBFB216FB6534001C6EFD /* CXMLNode_PrivateExtensions.m in Sources */,
+				85FCBFB416FB6534001C6EFD /* CXMLNode_XPathExtensions.m in Sources */,
+				85FCBFB616FB6534001C6EFD /* CXMLNode.m in Sources */,
+				85FCBFB716FB6545001C6EFD /* CTidy.m in Sources */,
+				85FCBFBC16FB6890001C6EFD /* NSString+MD5Addition.m in Sources */,
+				85FCBFBD16FB6890001C6EFD /* UIDevice+IdentifierAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1894,6 +2168,8 @@
 		264A73991647CA5200D05F6E /* AD_hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Jiangsu  Zhongka  Educational  Science and   Technology  Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jiangsu  Zhongka  Educational  Science and   Technology  Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1903,14 +2179,16 @@
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JieliPublishingA/JieliPublishingA-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "JieliPublishingA/JieliPublishingA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/JieliPublishingA/libs/Release$(EFFECTIVE_PLATFORM_NAME)\"",
+					"\"$(SRCROOT)/JieliPublishingA/libs/Release-iphonesimulator\"",
 				);
 				OTHER_LDFLAGS = (
-					"-all_load",
+					"-lxml2",
 					"-lbaidumapapi",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1973,6 +2251,8 @@
 		26AC01311627E53F00210012 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Liu (FP67G6W646)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Liu (FP67G6W646)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1982,19 +2262,21 @@
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JieliPublishingA/JieliPublishingA-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "JieliPublishingA/JieliPublishingA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/JieliPublishingA/libs/Release$(EFFECTIVE_PLATFORM_NAME)\"",
+					"\"$(SRCROOT)/JieliPublishingA/libs/Release-iphonesimulator\"",
 				);
 				OTHER_LDFLAGS = (
-					"-all_load",
+					"-lxml2",
 					"-lbaidumapapi",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "551935AF-C06F-42F4-97DA-1AC7B032577B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "551935AF-C06F-42F4-97DA-1AC7B032577B";
+				PROVISIONING_PROFILE = "38DC5722-F1F8-43C0-86F3-DD9789F075E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38DC5722-F1F8-43C0-86F3-DD9789F075E8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2002,6 +2284,8 @@
 		26AC01321627E53F00210012 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Liu (FP67G6W646)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Liu (FP67G6W646)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2011,19 +2295,21 @@
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JieliPublishingA/JieliPublishingA-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "JieliPublishingA/JieliPublishingA-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/JieliPublishingA/libs/Release$(EFFECTIVE_PLATFORM_NAME)\"",
+					"\"$(SRCROOT)/JieliPublishingA/libs/Release-iphonesimulator\"",
 				);
 				OTHER_LDFLAGS = (
-					"-all_load",
+					"-lxml2",
 					"-lbaidumapapi",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "551935AF-C06F-42F4-97DA-1AC7B032577B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "551935AF-C06F-42F4-97DA-1AC7B032577B";
+				PROVISIONING_PROFILE = "38DC5722-F1F8-43C0-86F3-DD9789F075E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38DC5722-F1F8-43C0-86F3-DD9789F075E8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
