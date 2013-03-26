@@ -18,10 +18,10 @@
 
 -(id)initWithTaget:(id)cv userId:(int)userid name:(NSString *)name BookId:(int)bookid content:(NSString *)content stars:(int)starsnumber{
     if (self = [super init]) {
-        target = cv;
+        target = [cv retain];
         type = CommentSend;
         NSString *urlString = [NSString stringWithFormat:@"?c=Book&m=sendComment&userId=%d&name=%@&bookId=%d&content=%@&star=%d",userid,name,bookid,content,starsnumber];
-        url = [NSURL URLWithString:[[BaseURL stringByAppendingString:urlString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        url = [[NSURL URLWithString:[[BaseURL stringByAppendingString:urlString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] retain];
 //        url = [NSURL URLWithString:[BaseURL stringByAppendingString:urlString]];
         NSLog(@"%@",url);
         

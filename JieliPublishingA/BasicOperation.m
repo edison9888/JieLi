@@ -18,7 +18,7 @@
 @implementation BasicOperation
 -(id)initWithUrl:(NSString *)url{
     if (self == [super init]) {
-        urlString = url;
+        urlString = [url retain];
     }
     return self;
 }

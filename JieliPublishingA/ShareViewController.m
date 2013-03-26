@@ -13,7 +13,6 @@
     NSArray *statuses;
     NSString *postStatusText;
     
-    UIImage *sendImage;
 
     IBOutlet WeiBoBar *sinaWeiBoBar;
 }
@@ -61,7 +60,7 @@
     NSString *text = [NSString stringWithFormat:@"test -- date:%@  bookName:%@",[NSDate new],info.bookName];
     [self.textView setText:text];
     
-    sendImage =  [UIImage imageWithData:[DataBrain readFilewithImageId:info.bookId withFlolderName:BookCoverImage]];
+    self.sendImage =  [UIImage imageWithData:[DataBrain readFilewithImageId:info.bookId withFlolderName:BookCoverImage]];
 
 }
 
@@ -88,6 +87,7 @@
 - (void)sendWeiBo{
 
     NSString *sendMessage = self.textView.text;
+    UIImage *sendImage = self.sendImage;
     [self sendSinaWeiBoWithString:sendMessage withImage:sendImage];
     
 }

@@ -10,11 +10,64 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PicNameMc.h"
 #import "DataBrain.h"
-@interface DetailInfoOfActivityViewController ()
+#import "ShareViewController.h"
+
+@interface DetailInfoOfActivityViewController (){
+    ShareViewController *svc;
+}
 
 @end
 
 @implementation DetailInfoOfActivityViewController
+
+- (IBAction)jion:(id)sender {
+}
+
+- (IBAction)share:(id)sender {
+    
+    svc = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil];
+//    svc.view.backgroundColor = [UIColor whiteColor];
+    svc.textView.text = [self.myTextView.text retain];
+    svc.sendImage = [self.myImageView.image retain];
+    
+	self.popupView.layer.cornerRadius = 12;
+    self.popupView.layer.shadowOpacity = 0.7;
+    self.popupView.layer.shadowOffset = CGSizeMake(6, 6);
+    self.popupView.layer.shouldRasterize = YES;
+    self.popupView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+    
+    [self.popupView setFrame:CGRectMake(0, 0, svc.view.frame.size.width,svc.view.frame.size.height+40)];
+    [self.popupView addSubview:svc.view];
+    
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+    UIImage* closeImage = [UIImage imageNamed:@"SinaWeibo.bundle/images/close"];
+    UIColor* color = [UIColor colorWithRed:167.0/255 green:184.0/255 blue:216.0/255 alpha:1];
+    [closeButton setImage:closeImage forState:UIControlStateNormal];
+    [closeButton setTitleColor:color forState:UIControlStateNormal];
+    [closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [closeButton addTarget:self action:@selector(cancel)
+          forControlEvents:UIControlEventTouchUpInside];
+    closeButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+    closeButton.showsTouchWhenHighlighted = YES;
+    closeButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    [self.popupView addSubview:closeButton];
+
+    UIButton *sendButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0,80, 40)];
+    sendButton.center = CGPointMake(self.popupView.frame.size.width/2, self.popupView.frame.size.height-sendButton.frame.size.height/2);
+    [sendButton setImage:[PicNameMc redBg:sendButton title:@"发送分享"] forState:UIControlStateNormal];
+    [sendButton addTarget:self action:@selector(sendWeiBo) forControlEvents:UIControlEventTouchUpInside];
+     [self.popupView addSubview:sendButton];
+    
+    [ASDepthModalViewController presentView:self.popupView withBackgroundColor:nil popupAnimationStyle:ASDepthModalAnimationDefault];
+
+    
+}
+-(void)cancel{
+    [ASDepthModalViewController dismiss];
+}
+-(void)sendWeiBo{
+    [svc sendWeiBo];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +87,7 @@
     
 }
 -(void)finishPoeration:(id)result{
+    NSLog(@"asldkjflsakdjf:%@",result);
     GetImageOperation *op = [[GetImageOperation alloc] initWithImageId:self.activityId url:[result objectForKey:@"image"] withFloderName:ActivityImage];
     op.delegate = self;
     [[AppDelegate shareQueue] addOperation:op];
@@ -278,6 +332,11 @@
     [self setMyBtn_right:nil];
     [self setMyBgImageView:nil];
     [self setMyTitleLabel:nil];
+    [self setPopupView:nil];
     [super viewDidUnload];
+}
+- (void)dealloc {
+    [_popupView release];
+    [super dealloc];
 }
 @end

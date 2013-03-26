@@ -39,10 +39,13 @@
     }
     else {
         tag = 2;
+        title = @"您还未登录";
     }
     actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:@"返回" destructiveButtonTitle:messageA otherButtonTitles:messageB, nil];
     actionSheet.tag = tag;
     [actionSheet showInView:self.view.superview.superview];
+    
+//    actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:title destructiveButtonTitle:<#(NSString *)#> otherButtonTitles:<#(NSString *), ...#>, nil]
     
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{

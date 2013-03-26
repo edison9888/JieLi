@@ -180,7 +180,7 @@ static NSArray *actionBtnTexts;
         vc3.delegate = self;
         BuyViewController *vc4 = [[BuyViewController alloc] initWithNibName:@"BuyViewController" bundle:nil];
         
-       _viewControllers = [NSArray arrayWithObjects:vc1, vc2, vc3, vc4, nil];
+        _viewControllers = [[NSArray alloc] initWithObjects:vc1, vc2, vc3, vc4, nil];
     }
     return _viewControllers;
 }

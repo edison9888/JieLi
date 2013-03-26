@@ -17,9 +17,9 @@
 -(id)initWithEventId:(NSInteger)Id{
     self = [super init];
     if (self) {
-        NSString *urlString = [BASEURL stringByAppendingString:[NSString stringWithFormat:@"%d",Id]];
-        url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        NSLog(@"%@",url);
+        NSString *urlString = [[BASEURL stringByAppendingString:[NSString stringWithFormat:@"%d",Id]] retain];
+        url = [[[NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] retain] retain];
+        NSLog(@"get eventData For url:%@",url);
 //        url = [NSURL URLWithString:urlString];
 
     }
@@ -30,7 +30,7 @@
     
     
     NSData *data = [NSData dataWithContentsOfURL:url];
-    NSLog(@"op:%@",data);
+
     if (!data) {
         [self cancel];
         return;
@@ -40,6 +40,7 @@
     [self performSelectorOnMainThread:@selector(finish:) withObject:result waitUntilDone:NO];
 }
 -(void)finish:(id)result{
+    NSLog(@"finish Get event Data");
     [self.delegate finishPoeration:result];
     [self cancel];
 }

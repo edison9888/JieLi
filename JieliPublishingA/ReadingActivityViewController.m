@@ -108,12 +108,15 @@ enum{
 //    self.dataBrain.getListDelegate = self;
     [self.actI startAnimating];
     PosX = 0;
+    NSOperationQueue *q = (NSOperationQueue *)[AppDelegate shareQueue];
+    NSLog(@"queue Numbers %d",[q.operations count]);
     int events[5] = {18234559,17758278,17755502,18401705,18228563};
     for (int i = 0; i<5; i++) {
         ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:events[i]];
         op.delegate = self;
         [[AppDelegate shareQueue] addOperation:op];
     }
+    
     self.myPageControl.numberOfPages = 5;
 
 //    ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:events[0]];
@@ -330,6 +333,12 @@ static float PosX = 0;
     [self setMyPageControl:nil];
     [self setMyRootImageView:nil];
     [self setActI:nil];
+//    NSOperationQueue *q =(NSOperationQueue *)[AppDelegate shareQueue];
+//    for (NSOperation *p in q.operations) {
+//        [p cancel];
+//    }
+//    [q.operations removeAllActions];
+    
     [super viewDidUnload];
 }
 @end

@@ -76,13 +76,26 @@
 
 
 
-
+-(NSString *)deleteKongke:(NSString *)string{
+    
+    NSMutableString *Mstring = [[NSMutableString alloc] initWithString:string];
+    NSRange rang = [Mstring rangeOfString:@" "];
+    if (rang.length) {
+        [Mstring deleteCharactersInRange:rang];
+        return [self deleteKongke:Mstring];
+    }
+    else{
+        return Mstring;
+    }
+}
 - (void)search {
-    int number = [self.myTextField.text length];
+    NSString *searchString = [self deleteKongke:self.myTextField.text];
+    int number = searchString.length;
+
     if (number) {
-        NSLog(@"以关键字：%@搜索",self.myTextField.text);
+        NSLog(@"以关键字：%@搜索",searchString);
         [self returnKeyBoard];
-        NSString *keyWord = self.myTextField.text;
+        NSString *keyWord = searchString;
         SearchPoeration *op = [[SearchPoeration alloc] initWithKeyWord:keyWord];
         op.delegate = self;
         [[AppDelegate shareQueue] addOperation:op];
@@ -96,7 +109,7 @@
     NSLog(@"%@",result);
     NSArray *array = [BookInfo bookInfoWithJSON:result];
     if (self.tC) {
-        [self.tC.view removeFromSuperview];
+        [self.tC.tableView removeFromSuperview];
         self.tC = nil;
     }
     

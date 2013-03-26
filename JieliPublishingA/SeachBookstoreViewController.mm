@@ -9,7 +9,9 @@
 #import "SeachBookstoreViewController.h"
 #import "mapViewController.h"
 
-@interface SeachBookstoreViewController ()
+@interface SeachBookstoreViewController (){
+    BMKUserLocation *userLoc;
+}
 
 @end
 
@@ -37,15 +39,44 @@
     [self.myTopBar setType:DiyTopBarTypeBack];
     self.myTopBar.myTitle.text = @"身边书店";
     [self.myTopBar.backButton addTarget:self action:@selector(popBack:) forControlEvents:UIControlEventTouchUpInside];
-    _mapView = [[BMKMapView alloc] initWithFrame:self.view.frame];
-    self.view = _mapView;
+    
+}
+-(void)loadMap{
+    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height)];
+    //    self.view = _mapView;
+    [self.view addSubview:_mapView];
+    [_mapView setZoomLevel:14];
     _mapView.delegate = self;
     _search = [[BMKSearch alloc] init];
     _search.delegate = self;
-    
     [_mapView setShowsUserLocation:YES];
-
-
+}
+-(void)removeMap{
+    if (_mapView) {
+        [_mapView removeFromSuperview];
+        _mapView = nil;
+    }
+    [_mapView setShowsUserLocation:NO];
+}
+-(void)displayMapinfo:(BMKUserLocation *)userLocation{
+    if (userLocation != nil) {
+        userLoc = userLocation;
+		NSLog(@"%f %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+        
+        [_mapView setCenterCoordinate:userLocation.location.coordinate animated:NO];
+        
+        
+        [_search poiSearchNearBy:@"书店" center:userLocation.location.coordinate radius:5000 pageIndex:0];
+        
+        BMKCircle *circle = [BMKCircle circleWithCenterCoordinate:userLocation.location.coordinate radius:5000];
+        [_mapView addOverlay:circle];
+	}
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadMap];
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [self removeMap];
 }
 
 -(void)onGetPoiResult:(NSArray *)poiResultList searchType:(int)type errorCode:(int)error{
@@ -62,18 +93,7 @@
 }
 - (void)mapView:(BMKMapView *)mapView didUpdateUserLocation:(BMKUserLocation *)userLocation
 {
-	if (userLocation != nil) {
-		NSLog(@"%f %f", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
-        
-        [_mapView setCenterCoordinate:userLocation.location.coordinate animated:NO];
-        [_search poiSearchNearBy:@"书店" center:userLocation.location.coordinate radius:5000 pageIndex:0];
-        
-        BMKCircle *circle = [BMKCircle circleWithCenterCoordinate:userLocation.location.coordinate radius:5000];
-        [_mapView addOverlay:circle];
-        
-        
-	}
-	
+	[self displayMapinfo:userLocation];
 }
 -(BMKOverlayView*)mapView:(BMKMapView *)mapView viewForOverlay:(id<BMKOverlay>)overlay{
     if([overlay isKindOfClass:[BMKCircle class]]){

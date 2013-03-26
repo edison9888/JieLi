@@ -17,7 +17,7 @@
 @implementation SearchPoeration
 -(id)initWithKeyWord:(NSString *)keyWord{
     if (self == [super init]) {
-        key = keyWord;
+        key = [keyWord retain];
     }
     return self;
 }

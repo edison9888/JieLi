@@ -23,7 +23,7 @@ static CGFloat kBorderWidth = 10;
     NSString *accountName;
 }
 
-- (id)initWithBookId:(NSInteger *)bId userId:(NSString *)uId accountName:(NSString *)aName
+- (id)initWithBookId:(NSInteger )bId userId:(NSString *)uId accountName:(NSString *)aName
 {
     bookId = bId;
     userId = uId;

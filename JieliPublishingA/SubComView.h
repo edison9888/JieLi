@@ -14,6 +14,6 @@
 
 -(void)show;
 -(void)cancel;
-- (id)initWithBookId:(NSInteger *)bId userId:(NSString *)uId accountName:(NSString *)aName;
+- (id)initWithBookId:(NSInteger )bId userId:(NSString *)uId accountName:(NSString *)aName;
 
 @end

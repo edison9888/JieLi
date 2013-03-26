@@ -11,7 +11,7 @@
 
 @interface SSubComView (){
     NSArray *stars;
-    NSInteger *numberOfStars;
+    NSInteger numberOfStars;
 }
 
 @end

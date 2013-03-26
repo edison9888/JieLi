@@ -11,8 +11,10 @@
 #import "GetImageOperation.h"
 #import "ReadEventOperation.h"
 #import "AppDelegate.h"
+#import "ASDepthModalViewController.h"
 
 @interface DetailInfoOfActivityViewController : UIViewController<GetImageOperationDelegate,ReadEventOperationDelegate>
+@property (retain, nonatomic) IBOutlet UIView *popupView;
 @property (strong, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *myImageView;
 @property (strong, nonatomic) IBOutlet UIScrollView *myPhotoScrollView;

@@ -43,7 +43,7 @@
 }
 +(NSData *)readFilewithImageId:(int)imageId  withFlolderName:(NSString *)myFloderName
 {
-    NSLog(@"readFile @:%@",myFloderName);
+    NSLog(@"readFile @:%@  imageId:%d",myFloderName,imageId);
     //创建文件管理器
     NSFileManager *fileManager = [NSFileManager defaultManager];
     //获取路径

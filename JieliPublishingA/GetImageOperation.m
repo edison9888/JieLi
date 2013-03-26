@@ -18,8 +18,9 @@
 -(id)initWithImageId:(NSInteger)Id url:(NSString *)url withFloderName:(NSString *)fName{
     if (self == [super init]) {
         imageId = Id;
-        imageUrl = url;
-        floderName = fName;
+        imageUrl = [url retain];
+        NSLog(@"getImageUrl:%@",imageUrl);
+        floderName = [fName retain];
     }
     return self;
 }
@@ -36,7 +37,9 @@
             NSLog(@"图片缺失,ID:%d",imageId);
         }
         else{
-            
+            NSLog(@"congwangluoxiazai tupian");
+
+            NSLog(@"从网络下载图片，url:%@",imageUrl);
             NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
             [DataBrain writeFile:data withIndex:imageId withFlolderName:floderName];
             [self performSelectorOnMainThread:@selector(finish:) withObject:[UIImage imageWithData:data] waitUntilDone:NO];

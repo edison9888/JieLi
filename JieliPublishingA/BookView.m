@@ -24,9 +24,6 @@
 @end
 
 @implementation BookView
--(void)bookViewBeTouched:(BookView*)bookView{
-    
-}
 
 +(id)BookViewWithBookInfo:(BookInfo*)bookInfo withPosition:(CGPoint)position{
     
@@ -45,7 +42,9 @@
 //    id tager = self.taget_;
 //    SEL action = self.action_;
 //    [tager performSelector:action withObject:self];
-    [self.delegate bookViewBeTouched:self];
+    if (self.isLoadImageFinish) {
+        [self.delegate bookViewBeTouched:self];
+    }
 }
 
 -(id)initWithFrame:(CGRect)frame withBookId:(BookInfo*)bookInfo_{
@@ -53,6 +52,7 @@
     if (self) {
         // Initialization code
         self.userInteractionEnabled = YES;
+        self.isLoadImageFinish = NO;
         [self setBackgroundColor:[UIColor clearColor]];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bookViewBeTapped)];
         tap.delegate = self;
@@ -114,6 +114,7 @@
     if (!image) {
         return;
     }
+    self.isLoadImageFinish = YES;
     [self.imageView setImage:image];
     [self.activityIndicatorView stopAnimating];
 }
