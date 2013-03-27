@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BookInfo : NSObject
+@interface BookInfo : NSObject<NSCoding>
 @property (nonatomic,assign) int bookId;
 @property (nonatomic,strong) NSString *bookName;
 @property (nonatomic,strong) NSString *bookAuthor;

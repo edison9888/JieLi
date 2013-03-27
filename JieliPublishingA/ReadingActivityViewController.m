@@ -30,10 +30,10 @@ enum{
     GetImageOperation *op = [[GetImageOperation alloc] initWithImageId:[[r objectForKey:@"id"] integerValue] url:[r objectForKey:@"image_lmobile"] withFloderName:ActivityCardImage];
     op.delegate = self;
     [[AppDelegate shareQueue] addOperation:op];
-    
     [self.titleLabel setText:[r objectForKey:@"title"]];
-    [self.timeLabel setText:[NSString stringWithFormat:@"%@--%@",[r objectForKey:@"begin_time"],[r objectForKey:@"end_time"]]];
-    [self.addressLabel setText:[r objectForKey:@"address"]];
+    
+    [self.timeLabel setText:[self.timeLabel.text stringByAppendingFormat:@"%@--%@",[r objectForKey:@"begin_time"],[r objectForKey:@"end_time"]]];
+    [self.addressLabel setText:[self.addressLabel.text stringByAppendingString:[r objectForKey:@"address"]]];
     self.activityId = [[r objectForKey:@"id"] integerValue];
     
 }

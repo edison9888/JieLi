@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "HCBookShelf.h"
 #import "DiyTopBar.h"
-@interface ThirdViewController : UIViewController<HCBookShelfDataSource,HCBookShelfDelegate>
+#import "BookShelfTableViewController.h"
+@interface ThirdViewController : UIViewController<HCBookShelfDataSource,HCBookShelfDelegate,BookShelfTableViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet HCBookShelf *myBookShelf;
 @property (strong, nonatomic) IBOutlet DiyTopBar *myDiyTopBar;
+@property (retain, nonatomic) IBOutlet UIImageView *noCollectImageview;
+@property (retain, nonatomic) IBOutlet UIButton *noCollectButton;
 
 @end

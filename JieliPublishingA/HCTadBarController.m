@@ -192,6 +192,9 @@ static NSArray *actionBtnTexts;
         _topBar.myTitle.text = @"书籍详情";
         [_topBar setType:DiyTopBarTypeBackAndCollect];
         [_topBar.backButton addTarget:self action:@selector(popBack) forControlEvents:UIControlEventTouchUpInside];
+        [_topBar.collectButton addTarget:self action:@selector(collectBook) forControlEvents:UIControlEventTouchUpInside];
+        [self reloadTopBarState];
+
     }
     return _topBar;
 }
@@ -311,6 +314,30 @@ static NSArray *actionBtnTexts;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)reloadTopBarState{
+    if ([AppDelegate idCollectedBook:self.bookInfo]) {
+        [_topBar.collectButton setTitle:@"取消" forState:UIControlStateNormal];
+    }
+    else{
+        [_topBar.collectButton setTitle:@"收藏" forState:UIControlStateNormal];
+    }
+    
+}
+-(void)collectBook{
+    [AppDelegate collectABook:self.bookInfo];
+    [self reloadTopBarState];
+    NSLog(@"%d",[AppDelegate getCollectedBooks].count);
+    
+    NSString *title;
+    if ([AppDelegate idCollectedBook:self.bookInfo]) {
+        title = @"成功收藏此图书";
+    }
+    else{
+        title = @"已取消收藏此图书";
+    }
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alertView show];
+}
 
 -(void)actionPressed:(UIButton *)b{
     NSLog(@"%d",b.tag);

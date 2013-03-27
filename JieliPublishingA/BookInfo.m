@@ -7,6 +7,15 @@
 //
 
 #import "BookInfo.h"
+#define BookId @"bookId"
+#define BookName @"bookName"
+#define BookAuthor @"bookAuthor"
+#define BookDate @"bookDate"
+#define BookPrice @"bookPrice"
+#define BookImage @"bookImage"
+#define BookThumb @"bookThumb"
+#define BookBrief @"bookBrief"
+#define BookClickCount @"bookClickCount"
 
 @implementation BookInfo
 
@@ -61,6 +70,32 @@
         self.bookThumb = bookThumb;
         self.bookBrief = bookBrief;
         self.bookClickCount = bookClickCount;
+    }
+    return self;
+}
+-(void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:[NSNumber numberWithInt:self.bookId] forKey:BookId];
+    [aCoder encodeObject:self.bookName forKey:BookName];
+    [aCoder encodeObject:self.bookAuthor forKey:BookAuthor];
+    [aCoder encodeObject:self.bookDate forKey:BookDate];
+    [aCoder encodeObject:[NSNumber numberWithFloat:self.bookPrice] forKey:BookPrice];
+    [aCoder encodeObject:self.bookImage forKey:BookImage];
+    [aCoder encodeObject:self.bookThumb forKey:BookThumb];
+    [aCoder encodeObject:self.bookBrief forKey:BookBrief];
+    [aCoder encodeObject:[NSNumber numberWithFloat:self.bookClickCount] forKey:BookClickCount];
+}
+
+-(id)initWithCoder:(NSCoder*)decoder{
+    if (self = [super init]) {
+        self.bookId = [[decoder decodeObjectForKey:BookId] integerValue];
+        self.bookImage = [decoder decodeObjectForKey:BookImage];
+        self.bookName = [decoder decodeObjectForKey:BookName];
+        self.bookAuthor = [decoder decodeObjectForKey:BookAuthor];
+        self.bookDate = [decoder decodeObjectForKey:BookDate];
+        self.bookPrice = [[decoder decodeObjectForKey:BookPrice] floatValue];
+        self.bookThumb = [decoder decodeObjectForKey:BookThumb];
+        self.bookBrief = [decoder decodeObjectForKey:BookBrief];
+        self.bookClickCount = [[decoder decodeObjectForKey:BookBrief] integerValue];
     }
     return self;
 }

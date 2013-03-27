@@ -11,6 +11,7 @@
 #import "PicNameMc.h"
 #import "GoodBookViewController.h"
 @interface ThirdViewController ()
+@property (nonatomic,strong) BookShelfTableViewController *tC;
 
 @end
 
@@ -46,7 +47,42 @@
     [self.myBookShelf reloadData];
     
     [self.myDiyTopBar.myTitle setText:@"图书收藏"];
+    
+    NSLog(@"%@",[AppDelegate getCollectedBooks]);
+    
+    
 
+}
+-(void)viewWillAppear:(BOOL)animated{
+    if ([[AppDelegate getCollectedBooks] count]) {
+        self.noCollectButton.hidden = YES;
+        self.noCollectImageview.hidden = YES;
+        if (self.tC) {
+            [self.tC.tableView removeFromSuperview];
+            self.tC = nil;
+        }
+        
+        self.tC = [[BookShelfTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        self.tC.delegate = self;
+        [self.tC.tableView setBackgroundColor:[UIColor clearColor]];
+        [self.tC.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        [self.tC.tableView setShowsVerticalScrollIndicator:NO];
+        [self.tC loadBooks:[[AppDelegate getCollectedBooks] retain]];
+        [self.tC.tableView setFrame:CGRectMake(0, 85-41, 320,326+41)];
+        [self.view addSubview:self.tC.tableView];
+
+    }
+    else{
+        self.noCollectButton.hidden = NO;
+        self.noCollectImageview.hidden = NO;
+        if (self.tC) {
+            [self.tC.tableView removeFromSuperview];
+            self.tC = nil;
+        }
+    }
+}
+-(void)pushOut:(HCTadBarController *)tab{
+    [self.navigationController pushViewController:tab animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,6 +94,8 @@
 - (void)viewDidUnload {
     [self setMyBookShelf:nil];
     [self setMyDiyTopBar:nil];
+    [self setNoCollectImageview:nil];
+    [self setNoCollectButton:nil];
     [super viewDidUnload];
 }
 
@@ -91,4 +129,9 @@
 }
 
 
+- (void)dealloc {
+    [_noCollectImageview release];
+    [_noCollectButton release];
+    [super dealloc];
+}
 @end

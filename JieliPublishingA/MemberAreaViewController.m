@@ -112,11 +112,11 @@
     
     scrollView = [[UIScrollView alloc] initWithFrame:self.tableView.frame];
     UIImageView *jiFen = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"The rules"]];
-    jiFen.frame = CGRectMake(10, 0, 300, 1185);
+    jiFen.frame = CGRectMake(5, 0, 618/2, 1795/2);
     [scrollView addSubview:jiFen];
     scrollView.hidden = YES;
     [self.myMemberAreaView addSubview:scrollView];
-    scrollView.contentSize = CGSizeMake(0, 1185);
+    scrollView.contentSize = jiFen.frame.size;
     [self.myMemberAreaView bringSubviewToFront:self.meberAreaTopBar];
     [scrollView setShowsVerticalScrollIndicator:NO];
     
@@ -133,19 +133,34 @@
 
         cell.titleLabel.text = [titles objectAtIndex:i];
         [cell.imageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"F_image_member_%d",i+1]]];
-
-        if (i<4) {
-            cell.type = 0;
+        
+        switch (i) {
+            case 5:
+                cell.type = 1;
+                break;
+            case 10:
+                cell.type = 3;
+                break;
+            case 12:
+                cell.type = 3;
+                break;
+                
+            default:
+                break;
         }
-        else if (i>=4&&i<6){
-            cell.type = 1;
-        }
-        else if (i>=6&&i<10){
-            cell.type = 2;
-        }
-        else {
-            cell.type = 3;
-        }
+        
+//        if (i<4) {
+//            cell.type = 0;
+//        }
+//        else if (i>=4&&i<6){
+//            cell.type = 1;
+//        }
+//        else if (i>=6&&i<10){
+//            cell.type = 2;
+//        }
+//        else {
+//            cell.type = 3;
+//        }
         [array addObject:cell];
         NSLog(@"title:%@",cell.titleLabel.text);
 
@@ -217,16 +232,16 @@
     int number = 0;
     switch (self.currentType) {
         case 0:
-            number = 4;
+            number = 0;
             break;
         case 1:
-            number = 2;
+            number = 1;
             break;
         case 2:
-            number = 4;
+            number = 0;
             break;
         case 3:
-            number = 4;
+            number = 2;
             break;
             
         default:

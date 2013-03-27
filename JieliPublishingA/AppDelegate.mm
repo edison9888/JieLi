@@ -16,12 +16,68 @@
 #import "CustomNavigationBar.h"
 #define BMAPAPIKEY @"206AC53E67C539B6539AF6C41F48AB42562BDE6B"
 
-
+#define BookCollect @"bookcollect"
 static NSOperationQueue *queue;
 
 @implementation AppDelegate
 
+//本地收藏图书
++(BOOL)idCollectedBook:(BookInfo *)bookInfo{
+    NSMutableArray *books = [[NSMutableArray arrayWithArray:[[self class] getCollectedBooks]] retain];
+    for (BookInfo *info in books) {
+        if (info.bookId == bookInfo.bookId) {
+            return YES;
+        }
+    }
+    return NO;
+}
++(void)collectABook:(BookInfo *)bookInfo{
+    NSMutableArray *books = [[NSMutableArray arrayWithArray:[[self class] getCollectedBooks]] retain];
+    BookInfo *delInfo = nil;
+    for (BookInfo *info in books) {
+        if (info.bookId == bookInfo.bookId) {
+            delInfo = info;
+        }
+    }
+    if (delInfo) {
+        [books removeObject:delInfo];
+    }
+    else{
+        [books addObject:bookInfo];
+    }
+    
+    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filename = [Path stringByAppendingPathComponent:@"test"];
+    [NSKeyedArchiver archiveRootObject:books toFile:filename];
+    
+//    NSMutableData *data = [[NSMutableData alloc] init];
+//    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+//    [archiver encodeObject:books forKey:BookCollect];
+//    [archiver finishEncoding];
+//    BOOL success  = [data writeToFile:filename atomically:YES];
+//    archiver = nil;
+//    data = nil;
+    
+}
++(NSArray *)getCollectedBooks{
+    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filename = [Path stringByAppendingPathComponent:@"test"];
+    NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+    if (arr) {
+        return arr;
+    }
+    else{
+        
+        return [NSArray array];
+    }
+    
+//    NSData *data = [[NSData alloc] initWithContentsOfFile:filename];
+//    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+//    NSArray *array = [unarchiver decodeObjectForKey:BookCollect];
+    
+}
 
+//用户名，密码相关
 +(void)dLogInWithUserId:(NSString *)userId accountName:(NSString *)accountName passWord:(NSString *)passWord{
     [AppDelegate setdUserId:userId];
     [AppDelegate setdAccountName:accountName];
@@ -54,7 +110,7 @@ static NSOperationQueue *queue;
     [[NSUserDefaults standardUserDefaults] setObject:v forKey:@"passWord"];
 }
 
-
+//网络请求队列
 +(id)shareQueue{
     if (!queue) {
         queue = [[NSOperationQueue alloc] init];

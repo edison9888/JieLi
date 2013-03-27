@@ -37,6 +37,10 @@
 
 
 //-----------------------------
+typedef enum {
+    CollectButtonTypeOfCollect,
+    CollectButtonTypeOfDelect,
+}CollectButtonType;
 #import "BookInfo.h"
 #import "BookDetailViewController.h"
 @interface HCTadBarController : UIViewController<UIScrollViewDelegate,HCTabBarDelegate,BookDetailDelegate,CommentViewControllerDelegate>
@@ -44,4 +48,5 @@
 @property (nonatomic,strong) HCTabBar *tabBar;
 @property (nonatomic, assign) NSUInteger            selectedIndex;
 @property (nonatomic,strong) BookInfo *bookInfo;
+
 @end

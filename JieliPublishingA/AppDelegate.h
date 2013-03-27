@@ -34,5 +34,8 @@
 +(void)setdUserId:(NSString *)v;
 +(void)dLogOut;
 +(void)dLogInWithUserId:(NSString *)userId accountName:(NSString *)accountName passWord:(NSString *)passWord;
++(void)collectABook:(BookInfo *)bookInfo;
++(NSArray *)getCollectedBooks;
++(BOOL)idCollectedBook:(BookInfo *)bookInfo;
 
 @end

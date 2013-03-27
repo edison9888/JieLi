@@ -117,7 +117,7 @@
         self.tC.delegate = self;
         [self.tC.tableView setBackgroundColor:[UIColor clearColor]];
         [self.tC.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.tC.tableView setShowsVerticalScrollIndicator:NO]; 
+        [self.tC.tableView setShowsVerticalScrollIndicator:NO]; 
         [self.tC loadBooks:array];
         [self.tC.tableView setFrame:CGRectMake(0, 85, 320,326)];
         [self.view addSubview:self.tC.tableView];
@@ -130,7 +130,7 @@
 #pragma mark
 #pragma TextFiledrDelegate
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textFiel{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self returnKeyBoard];
     [self search];
     return YES;
