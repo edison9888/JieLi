@@ -92,6 +92,9 @@
     
 }
 -(void)getCommentFinish:(id)r{
+    if (!r) {
+        return;
+    }
     NSLog(@"getCommentFinish:::%@",r);
 
 }

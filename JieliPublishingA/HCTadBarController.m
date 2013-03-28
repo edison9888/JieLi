@@ -304,6 +304,7 @@ static NSArray *actionBtnTexts;
 }
 
 -(void)popBack{
+    [[AppDelegate shareQueue] cancelAllOperations];
     for (id view in self.view.subviews) {
         if ([view isKindOfClass:[UIWebView class]]) {
             [view removeFromSuperview];

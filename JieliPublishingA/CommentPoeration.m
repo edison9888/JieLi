@@ -36,10 +36,10 @@
 
 -(id)initWithTaget:(id)cv withBookId:(int)bookid{
     if (self == [super init]) {
-        target = cv;
+        target = [cv retain];
         type = CommentGet;
         NSString *urlString = [NSString stringWithFormat:@"?c=Book&m=getComment&bookId=%d",bookid];
-        url = [NSURL URLWithString:[[BaseURL stringByAppendingString:urlString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        url = [[NSURL URLWithString:[[BaseURL stringByAppendingString:urlString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] retain];
         
     }
     return self;
@@ -48,6 +48,9 @@
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    if (!result) {
+        return;
+    }
     if (type == CommentGet) {
         [self.delegate getCommentFinish:result];
     }
