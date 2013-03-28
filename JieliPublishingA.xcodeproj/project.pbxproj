@@ -266,6 +266,8 @@
 		26CBFF15169D6229007CC824 /* F_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 26CBFF14169D6229007CC824 /* F_btn_bg.png */; };
 		26CBFF17169D623C007CC824 /* F_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26CBFF16169D623C007CC824 /* F_btn_bg@2x.png */; };
 		26CC8DBB1702BEB900BDEFD3 /* CollectbookPoeration.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CC8DBA1702BEB900BDEFD3 /* CollectbookPoeration.m */; };
+		26D42E091704297F007070EE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D42E081704297F007070EE /* MobileCoreServices.framework */; };
+		26D42E0B1704298F007070EE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D42E0A1704298F007070EE /* Security.framework */; };
 		26E66F8016AE325D000D34A0 /* F_image_member_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E66F7216AE3258000D34A0 /* F_image_member_6.png */; };
 		26E66F8516AE325D000D34A0 /* F_image_member_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E66F7716AE325B000D34A0 /* F_image_member_11.png */; };
 		26E66F8716AE325D000D34A0 /* F_image_member_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E66F7916AE325C000D34A0 /* F_image_member_13.png */; };
@@ -686,6 +688,8 @@
 		26CBFF16169D623C007CC824 /* F_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F_btn_bg@2x.png"; sourceTree = "<group>"; };
 		26CC8DB91702BEB800BDEFD3 /* CollectbookPoeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectbookPoeration.h; sourceTree = "<group>"; };
 		26CC8DBA1702BEB900BDEFD3 /* CollectbookPoeration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectbookPoeration.m; sourceTree = "<group>"; };
+		26D42E081704297F007070EE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		26D42E0A1704298F007070EE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		26E66F7216AE3258000D34A0 /* F_image_member_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F_image_member_6.png; sourceTree = "<group>"; };
 		26E66F7716AE325B000D34A0 /* F_image_member_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F_image_member_11.png; sourceTree = "<group>"; };
 		26E66F7916AE325C000D34A0 /* F_image_member_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F_image_member_13.png; sourceTree = "<group>"; };
@@ -803,6 +807,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26D42E0B1704298F007070EE /* Security.framework in Frameworks */,
+				26D42E091704297F007070EE /* MobileCoreServices.framework in Frameworks */,
 				85FCBF3116FB5FD3001C6EFD /* libz.1.1.3.dylib in Frameworks */,
 				85FCBF3216FB5FD3001C6EFD /* libz.1.2.5.dylib in Frameworks */,
 				2648EF501665F3D000983885 /* SystemConfiguration.framework in Frameworks */,
@@ -991,6 +997,7 @@
 		263C1B45162CF4C000E14CDF /* 读书活动 */ = {
 			isa = PBXGroup;
 			children = (
+				26D42C18170423C1007070EE /* 豆瓣 */,
 				263C727B1637DC670088298B /* ReadingActivityViewController.h */,
 				263C727C1637DC670088298B /* ReadingActivityViewController.m */,
 				263C727D1637DC670088298B /* ReadingActivityViewController.xib */,
@@ -1384,6 +1391,8 @@
 		26AC00F31627E53E00210012 = {
 			isa = PBXGroup;
 			children = (
+				26D42E0A1704298F007070EE /* Security.framework */,
+				26D42E081704297F007070EE /* MobileCoreServices.framework */,
 				85FCBFB816FB6890001C6EFD /* NSString+MD5Addition.h */,
 				85FCBFB916FB6890001C6EFD /* NSString+MD5Addition.m */,
 				85FCBFBA16FB6890001C6EFD /* UIDevice+IdentifierAddition.h */,
@@ -1496,6 +1505,13 @@
 				26AC01341627E6B700210012 /* CustomNavigationBar.m */,
 			);
 			name = FirstView;
+			sourceTree = "<group>";
+		};
+		26D42C18170423C1007070EE /* 豆瓣 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "豆瓣";
 			sourceTree = "<group>";
 		};
 		3E3AD9FE1637C4E1009A22F7 /* JSON */ = {

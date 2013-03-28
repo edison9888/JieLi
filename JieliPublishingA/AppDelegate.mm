@@ -14,7 +14,16 @@
 #import "ForthViewController.h"
 
 #import "CustomNavigationBar.h"
+
+//#import "DOUAPIEngine.h"
+
+
+//百度apiKey
 #define BMAPAPIKEY @"206AC53E67C539B6539AF6C41F48AB42562BDE6B"
+//豆瓣Api
+static NSString * const kAPIKey = @"078978195e42393f169c684c1ac6abbd";
+static NSString * const kPrivateKey = @"c1e44680a06e5e4a";
+static NSString * const kRedirectUrl = @"http://www.douban.com/location/mobile";
 
 #define BookCollect @"bookcollect"
 static NSOperationQueue *queue;
@@ -133,6 +142,18 @@ static NSOperationQueue *queue;
     if (!ret) {
         NSLog(@"manager start failed!");
     }
+    
+//    DOUService *service = [DOUService sharedInstance];
+//    service.clientId = kAPIKey;
+//    service.clientSecret = kPrivateKey;
+//    if ([service isValid]) {
+//        service.apiBaseUrlString = kHttpsApiBaseUrl;
+//    }
+//    else {
+//        service.apiBaseUrlString = kHttpApiBaseUrl;
+//    }
+    
+
     
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

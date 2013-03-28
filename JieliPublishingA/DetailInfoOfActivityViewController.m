@@ -11,6 +11,11 @@
 #import "PicNameMc.h"
 #import "DataBrain.h"
 #import "ShareViewController.h"
+//#import "WebViewController.h"
+
+static NSString * const kAPIKey = @"078978195e42393f169c684c1ac6abbd";
+static NSString * const kPrivateKey = @"c1e44680a06e5e4a";
+static NSString * const kRedirectUrl = @"http://www.douban.com/location/mobile";
 
 @interface DetailInfoOfActivityViewController (){
     ShareViewController *svc;
@@ -21,6 +26,14 @@
 @implementation DetailInfoOfActivityViewController
 
 - (IBAction)jion:(id)sender {
+//    NSString *str = [NSString stringWithFormat:@"https://www.douban.com/service/auth2/auth?client_id=%@&redirect_uri=%@&response_type=code", kAPIKey, kRedirectUrl];
+//    
+//    NSString *urlStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSURL *url = [NSURL URLWithString:urlStr];
+//    UIViewController *webViewController = [[WebViewController alloc] initWithRequestURL:url];
+//    [self.navigationController pushViewController:webViewController animated:YES];
+//    [webViewController release];
+
 }
 
 - (IBAction)share:(id)sender {
