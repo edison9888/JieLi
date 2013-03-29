@@ -12,6 +12,8 @@
 #import "LogViewController.h"
 #import "CommentPoeration.h"
 
+
+
 @protocol CommentViewControllerDelegate <NSObject>
 -(void)pushTo:(LogViewController *)v;
 
@@ -21,6 +23,9 @@
 
 @property (strong,nonatomic) BookInfo *bookInfo;
 @property (strong,nonatomic) id<CommentViewControllerDelegate> delegate;
+@property (nonatomic,strong) NSMutableArray *array0fcells;
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property (retain, nonatomic) IBOutlet UIImageView *noCommentImageView;
 
 -(void)loadData:(id)result;
 -(void)iWantComment;

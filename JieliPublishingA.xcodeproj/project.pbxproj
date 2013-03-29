@@ -222,6 +222,8 @@
 		266F19F916E98D3D00916D56 /* F_image_weiBoDiss@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 266F19F716E98D3D00916D56 /* F_image_weiBoDiss@2x.png */; };
 		266F19FA16E98D3D00916D56 /* F_image_weiBoS@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 266F19F816E98D3D00916D56 /* F_image_weiBoS@2x.png */; };
 		266F19FC16E98EF400916D56 /* bookDetailShow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 266F19FB16E98EF400916D56 /* bookDetailShow@2x.png */; };
+		2684211B1705308B00D39ADA /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2684211A1705308B00D39ADA /* CommentCell.m */; };
+		2684211D170530A100D39ADA /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2684211C170530A100D39ADA /* CommentCell.xib */; };
 		268572961660A2380075CF93 /* CategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 268572951660A2380075CF93 /* CategoriesView.m */; };
 		268C8B8D16F2D204006DA55B /* SSubComView.m in Sources */ = {isa = PBXBuildFile; fileRef = 268C8B8C16F2D204006DA55B /* SSubComView.m */; };
 		268C8B8F16F2D21D006DA55B /* SSubComView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 268C8B8E16F2D21D006DA55B /* SSubComView.xib */; };
@@ -632,6 +634,9 @@
 		266F19F716E98D3D00916D56 /* F_image_weiBoDiss@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F_image_weiBoDiss@2x.png"; sourceTree = "<group>"; };
 		266F19F816E98D3D00916D56 /* F_image_weiBoS@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F_image_weiBoS@2x.png"; sourceTree = "<group>"; };
 		266F19FB16E98EF400916D56 /* bookDetailShow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookDetailShow@2x.png"; sourceTree = "<group>"; };
+		268421191705308B00D39ADA /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		2684211A1705308B00D39ADA /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		2684211C170530A100D39ADA /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		268572941660A2380075CF93 /* CategoriesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesView.h; sourceTree = "<group>"; };
 		268572951660A2380075CF93 /* CategoriesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesView.m; sourceTree = "<group>"; };
 		268C8B8B16F2D204006DA55B /* SSubComView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSubComView.h; sourceTree = "<group>"; };
@@ -1229,6 +1234,9 @@
 				2624B44416E72AF4009A2DBE /* CommentViewController.h */,
 				2624B44516E72AF5009A2DBE /* CommentViewController.m */,
 				2624B44616E72AF5009A2DBE /* CommentViewController.xib */,
+				268421191705308B00D39ADA /* CommentCell.h */,
+				2684211A1705308B00D39ADA /* CommentCell.m */,
+				2684211C170530A100D39ADA /* CommentCell.xib */,
 				26C5451716F1AF900094F197 /* SubComView.h */,
 				26C5451816F1AF900094F197 /* SubComView.m */,
 				268C8B8B16F2D204006DA55B /* SSubComView.h */,
@@ -1934,6 +1942,7 @@
 				85FCBF7316FB62D5001C6EFD /* yellowslide.png in Resources */,
 				26B2C8B4170176F80070217C /* pattern1.jpg in Resources */,
 				26B2C8B717019A550070217C /* The rules.png in Resources */,
+				2684211D170530A100D39ADA /* CommentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2046,6 +2055,7 @@
 				85FCBFBD16FB6890001C6EFD /* UIDevice+IdentifierAddition.m in Sources */,
 				26B2C8B3170176F80070217C /* ASDepthModalViewController.m in Sources */,
 				26CC8DBB1702BEB900BDEFD3 /* CollectbookPoeration.m in Sources */,
+				2684211B1705308B00D39ADA /* CommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

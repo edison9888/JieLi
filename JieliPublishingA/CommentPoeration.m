@@ -11,19 +11,21 @@
 
 @implementation CommentPoeration
 
-+(id)sendWithTaget:(id)cv userId:(int)userid name:(NSString *)name BookId:(int)bookid content:(NSString *)content stars:(int)starsnumber{
++(id)sendWithTaget:(id)cv userId:(NSString *)userid name:(NSString *)name BookId:(int)bookid content:(NSString *)content stars:(int)starsnumber{
     return [[self alloc] initWithTaget:self userId:userid name:name BookId:bookid content:content stars:starsnumber];
 }
 
 
--(id)initWithTaget:(id)cv userId:(int)userid name:(NSString *)name BookId:(int)bookid content:(NSString *)content stars:(int)starsnumber{
+-(id)initWithTaget:(id)cv userId:(NSString *)userid name:(NSString *)name BookId:(int)bookid content:(NSString *)content stars:(int)starsnumber{
     if (self = [super init]) {
         target = [cv retain];
         type = CommentSend;
-        NSString *urlString = [NSString stringWithFormat:@"?c=Book&m=sendComment&userId=%d&name=%@&bookId=%d&content=%@&star=%d",userid,name,bookid,content,starsnumber];
-        url = [[NSURL URLWithString:[[BaseURL stringByAppendingString:urlString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] retain];
+        NSString *urlString = [NSString stringWithFormat:@"?c=Book&m=sendComment&userId=%@&name=%@&bookId=%d&content=%@&star=%d",userid,name,bookid,content,starsnumber];
+//        url = [NSURL URLWithString:[[BaseURL stringByAppendingString:urlString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 //        url = [NSURL URLWithString:[BaseURL stringByAppendingString:urlString]];
-        NSLog(@"%@",url);
+        url = [NSURL URLWithString:[[BaseURL stringByAppendingString:urlString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+        NSLog(@"%@",[url retain]);
         
 
     }
@@ -47,10 +49,13 @@
 -(void)main{
     
     NSData *data = [NSData dataWithContentsOfURL:url];
+    NSLog(@"sendC data:%@",data);
     id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    if (!result) {
-        return;
-    }
+    NSLog(@"sendc result:%@",result);
+    NSLog(@"%@",url);
+    [self performSelectorOnMainThread:@selector(finish:) withObject:result waitUntilDone:NO];
+}
+-(void)finish:(id)result{
     if (type == CommentGet) {
         [self.delegate getCommentFinish:result];
     }
@@ -58,6 +63,7 @@
         [self.delegate sendCommentFinish:result];
     }
     
+
 }
 
 @end

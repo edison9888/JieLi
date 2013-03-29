@@ -9,6 +9,7 @@
 #import "CommentViewController.h"
 #import "AppDelegate.h"
 #import "SubComView.h"
+#import "CommentCell.h"
 
 #define ISLOGED [AppDelegate dAccountName]?1:0
 @interface CommentViewController ()
@@ -28,6 +29,7 @@
     return self;
 }
 -(void)iWantComment{
+    
     UIActionSheet *actionSheet;
     NSString *title;
     NSString *messageA =@"登录评价";
@@ -91,13 +93,43 @@
     [[AppDelegate shareQueue] addOperation:op];
     
 }
+
+
 -(void)getCommentFinish:(id)r{
+    NSLog(@"getCommentFinish:::%@",r);
     if (!r) {
         return;
     }
-    NSLog(@"getCommentFinish:::%@",r);
-
+    [self.noCommentImageView setHidden:YES];
+    self.array0fcells = nil;
+    self.array0fcells = [[CommentCell cellsForData:r] retain];
+    [self.tableView reloadData];
 }
+
+#pragma mark --
+#pragma mark TableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.array0fcells count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CommentCell *cell = (CommentCell *)[self.array0fcells objectAtIndex:indexPath.row];
+    return cell.frame.size.height;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    NSLog(@"%d",indexPath.row);
+    return [self.array0fcells objectAtIndex:indexPath.row];
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CommentCell *cell = [CommentCell cellFromCell:[self.array0fcells objectAtIndex:indexPath.row]];
+    [self.array0fcells replaceObjectAtIndex:indexPath.row withObject:cell];
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+}
+
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -105,4 +137,14 @@
 }
 
 
+- (void)dealloc {
+    [_tableView release];
+    [_noCommentImageView release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setTableView:nil];
+    [self setNoCommentImageView:nil];
+    [super viewDidUnload];
+}
 @end

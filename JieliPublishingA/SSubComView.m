@@ -44,6 +44,7 @@
 }
 
 
+
 -(void)awakeFromNib{
     [self.ssubBar setImage:[PicNameMc defaultBackgroundImage:@"CgaryB" withWidth:self.ssubBar.frame.size.width withTitle:@"写书评" withColor:[UIColor whiteColor]]];
     [self.send setImage:[PicNameMc grayBg:self.send title:@"发送"] forState:UIControlStateNormal];
@@ -58,6 +59,17 @@
 
     
 }
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+    
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
