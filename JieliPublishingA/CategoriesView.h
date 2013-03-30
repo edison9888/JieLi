@@ -14,4 +14,5 @@
 @property (nonatomic,strong) DataBrain *dataBrain;
 @property (nonatomic,strong)  GoodBookViewController *goodBook;
 @property (nonatomic,assign) int currentButtonTag;
+
 @end

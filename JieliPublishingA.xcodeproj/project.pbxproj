@@ -222,6 +222,9 @@
 		266F19F916E98D3D00916D56 /* F_image_weiBoDiss@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 266F19F716E98D3D00916D56 /* F_image_weiBoDiss@2x.png */; };
 		266F19FA16E98D3D00916D56 /* F_image_weiBoS@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 266F19F816E98D3D00916D56 /* F_image_weiBoS@2x.png */; };
 		266F19FC16E98EF400916D56 /* bookDetailShow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 266F19FB16E98EF400916D56 /* bookDetailShow@2x.png */; };
+		267F1B1F1706BB5200C5AA03 /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 267F1B1D1706BB5200C5AA03 /* CategoriesViewController.m */; };
+		267F1B201706BB5200C5AA03 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 267F1B1E1706BB5200C5AA03 /* CategoriesViewController.xib */; };
+		267F1B231706BCC000C5AA03 /* GetCategorieInformationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 267F1B221706BCC000C5AA03 /* GetCategorieInformationOperation.m */; };
 		2684211B1705308B00D39ADA /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2684211A1705308B00D39ADA /* CommentCell.m */; };
 		2684211D170530A100D39ADA /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2684211C170530A100D39ADA /* CommentCell.xib */; };
 		268572961660A2380075CF93 /* CategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 268572951660A2380075CF93 /* CategoriesView.m */; };
@@ -634,6 +637,11 @@
 		266F19F716E98D3D00916D56 /* F_image_weiBoDiss@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F_image_weiBoDiss@2x.png"; sourceTree = "<group>"; };
 		266F19F816E98D3D00916D56 /* F_image_weiBoS@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F_image_weiBoS@2x.png"; sourceTree = "<group>"; };
 		266F19FB16E98EF400916D56 /* bookDetailShow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookDetailShow@2x.png"; sourceTree = "<group>"; };
+		267F1B1C1706BB5200C5AA03 /* CategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesViewController.h; sourceTree = "<group>"; };
+		267F1B1D1706BB5200C5AA03 /* CategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesViewController.m; sourceTree = "<group>"; };
+		267F1B1E1706BB5200C5AA03 /* CategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
+		267F1B211706BCC000C5AA03 /* GetCategorieInformationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCategorieInformationOperation.h; sourceTree = "<group>"; };
+		267F1B221706BCC000C5AA03 /* GetCategorieInformationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCategorieInformationOperation.m; sourceTree = "<group>"; };
 		268421191705308B00D39ADA /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		2684211A1705308B00D39ADA /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		2684211C170530A100D39ADA /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
@@ -1280,6 +1288,9 @@
 				2631BC7F162D245A00D2EFC4 /* HCBookShelf.m */,
 				268572941660A2380075CF93 /* CategoriesView.h */,
 				268572951660A2380075CF93 /* CategoriesView.m */,
+				267F1B1C1706BB5200C5AA03 /* CategoriesViewController.h */,
+				267F1B1D1706BB5200C5AA03 /* CategoriesViewController.m */,
+				267F1B1E1706BB5200C5AA03 /* CategoriesViewController.xib */,
 				2613460616648CAC00670508 /* arrow_down.png */,
 				2613460716648CAC00670508 /* arrow_down@2x.png */,
 				2613460816648CAC00670508 /* arrow_up.png */,
@@ -1557,6 +1568,8 @@
 				85930A6416F220CA0085A5B9 /* ReadEventOperation.m */,
 				26CC8DB91702BEB800BDEFD3 /* CollectbookPoeration.h */,
 				26CC8DBA1702BEB900BDEFD3 /* CollectbookPoeration.m */,
+				267F1B211706BCC000C5AA03 /* GetCategorieInformationOperation.h */,
+				267F1B221706BCC000C5AA03 /* GetCategorieInformationOperation.m */,
 			);
 			name = operations;
 			sourceTree = "<group>";
@@ -1943,6 +1956,7 @@
 				26B2C8B4170176F80070217C /* pattern1.jpg in Resources */,
 				26B2C8B717019A550070217C /* The rules.png in Resources */,
 				2684211D170530A100D39ADA /* CommentCell.xib in Resources */,
+				267F1B201706BB5200C5AA03 /* CategoriesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2056,6 +2070,8 @@
 				26B2C8B3170176F80070217C /* ASDepthModalViewController.m in Sources */,
 				26CC8DBB1702BEB900BDEFD3 /* CollectbookPoeration.m in Sources */,
 				2684211B1705308B00D39ADA /* CommentCell.m in Sources */,
+				267F1B1F1706BB5200C5AA03 /* CategoriesViewController.m in Sources */,
+				267F1B231706BCC000C5AA03 /* GetCategorieInformationOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
