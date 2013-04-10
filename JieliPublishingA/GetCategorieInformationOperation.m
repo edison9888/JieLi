@@ -17,8 +17,8 @@
 
 -(void)main{
     NSString *urlString = [NSString stringWithFormat:@"?c=Book&m=getBookCategories"];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+//    NSData *data = [NSData dataWithContentsOfURL:urlString];
+//    id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
 
     
     [self performSelectorOnMainThread:@selector(finish:) withObject:nil waitUntilDone:NO];
@@ -27,6 +27,8 @@
 -(void)finish:(NSDictionary *)dic{
     
     [self.delegate getCategorieInformationFinish:dic];
+    
+    
     
 }
 @end
