@@ -10,7 +10,17 @@
 #import "AppDelegate.h"
 #import "DataBrain.h"
 #import "GoodBookViewController.h"
-@interface CategoriesView : UIScrollView<DataBrainGetListDelegate,HCBookShelfDelegate>
+#import "HeadView.h"
+@interface CData : NSObject
+@property (nonatomic,assign) int Id;
+@property (nonatomic,strong) NSString *Name;
+@property (nonatomic,assign) int Pid;
++(id)CDataWithId:(int)n name:(NSString *)na;
+
+
+@end
+
+@interface CategoriesView : UIScrollView<DataBrainGetListDelegate,HCBookShelfDelegate,UITableViewDelegate,UITableViewDataSource,HeadViewDelegate>
 @property (nonatomic,strong) DataBrain *dataBrain;
 @property (nonatomic,strong)  GoodBookViewController *goodBook;
 @property (nonatomic,assign) int currentButtonTag;

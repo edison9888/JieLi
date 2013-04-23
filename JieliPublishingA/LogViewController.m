@@ -63,6 +63,7 @@
     BasicOperation *op = [[BasicOperation alloc] initWithUrl:urlString];
     op.delegate = self;
     [[AppDelegate shareQueue] addOperation:op];
+    
     }
 }
 -(void)finishOperation:(id)result  {

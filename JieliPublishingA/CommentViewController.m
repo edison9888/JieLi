@@ -76,6 +76,7 @@
 -(void)toSubComViewWithBookId:(NSInteger)bookId useId:(NSString *)userId userName:(NSString *)userName{
     
     SubComView *sc = [[SubComView alloc] initWithBookId:bookId userId:userId accountName:userName];
+    sc.vc = self;
     [sc show];
 
     

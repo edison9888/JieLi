@@ -76,8 +76,30 @@ static CGFloat kBorderWidth = 10;
 
 -(void)sendCommentFinish:(id)r{
     NSLog(@"sendCommentFinish::::%@",r);
-    
+    NSString *result = [r objectForKey:@"result"];
+    int a = [result intValue];
+    NSString *mes ;
+    if (a) {
+        mes = @"评论成功";
+    }
+    else{
+        mes = @"评论失败";
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"接力阅读小栈"
+                                                    message:mes
+                                                   delegate:self
+                                          cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self.vc loadBookInfo:self.vc.bookInfo];
+
+    [self cancel];
+}
+
+
 -(void)show{
     UIWindow* window = [UIApplication sharedApplication].keyWindow;
     if (!window)

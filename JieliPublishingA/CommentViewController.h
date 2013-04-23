@@ -26,6 +26,7 @@
 @property (nonatomic,strong) NSMutableArray *array0fcells;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) IBOutlet UIImageView *noCommentImageView;
+-(void)loadBookInfo:(BookInfo *)info;
 
 -(void)loadData:(id)result;
 -(void)iWantComment;

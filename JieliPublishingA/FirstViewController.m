@@ -17,6 +17,8 @@
 
 #import "LogViewController.h"
 #import "RegViewController.h"
+
+#import "Reachability.h"
 @interface FirstViewController ()
 
 @end
@@ -97,34 +99,55 @@
 -(void)viewDidAppear:(BOOL)animated{
 //    [self.navigationController setNavigationBarHidden:YES];
 }
+-(BOOL)checkNetWorkState{
+    if (([Reachability reachabilityForInternetConnection].currentReachabilityStatus == NotReachable) &&
+        ([Reachability reachabilityForLocalWiFi].currentReachabilityStatus == NotReachable)) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"接力阅读小栈"
+                                                        message:@"当前无网络连接，请检查网络连接"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+        return NO;
+    }
+    return YES;
 
+}
 //到接力好书
 - (IBAction)pushToGoodBook:(id)sender {
-    GoodBookViewController *viewController = [[GoodBookViewController alloc] initWithNibName:@"GoodBookViewController" bundle:nil];
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"back" style:UIBarButtonItemStyleBordered target:nil action:nil];
-//    [viewController.myNavigationItem setBackBarButtonItem:backItem];
-    
-    [self.navigationController pushViewController:viewController animated:YES];
+    if ([self checkNetWorkState]) {
+        GoodBookViewController *viewController = [[GoodBookViewController alloc] initWithNibName:@"GoodBookViewController" bundle:nil];
+        [self.navigationController pushViewController:viewController animated:YES];
+
+    }
 }
 //到促销优惠
 - (IBAction)pushToPromotion:(id)sender {
+    if ([self checkNetWorkState]) {
     PromotionViewController *viewController = [[PromotionViewController alloc] initWithNibName:@"PromotionViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 //到读书活动
 - (IBAction)pushToReadingParty:(id)sender {
+    if ([self checkNetWorkState]) {
     ReadingActivityViewController *viewController = [[ReadingActivityViewController alloc] initWithNibName:@"ReadingActivityViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:YES];
-
+    }
 }
 //到身边书店
 - (IBAction)pushToSeachBookstore:(id)sender {
+    if ([self checkNetWorkState]) {
     SeachBookstoreViewController *viewController = [[SeachBookstoreViewController alloc] initWithNibName:@"SeachBookstoreViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 //到会员专区
 - (IBAction)pushToMemberArea:(id)sender {
-    
+    if ([self checkNetWorkState]) {
+
     if (![AppDelegate dAccountName]) {
         LogViewController *viewController = [[LogViewController alloc] initWithNibName:@"LogViewController" bundle:nil];
         [self.navigationController pushViewController:viewController animated:YES];
@@ -133,7 +156,7 @@
         MemberAreaViewController *viewController = [[MemberAreaViewController alloc] initWithNibName:@"MemberAreaViewController" bundle:nil];
         [self.navigationController pushViewController:viewController animated:YES];
     }
-
+    }
 }
 //到个性设置
 - (IBAction)pushToSetPersonality:(id)sender {

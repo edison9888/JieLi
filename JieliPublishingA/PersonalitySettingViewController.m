@@ -33,7 +33,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.myBgImageView setImage:[PicNameMc imageFromImageName:WoodPattern]];
     [self.myTopBar setType:DiyTopBarTypeBack];
     self.myTopBar.myTitle.text = @"个性设置";
     [self.myTopBar.backButton addTarget:self action:@selector(popBack:) forControlEvents:UIControlEventTouchUpInside];

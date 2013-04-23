@@ -150,6 +150,8 @@
 		2648EF4C1665F39C00983885 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2648EF4B1665F39C00983885 /* AudioToolbox.framework */; };
 		2648EF4E1665F3AE00983885 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2648EF4D1665F3AE00983885 /* CFNetwork.framework */; };
 		2648EF501665F3D000983885 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2648EF4F1665F3D000983885 /* SystemConfiguration.framework */; };
+		264A9CF7171646FA00E7BCC7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 264A9CF6171646FA00E7BCC7 /* Reachability.m */; };
+		264A9CFA17169F7D00E7BCC7 /* HeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 264A9CF917169F7D00E7BCC7 /* HeadView.m */; };
 		265002F916BE17B700D5E6AD /* F_btn_gender-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 265002F516BE17B700D5E6AD /* F_btn_gender-selected.png */; };
 		265002FA16BE17B700D5E6AD /* F_btn_gender-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 265002F616BE17B700D5E6AD /* F_btn_gender-selected@2x.png */; };
 		265002FB16BE17B700D5E6AD /* F_btn_gender.png in Resources */ = {isa = PBXBuildFile; fileRef = 265002F716BE17B700D5E6AD /* F_btn_gender.png */; };
@@ -556,6 +558,10 @@
 		2648EF4B1665F39C00983885 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2648EF4D1665F3AE00983885 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2648EF4F1665F3D000983885 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		264A9CF5171646FA00E7BCC7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		264A9CF6171646FA00E7BCC7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		264A9CF817169F7D00E7BCC7 /* HeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadView.h; sourceTree = "<group>"; };
+		264A9CF917169F7D00E7BCC7 /* HeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadView.m; sourceTree = "<group>"; };
 		265002F516BE17B700D5E6AD /* F_btn_gender-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F_btn_gender-selected.png"; sourceTree = "<group>"; };
 		265002F616BE17B700D5E6AD /* F_btn_gender-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F_btn_gender-selected@2x.png"; sourceTree = "<group>"; };
 		265002F716BE17B700D5E6AD /* F_btn_gender.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F_btn_gender.png; sourceTree = "<group>"; };
@@ -1286,6 +1292,8 @@
 				2662199C16F318F8008E2AB5 /* 我的书架2.jpg */,
 				2631BC7E162D245A00D2EFC4 /* HCBookShelf.h */,
 				2631BC7F162D245A00D2EFC4 /* HCBookShelf.m */,
+				264A9CF817169F7D00E7BCC7 /* HeadView.h */,
+				264A9CF917169F7D00E7BCC7 /* HeadView.m */,
 				268572941660A2380075CF93 /* CategoriesView.h */,
 				268572951660A2380075CF93 /* CategoriesView.m */,
 				267F1B1C1706BB5200C5AA03 /* CategoriesViewController.h */,
@@ -1458,6 +1466,8 @@
 				263C67621640C9A500F31DEB /* Source */,
 				26AC01111627E53F00210012 /* AppDelegate.h */,
 				26AC01121627E53F00210012 /* AppDelegate.mm */,
+				264A9CF5171646FA00E7BCC7 /* Reachability.h */,
+				264A9CF6171646FA00E7BCC7 /* Reachability.m */,
 				85DFD17B16EB19AD00F210BD /* operations */,
 				26438E2C16423BC6005FB205 /* DiyTopBar.h */,
 				26438E2D16423BC6005FB205 /* DiyTopBar.m */,
@@ -2072,6 +2082,8 @@
 				2684211B1705308B00D39ADA /* CommentCell.m in Sources */,
 				267F1B1F1706BB5200C5AA03 /* CategoriesViewController.m in Sources */,
 				267F1B231706BCC000C5AA03 /* GetCategorieInformationOperation.m in Sources */,
+				264A9CF7171646FA00E7BCC7 /* Reachability.m in Sources */,
+				264A9CFA17169F7D00E7BCC7 /* HeadView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2245,8 +2257,8 @@
 					"-lbaidumapapi",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "551935AF-C06F-42F4-97DA-1AC7B032577B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "551935AF-C06F-42F4-97DA-1AC7B032577B";
+				PROVISIONING_PROFILE = "5DB16477-6755-4F97-8A12-67C4651F5DC6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5DB16477-6755-4F97-8A12-67C4651F5DC6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2256,8 +2268,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jiangsu  Zhongka  Educational  Science and   Technology  Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Jiangsu  Zhongka  Educational  Science and   Technology  Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yang Liu (FP67G6W646)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yang Liu (FP67G6W646)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2278,8 +2290,8 @@
 					"-lbaidumapapi",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "47335DE6-D425-44C6-8A39-92615E6A8851";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "47335DE6-D425-44C6-8A39-92615E6A8851";
+				PROVISIONING_PROFILE = "5DB16477-6755-4F97-8A12-67C4651F5DC6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5DB16477-6755-4F97-8A12-67C4651F5DC6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -14,9 +14,11 @@
 #define kAppKey             @"1121796814"
 #define kAppSecret          @"152a12ee831277740fb7ef7708ca65eb"
 #define kAppRedirectURI     @"http://www.apple.com"
-
+@class Reachability;
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate,UINavigationControllerDelegate,SinaWeiboDelegate>{
     BMKMapManager *_mapManager;
+    
+     Reachability  *hostReach; 
 
 }
 @property (strong, nonatomic) SinaWeibo *sinaweibo;

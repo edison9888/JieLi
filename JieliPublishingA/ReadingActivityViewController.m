@@ -110,7 +110,7 @@ enum{
     PosX = 0;
     NSOperationQueue *q = (NSOperationQueue *)[AppDelegate shareQueue];
     NSLog(@"queue Numbers %d",[q.operations count]);
-    int events[5] = {18234559,17758278,17755502,18401705,18228563};
+    int events[5] = {18357834,17758278,17755502,18401705,18228563};
     for (int i = 0; i<5; i++) {
         ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:events[i]];
         op.delegate = self;

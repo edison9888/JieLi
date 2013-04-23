@@ -23,6 +23,9 @@
     NSURL *url = [NSURL URLWithString:[[BaseURL stringByAppendingString:urlString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
     NSData *data = [NSData dataWithContentsOfURL:url];
+    if (!data) {
+        return;
+    }
     id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     
     [target performSelectorOnMainThread:@selector(loadData:) withObject:result waitUntilDone:NO];

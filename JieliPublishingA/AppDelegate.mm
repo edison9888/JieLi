@@ -14,7 +14,7 @@
 #import "ForthViewController.h"
 
 #import "CustomNavigationBar.h"
-
+#import "Reachability.h"
 //#import "DOUAPIEngine.h"
 
 
@@ -123,6 +123,7 @@ static NSOperationQueue *queue;
 +(id)shareQueue{
     if (!queue) {
         queue = [[NSOperationQueue alloc] init];
+        [queue setMaxConcurrentOperationCount:1];
     }
     return queue;
 }
@@ -195,8 +196,29 @@ static NSOperationQueue *queue;
     }
 
     
-    
+    // 监测网络情况
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name: kReachabilityChangedNotification
+                                               object: nil];
+    hostReach = [[Reachability reachabilityWithHostName:@"http://www.jielibj.com"] retain];
+    [hostReach startNotifier];
+
     return YES;
+}
+- (void)reachabilityChanged:(NSNotification *)note {
+    Reachability* curReach = [note object];
+    NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+    NetworkStatus status = [curReach currentReachabilityStatus];
+    
+    if (status == NotReachable) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"接力阅读小栈"
+                                                        message:@"当前无网络连接，请检查网络连接"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
 }
 
 //- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{

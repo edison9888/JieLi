@@ -50,6 +50,9 @@
     
     NSData *data = [NSData dataWithContentsOfURL:url];
     NSLog(@"sendC data:%@",data);
+    if (!data) {
+        return;
+    }
     id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     NSLog(@"sendc result:%@",result);
     NSLog(@"%@",url);
