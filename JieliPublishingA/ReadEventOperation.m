@@ -41,7 +41,7 @@
 }
 -(void)finish:(id)result{
     NSLog(@"finish Get event Data");
-    [self.delegate finishPoeration:result];
+    [self.delegate finishReadingPoeration:result];
     [self cancel];
 }
 

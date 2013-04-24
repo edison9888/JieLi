@@ -36,7 +36,12 @@
 }
 
 -(void)finish:(id)result{
-    [self.delegate finishOperation:result];
-}
+    if ([self.delegate respondsToSelector:@selector(finishOperation:)]) {
+        [self.delegate finishOperation:result];
+    }
+    else if ([self.delegate respondsToSelector:@selector(finishOperationWithOperation:result:)]){
+        [self.delegate finishOperationWithOperation:self result:result];
+    }
 
+}
 @end

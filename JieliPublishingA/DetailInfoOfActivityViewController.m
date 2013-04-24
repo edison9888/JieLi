@@ -99,7 +99,7 @@ static NSString * const kRedirectUrl = @"http://www.douban.com/location/mobile";
 
     
 }
--(void)finishPoeration:(id)result{
+-(void)finishReadingPoeration:(id)result{
     NSLog(@"asldkjflsakdjf:%@",result);
     GetImageOperation *op = [[GetImageOperation alloc] initWithImageId:self.activityId url:[result objectForKey:@"image"] withFloderName:ActivityImage];
     op.delegate = self;

@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 @protocol BasicOperationDelegate <NSObject>
+@optional
 -(void)finishOperation:(id)result;
-
+-(void)finishOperationWithOperation:(id)op result:(id)result;
 
 @end
 @interface BasicOperation : NSOperation
 @property (strong) id<BasicOperationDelegate> delegate;
+@property (assign) int tag;
 -(id)initWithUrl:(NSString *)url;
 
 @end

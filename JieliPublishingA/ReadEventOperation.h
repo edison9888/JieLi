@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @protocol ReadEventOperationDelegate <NSObject>
 
--(void)finishPoeration:(id)result;
+-(void)finishReadingPoeration:(id)result;
 
 @end
 @interface ReadEventOperation : NSOperation

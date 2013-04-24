@@ -107,17 +107,24 @@ enum{
 //    [self.dataBrain getActivityList];
 //    self.dataBrain.getListDelegate = self;
     [self.actI startAnimating];
-    PosX = 0;
+//    PosX = 0;
     NSOperationQueue *q = (NSOperationQueue *)[AppDelegate shareQueue];
     NSLog(@"queue Numbers %d",[q.operations count]);
-    int events[5] = {18357834,17758278,17755502,18401705,18228563};
-    for (int i = 0; i<5; i++) {
-        ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:events[i]];
-        op.delegate = self;
-        [[AppDelegate shareQueue] addOperation:op];
-    }
     
-    self.myPageControl.numberOfPages = 5;
+    
+    BasicOperation *bOp = [[BasicOperation alloc] initWithUrl:@"?c=Activity&m=getDBActivityList"];
+    bOp.tag = 0;
+    bOp.delegate = self;
+    [[AppDelegate shareQueue] addOperation:bOp];
+    
+//    int events[5] = {18357834,17758278,17755502,18401705,18228563};
+//    for (int i = 0; i<5; i++) {
+//        ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:events[i]];
+//        op.delegate = self;
+//        [[AppDelegate shareQueue] addOperation:op];
+//    }
+//    
+//    self.myPageControl.numberOfPages = 5;
 
 //    ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:events[0]];
 //    op.delegate = self;
@@ -128,10 +135,32 @@ enum{
 //
 //    NSData *data = [NSData dataWithContentsOfURL:url];
 //    NSLog(@"123:%@",data);
+}
+-(void)finishOperationWithOperation:(id)op result:(id)result{
+    if ([op isKindOfClass:[BasicOperation class]]) {
+        BasicOperation *bop = (BasicOperation *)op;
+        if (bop.tag == 0) {
+            NSLog(@"%@",result);
+            [self getEventInfomation:result];
+            
+            
+        }
+    }
+}
+
+-(void)getEventInfomation:(id)eInfo{
+    for (NSDictionary *dic in eInfo) {
+        int eventId = [[dic objectForKey:@"db_id"] intValue];
+        ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:eventId];
+        op.delegate = self;
+        [[AppDelegate shareQueue] addOperation:op];
+    }
+    self.myPageControl.numberOfPages = [eInfo count];
 
 }
--(void)finishPoeration:(id)result{
+-(void)finishReadingPoeration:(id)result{
     NSLog(@"result:%@",result);
+    
     [self loadDouBanEvent:result];
 }
 

@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "ReadEventOperation.h"
 #import "GetImageOperation.h"
+#import "BasicOperation.h"
 
 @interface ReadingCard:UIView<GetImageOperationDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *myBgImageView;
@@ -29,7 +30,7 @@
 @end 
 
 
-@interface ReadingActivityViewController : UIViewController<UIGestureRecognizerDelegate,UIScrollViewDelegate,DataBrainGetListDelegate,ReadEventOperationDelegate>
+@interface ReadingActivityViewController : UIViewController<UIGestureRecognizerDelegate,UIScrollViewDelegate,DataBrainGetListDelegate,ReadEventOperationDelegate,BasicOperationDelegate>
 @property (strong, nonatomic) IBOutlet DiyTopBar *myTopBar;
 
 
