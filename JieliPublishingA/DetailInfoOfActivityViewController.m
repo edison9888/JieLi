@@ -316,6 +316,110 @@ static NSString * const kRedirectUrl = @"http://www.douban.com/location/mobile";
 //    [self getInformation];
     [self getDouBanInformation];
     
+    
+    //photos
+    NSString *urlString = [NSString stringWithFormat:@"?c=Activity&m=getDbActivityById&id=%d",self.mainId];
+    BasicOperation *op = [[BasicOperation alloc] initWithUrl:urlString];
+    op.delegate = self;
+    [[AppDelegate shareQueue] addOperation:op];
+}
+
+#define PhotoSize CGSizeMake(45,self.myPhotoScrollView.frame.size.height-10)
+
+-(void)finishOperation:(id)result{
+//    NSLog(@"%@",result);
+    NSArray *array = [NSArray arrayWithArray:[[result objectAtIndex:0] objectForKey:@"db_pics"]];
+//    NSLog(@"%@",array);
+    
+    [self.myPhotoScrollView setShowsHorizontalScrollIndicator:NO];
+    int numberOfPhoto = [array count];
+    self.myPhotoNumber.text = [NSString stringWithFormat:@"(%d)",numberOfPhoto];
+    int width = 45;
+    int index = 0;
+    
+
+    for (NSDictionary *dic in array) {
+        NSLog(@"%@",dic);
+        NSString *picUrl = [dic objectForKey:@"pic"];
+
+        
+        
+            NetImageView *imageView = [NetImageView NetImageViewWithUrl:picUrl];
+            imageView.frame = CGRectMake((width+6)*index++ +5, 5, width, self.myPhotoScrollView.frame.size.height-10);
+            
+            
+//            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((width+6)*index++ +5, 5, width, self.myPhotoScrollView.frame.size.height-10)];
+//            [imageView setBackgroundColor:[UIColor blueColor]];
+            
+            [self.myPhotoScrollView addSubview:imageView];
+            
+            [imageView setBackgroundColor:[UIColor grayColor]];
+            [imageView.layer setShadowRadius:2];
+            [imageView.layer  setShadowOpacity:0.7];
+            [imageView.layer setShadowOffset:CGSizeMake(1, 1)];
+            [imageView.layer  setShadowColor:[UIColor blackColor].CGColor];
+            //self.myImageView设置边框
+            //        [imageView.layer  setCornerRadius:5];
+            [imageView.layer  setBorderWidth:2];
+            [imageView.layer  setBorderColor:[UIColor whiteColor].CGColor];
+            
+//            NSDictionary *dicc = [photoArray objectAtIndex:i];
+//            [self loadPhoto:dicc withTag:i withObject:imageView];
+        [imageView setUserInteractionEnabled:YES];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoTaped:)];
+            [tap setNumberOfTapsRequired:1];
+            tap.delegate = self;
+            [imageView addGestureRecognizer:tap];
+
+            
+            
+        }
+        [self.myPhotoScrollView setContentSize:CGSizeMake(MAX(index*51+7, [UIScreen mainScreen].bounds.size.width), 0)];
+}
+-(void)photoTaped:(UITapGestureRecognizer *)tap{
+    NetImageView *netImageView = (NetImageView *)tap.view;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(netImageView.frame.origin.x+self.myPhotoScrollView.frame.origin.x, netImageView.frame.origin.y +self.myPhotoScrollView.frame.origin.y+44,netImageView.frame.size.width , netImageView.frame.size.height)];
+    [view setBackgroundColor:[UIColor blackColor]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:netImageView.image];
+    imageView.tag = 110;
+    imageView.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
+    imageView.frame = view.frame;
+//    [view addSubview:imageView];
+    [self.view addSubview:view];
+    [self.view addSubview:imageView];
+    
+    
+    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:3.f];
+    view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y+44, self.view.frame.size.width, self.view.frame.size.height-44);
+    CGSize imageSize = imageView.image.size;
+    CGSize viewSize = view.frame.size;
+    
+    if (imageSize.width>viewSize.width) {
+        imageSize = CGSizeMake(viewSize.width, imageSize.height*viewSize.width/imageSize.height);
+    }
+    if (imageSize.height>viewSize.height) {
+        imageSize = CGSizeMake(imageSize.width*viewSize.width/imageSize.width, viewSize.height);
+    }
+    imageView.frame = CGRectMake(view.center.x-imageSize.width/2,view.center.y-imageSize.height/2, imageSize.width, imageSize.height);
+    [UIView commitAnimations];
+    
+    
+    
+    UITapGestureRecognizer *stap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoBackTaped:)];
+    [stap setNumberOfTapsRequired:1];
+    stap.delegate = self;
+    [view addGestureRecognizer:stap];
+
+    
+}
+-(void)photoBackTaped:(UITapGestureRecognizer *)stap{
+    UIView *view = (UIView *)stap.view;
+    [view removeFromSuperview];
+    
+    UIImageView *imageView = (UIImageView *)[self.view viewWithTag:110];
+    [imageView removeFromSuperview];
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -36,6 +36,7 @@ enum{
     [self.addressLabel setText:[self.addressLabel.text stringByAppendingString:[r objectForKey:@"address"]]];
     self.activityId = [[r objectForKey:@"id"] integerValue];
     
+    
 }
 -(void)finishGetImage:(UIImage *)image{
     CGSize siz = image.size;
@@ -65,7 +66,12 @@ enum{
     }
     return _dataBrain;
 }
-
+-(NSMutableDictionary *)actIdandMainId{
+    if (!_actIdandMainId) {
+        _actIdandMainId = [[NSMutableDictionary alloc] init];
+    }
+    return _actIdandMainId;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -80,6 +86,7 @@ enum{
     NSLog(@".......%d",readingCardView.activityId);
     DetailInfoOfActivityViewController *viewController = [[DetailInfoOfActivityViewController alloc] initWithNibName:@"DetailInfoOfActivityViewController" bundle:nil];
     viewController.activityId = readingCardView.activityId;
+    viewController.mainId = readingCardView.mainId;
     [self.navigationController pushViewController:viewController animated:YES];
 
 }
@@ -141,6 +148,7 @@ enum{
         BasicOperation *bop = (BasicOperation *)op;
         if (bop.tag == 0) {
             NSLog(@"%@",result);
+            
             [self getEventInfomation:result];
             
             
@@ -151,9 +159,18 @@ enum{
 -(void)getEventInfomation:(id)eInfo{
     for (NSDictionary *dic in eInfo) {
         int eventId = [[dic objectForKey:@"db_id"] intValue];
+        [self.actIdandMainId setObject:[dic objectForKey:@"id"] forKey:[dic objectForKey:@"db_id"]];
         ReadEventOperation *op = [[ReadEventOperation alloc] initWithEventId:eventId];
         op.delegate = self;
         [[AppDelegate shareQueue] addOperation:op];
+        NSLog(@"%@",self.actIdandMainId);
+//        NSArray *array = [dic objectForKey:@"db_pics"];
+//        NSDictionary *dic = [array objectAtIndex:0];
+//        NSString *picUrl = [dic objectForKey:@"pic"];
+//        NSLog(@"picUrl:%@",picUrl);
+//        
+//        
+        
     }
     self.myPageControl.numberOfPages = [eInfo count];
 
@@ -168,7 +185,9 @@ static float PosX = 0;
 -(void)loadDouBanEvent:(id)r{
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReadingCard" owner:self options:nil];
     ReadingCard *view = [nib objectAtIndex:0];
+    view.mainId = [[self.actIdandMainId objectForKey:[r objectForKey:@"id"]] intValue];
     [view loadData:r];
+    
     view.frame = CGRectMake(PosX, 0, view.frame.size.width, view.frame.size.height);
     [self.myScrollView addSubview:view];
     PosX +=view.frame.size.width;
@@ -187,6 +206,7 @@ static float PosX = 0;
     NSLog(@".......%d",readingCardView.activityId);
     
     DetailInfoOfActivityViewController *viewController = [[DetailInfoOfActivityViewController alloc] initWithNibName:@"DetailInfoOfActivityViewController" bundle:nil];
+    viewController.mainId = readingCardView.mainId;
     viewController.activityId = readingCardView.activityId;
     [self.navigationController pushViewController:viewController animated:YES];
     

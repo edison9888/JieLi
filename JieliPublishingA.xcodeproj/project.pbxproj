@@ -169,6 +169,7 @@
 		2653C7C116EDC8970050618F /* inputBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 2653C7BF16EDC8970050618F /* inputBox.png */; };
 		2653C7C216EDC8970050618F /* inputBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2653C7C016EDC8970050618F /* inputBox@2x.png */; };
 		2653C7C416EDC9340050618F /* Intervalline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2653C7C316EDC9340050618F /* Intervalline@2x.png */; };
+		26561ACF1729069D00DD99B1 /* NetImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26561ACE1729069D00DD99B1 /* NetImageView.m */; };
 		26586D191627EF3100A0577D /* GoodBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26586D171627EF3100A0577D /* GoodBookViewController.m */; };
 		26586D1A1627EF3100A0577D /* GoodBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26586D181627EF3100A0577D /* GoodBookViewController.xib */; };
 		2658D757169FA2F200772798 /* F_btn_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 2658D756169FA2F200772798 /* F_btn_gray.png */; };
@@ -581,6 +582,8 @@
 		2653C7BF16EDC8970050618F /* inputBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inputBox.png; sourceTree = "<group>"; };
 		2653C7C016EDC8970050618F /* inputBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inputBox@2x.png"; sourceTree = "<group>"; };
 		2653C7C316EDC9340050618F /* Intervalline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Intervalline@2x.png"; sourceTree = "<group>"; };
+		26561ACD1729069D00DD99B1 /* NetImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetImageView.h; sourceTree = "<group>"; };
+		26561ACE1729069D00DD99B1 /* NetImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetImageView.m; sourceTree = "<group>"; };
 		26586D161627EF3100A0577D /* GoodBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodBookViewController.h; sourceTree = "<group>"; };
 		26586D171627EF3100A0577D /* GoodBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodBookViewController.m; sourceTree = "<group>"; };
 		26586D181627EF3100A0577D /* GoodBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodBookViewController.xib; sourceTree = "<group>"; };
@@ -1485,6 +1488,8 @@
 				260F86CB16B7AE170040664D /* BookView.xib */,
 				263716C716E86FC500C7EF03 /* BackGroundImageView.h */,
 				263716C816E86FC500C7EF03 /* BackGroundImageView.m */,
+				26561ACD1729069D00DD99B1 /* NetImageView.h */,
+				26561ACE1729069D00DD99B1 /* NetImageView.m */,
 				2642366F1679C41000910024 /* classes */,
 				26AC013A1627ECDE00210012 /* FirstView */,
 				2651C11E162BE6C000093F8F /* SecondView */,
@@ -2084,6 +2089,7 @@
 				267F1B231706BCC000C5AA03 /* GetCategorieInformationOperation.m in Sources */,
 				264A9CF7171646FA00E7BCC7 /* Reachability.m in Sources */,
 				264A9CFA17169F7D00E7BCC7 /* HeadView.m in Sources */,
+				26561ACF1729069D00DD99B1 /* NetImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

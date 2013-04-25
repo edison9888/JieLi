@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (assign, nonatomic) int activityId;
+@property (assign, nonatomic) int mainId;
 
 @property (strong, nonatomic) IBOutlet UIButton *shareButton;
 @property (strong, nonatomic) IBOutlet UIButton *joinButton;
@@ -48,7 +49,7 @@
 
 @property (unsafe_unretained, nonatomic) IBOutlet UIActivityIndicatorView *actI;
 
-
+@property (nonatomic,assign) NSMutableDictionary *actIdandMainId;
 
 
 

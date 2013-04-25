@@ -12,8 +12,10 @@
 #import "ReadEventOperation.h"
 #import "AppDelegate.h"
 #import "ASDepthModalViewController.h"
+#import "BasicOperation.h"
+#import "NetImageView.h"
 
-@interface DetailInfoOfActivityViewController : UIViewController<GetImageOperationDelegate,ReadEventOperationDelegate>
+@interface DetailInfoOfActivityViewController : UIViewController<GetImageOperationDelegate,ReadEventOperationDelegate,BasicOperationDelegate,UIGestureRecognizerDelegate>
 @property (retain, nonatomic) IBOutlet UIView *popupView;
 @property (strong, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *myImageView;
@@ -41,5 +43,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *myBgImageView;
 
 @property (assign, nonatomic) int activityId;
+@property (assign, nonatomic) int mainId;
 
 @end
