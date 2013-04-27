@@ -14,7 +14,7 @@
 #import "CommentViewController.h"
 #import "BuyViewController.h"
 @protocol BookShelfTableViewControllerDelegate <NSObject>
-
+@optional
 -(void)pushOut:(HCTadBarController *)tab;
 
 @end

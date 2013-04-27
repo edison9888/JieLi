@@ -11,10 +11,9 @@
 #import "AppDelegate.h"
 #import "WeiBoBar.h"
 
-@interface ShareViewController : BasicBookViewController<WeiBoDelegate,SinaWeiboDelegate,SinaWeiboRequestDelegate,SinaWeiboAuthorizeViewDelegate>
-@property (strong,nonatomic) SinaWeibo *sinaweibo;
+@interface ShareViewController : BasicBookViewController<WeiBoDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong,nonatomic) UIImage *sendImage;
-- (void)sendWeiBo;
+-(void)sendWeiBo;
 @end

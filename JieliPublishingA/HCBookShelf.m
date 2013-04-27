@@ -106,6 +106,7 @@
 }
 
 - (void)dealloc{
+    [super dealloc];
     self.indicatorView = nil;
     self.arrowView = nil;
     self.stateLabel = nil;

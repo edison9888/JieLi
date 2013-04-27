@@ -16,7 +16,7 @@
 
 
 -(void)main{
-    NSString *urlString = [NSString stringWithFormat:@"?c=Book&m=getBookCategories"];
+//    NSString *urlString = [NSString stringWithFormat:@"?c=Book&m=getBookCategories"];
 //    NSData *data = [NSData dataWithContentsOfURL:urlString];
 //    id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
 

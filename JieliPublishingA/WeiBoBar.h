@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define KeyStyleOfSina @"sina"
-
+#define KeyStyleofTen @"ten"
 enum {
     LogInState,
     ShareState,

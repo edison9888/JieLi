@@ -149,7 +149,8 @@
         }];
         
     }
-    else if ([tz isEqualToString:@"dangdang.com"]) {
+//    else if ([tz isEqualToString:@"dangdang.com"]) {
+    else{
         image = [[PicNameMc imageName:@"buyBookCellImages@2x.png" numberOfH:3 numberOfW:1] objectAtIndex:0];
     }
     

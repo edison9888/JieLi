@@ -33,6 +33,8 @@ enum{
 };
 
 @protocol DataBrainGetListDelegate <NSObject>
+@optional
+
 -(void)finishGetListWithArray:(NSArray *)bookList withType:(int)type;
 
 @end

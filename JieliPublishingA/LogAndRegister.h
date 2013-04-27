@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol LogAndRegisterDelegate <NSObject>
+@optional
 -(void)logSuccessWithMemberInfo:(NSDictionary *)dic;
 -(void)regSuccesshWithMemberInfo:(NSDictionary *)dic;
 -(void)cancleBack;

@@ -16,7 +16,10 @@
 #import "CustomNavigationBar.h"
 #import "Reachability.h"
 //#import "DOUAPIEngine.h"
-
+//sina
+#define SinaAppKey             @"1121796814"
+#define SinaAppSecret          @"152a12ee831277740fb7ef7708ca65eb"
+#define SinaAppRedirectURI     @"http://www.apple.com"
 
 //百度apiKey
 #define BMAPAPIKEY @"206AC53E67C539B6539AF6C41F48AB42562BDE6B"
@@ -138,6 +141,19 @@ static NSOperationQueue *queue;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [ShareSDK registerApp:@"520520test"];
+    //添加新浪微博应用
+    [ShareSDK connectSinaWeiboWithAppKey:SinaAppKey
+                               appSecret:SinaAppSecret
+                             redirectUri:SinaAppRedirectURI];
+    //添加腾讯微博应用
+    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
+                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
+                                redirectUri:@"http://www.sharesdk.cn"];
+    
+    [ShareSDK connectRenRenWithAppKey:@"fc5b8aed373c4c27a05b712acba0f8c3"
+                            appSecret:@"f29df781abdd4f49beca5a2194676ca4"];
     _mapManager = [[BMKMapManager alloc]init];
     BOOL ret = [_mapManager start:BMAPAPIKEY generalDelegate:nil];
     if (!ret) {
@@ -185,15 +201,6 @@ static NSOperationQueue *queue;
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
-    self.sinaweibo = [[SinaWeibo alloc] initWithAppKey:kAppKey appSecret:kAppSecret appRedirectURI:kAppRedirectURI andDelegate:self];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *sinaweiboInfo = [defaults objectForKey:@"SinaWeiboAuthData"];
-    if ([sinaweiboInfo objectForKey:@"AccessTokenKey"] && [sinaweiboInfo objectForKey:@"ExpirationDateKey"] && [sinaweiboInfo objectForKey:@"UserIDKey"])
-    {
-        self.sinaweibo.accessToken = [sinaweiboInfo objectForKey:@"AccessTokenKey"];
-        self.sinaweibo.expirationDate = [sinaweiboInfo objectForKey:@"ExpirationDateKey"];
-        self.sinaweibo.userID = [sinaweiboInfo objectForKey:@"UserIDKey"];
-    }
 
     
     // 监测网络情况
@@ -256,15 +263,7 @@ static NSOperationQueue *queue;
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    return [self.sinaweibo handleOpenURL:url];
-}
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [self.sinaweibo handleOpenURL:url];
-}
 
 /*
 // Optional UITabBarControllerDelegate method.

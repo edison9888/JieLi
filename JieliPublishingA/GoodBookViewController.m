@@ -15,7 +15,6 @@ enum {
 
 #import "GoodBookViewController.h"
 #import "HCBookShelf.h"
-#import "BookViewController.h"
 #import "DiyTopBar.h"
 #import "PicNameMc.h"
 #import "BookInfo.h"
@@ -110,7 +109,7 @@ enum {
 
 - (IBAction)barButtonPressed:(UIButton*)sender {
     int index = sender.tag;
-    UIImage *image;
+    UIImage *image = nil;
     self.myBookShelf.hidden = NO;
     self.categoriesView.hidden = YES;
     [self.myBookShelf.headerView changeState:k_PULL_STATE_NORMAL];

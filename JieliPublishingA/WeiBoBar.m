@@ -52,7 +52,7 @@
     switch (self.state) {
         case LogInState:
             [self.delegate logInWithWerboBar:self];
-            self.state = ShareState;
+//            self.state = ShareState;
             break;
         case ShareState:
         {

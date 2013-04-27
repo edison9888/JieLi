@@ -48,7 +48,7 @@
 - (IBAction)batButtonPressed:(UIButton*)sender {
     int index = sender.tag;
     NSLog(@"%d",sender.tag);
-    UIImage *image;
+    UIImage *image = nil;
     self.currentType = index-1;
     [self.tableView reloadData];
     scrollView.hidden = YES;

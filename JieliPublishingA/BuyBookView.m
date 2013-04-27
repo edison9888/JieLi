@@ -131,10 +131,10 @@
                 }];
 
     }
-    else if ([tz isEqualToString:@"dangdang.com"]) {
+//    else if ([tz isEqualToString:@"dangdang.com"]) {
+    else{
         image = [UIImage imageNamed:@"F_image_dangdang"];
     }
-    
     [cell.logoImageView setImage:image];
     
     return cell;

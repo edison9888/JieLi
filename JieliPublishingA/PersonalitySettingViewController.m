@@ -8,7 +8,7 @@
 
 #import "PersonalitySettingViewController.h"
 #import "PicNameMc.h"
-
+#import "BDAccountViewController.h"
 #define kDocument_Folder [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
 
@@ -145,13 +145,19 @@
     NSArray *array = [PicNameMc imageName:@"icon-set5.png" numberOfH:5 numberOfW:1];
 
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20,(cell.frame.size.height-30)/2-2, 30, 30)];
+    [cell addSubview:imageView];
+    
+    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(60,0, 200, cell.frame.size.height-3)];
+    [textLabel setBackgroundColor:[UIColor clearColor]];
+    [cell addSubview:textLabel];
     switch (section) {
         case 0:
             
             switch (row) {
                 case 0:
-                    [cell setImage:[array objectAtIndex:row]];
-                    cell.textLabel.text = @"账号绑定";
+                    [imageView setImage:[array objectAtIndex:row]];
+                    textLabel.text = @"账号绑定";
                     break;
                 default:
                     break;
@@ -160,18 +166,18 @@
         case 1:
             switch (row) {
                 case 0:
-                    [cell setImage:[array objectAtIndex:2]];
-                    cell.textLabel.text = @"预置主题";
+                    [imageView setImage:[array objectAtIndex:2]];
+                    textLabel.text = @"预置主题";
                     break;
                 case 1:
-                    [cell setImage:[array objectAtIndex:3]];
+                    [imageView setImage:[array objectAtIndex:3]];
 
-                    cell.textLabel.text = [NSString stringWithFormat:@"缓存清空( %@ MB)",[self calculatedCapacity]];
+                    textLabel.text = [NSString stringWithFormat:@"缓存清空( %@ MB)",[self calculatedCapacity]];
                     break;
                 case 2:
-                    [cell setImage:[array objectAtIndex:4]];
+                    [imageView setImage:[array objectAtIndex:4]];
 
-                    cell.textLabel.text = @"打分鼓励";
+                    textLabel.text = @"打分鼓励";
                     break;
                 default:
                     break;
@@ -186,31 +192,40 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section ==1&&indexPath.row ==0) {
-        ThemesViewController *viewController = [[ThemesViewController alloc] initWithNibName:@"ThemesViewController" bundle:nil];
-        [self.navigationController pushViewController:viewController animated:YES];
+    
+    if (indexPath.section == 0) {
+        BDAccountViewController  *bda = [[BDAccountViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:bda animated:YES];
     }
+    else if (indexPath.section ==1) {
+        if (indexPath.row ==0) {
+            ThemesViewController *viewController = [[ThemesViewController alloc] initWithNibName:@"ThemesViewController" bundle:nil];
+            [self.navigationController pushViewController:viewController animated:YES];
 
-    if (indexPath.section ==1&&indexPath.row ==1) {
-        NSString *mes = [NSString stringWithFormat:@"清除缓存%@ MB",[self calculatedCapacity]];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"缓存清空" message:mes delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alertView show];
-        
-
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        //更改到待操作的目录下
-        [fileManager changeCurrentDirectoryPath:[documentsDirectory stringByExpandingTildeInPath]];
-        
-        
-        NSArray *fileList = [fileManager contentsOfDirectoryAtPath:documentsDirectory error:nil];
-        NSLog(@"%@",fileList);
-        for (int i = 1; i<[fileList count]; i++) {
-            [fileManager removeItemAtPath:[fileList objectAtIndex:i] error:nil];
+        }
+        else if (indexPath.row ==1){
+            NSString *mes = [NSString stringWithFormat:@"清除缓存%@ MB",[self calculatedCapacity]];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"缓存清空" message:mes delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alertView show];
+            
+            
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            //更改到待操作的目录下
+            [fileManager changeCurrentDirectoryPath:[documentsDirectory stringByExpandingTildeInPath]];
+            
+            
+            NSArray *fileList = [fileManager contentsOfDirectoryAtPath:documentsDirectory error:nil];
+            NSLog(@"%@",fileList);
+            for (int i = 1; i<[fileList count]; i++) {
+                [fileManager removeItemAtPath:[fileList objectAtIndex:i] error:nil];
+                
+            }
 
         }
     }
+
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     switch (buttonIndex) {
