@@ -16,6 +16,7 @@ static NSOperationQueue *queue;
 +(NSOperationQueue *)shareQueue{
     if (!queue) {
         queue = [[NSOperationQueue alloc] init];
+        [queue setMaxConcurrentOperationCount:5];
     }
     return queue;
 }

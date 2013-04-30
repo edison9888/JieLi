@@ -164,13 +164,6 @@ enum{
         op.delegate = self;
         [[AppDelegate shareQueue] addOperation:op];
         NSLog(@"%@",self.actIdandMainId);
-//        NSArray *array = [dic objectForKey:@"db_pics"];
-//        NSDictionary *dic = [array objectAtIndex:0];
-//        NSString *picUrl = [dic objectForKey:@"pic"];
-//        NSLog(@"picUrl:%@",picUrl);
-//        
-//        
-        
     }
     self.myPageControl.numberOfPages = [eInfo count];
 
@@ -185,11 +178,12 @@ static float PosX = 0;
 -(void)loadDouBanEvent:(id)r{
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReadingCard" owner:self options:nil];
     ReadingCard *view = [nib objectAtIndex:0];
+    [self.myScrollView addSubview:view];
+
     view.mainId = [[self.actIdandMainId objectForKey:[r objectForKey:@"id"]] intValue];
     [view loadData:r];
     
     view.frame = CGRectMake(PosX, 0, view.frame.size.width, view.frame.size.height);
-    [self.myScrollView addSubview:view];
     PosX +=view.frame.size.width;
 
     [self.myScrollView setContentSize:CGSizeMake(PosX, 0)];

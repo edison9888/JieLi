@@ -17,5 +17,6 @@
 @property (strong) id<BasicOperationDelegate> delegate;
 @property (assign) int tag;
 -(id)initWithUrl:(NSString *)url;
++(id)basicOperationWithUrl:(NSString *)url withTaget:(id)t select:(SEL)s;
 
 @end

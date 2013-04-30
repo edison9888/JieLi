@@ -26,16 +26,21 @@ static NSString * const kRedirectUrl = @"http://www.douban.com/location/mobile";
 @implementation DetailInfoOfActivityViewController
 
 - (IBAction)jion:(id)sender {
-//    NSString *str = [NSString stringWithFormat:@"https://www.douban.com/service/auth2/auth?client_id=%@&redirect_uri=%@&response_type=code", kAPIKey, kRedirectUrl];
-//    
-//    NSString *urlStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    NSURL *url = [NSURL URLWithString:urlStr];
-//    UIViewController *webViewController = [[WebViewController alloc] initWithRequestURL:url];
-//    [self.navigationController pushViewController:webViewController animated:YES];
-//    [webViewController release];
+    NSString *urlString = [NSString stringWithFormat:@"?c=Activity&m=setDbJoinNum&id=%d&join_num=1",self.mainId];
+    BasicOperation *op = [BasicOperation basicOperationWithUrl:urlString withTaget:self select:@selector(jionFinish:)];
+    [[AppDelegate shareQueue] addOperation:op];
+    
+    BasicOperation *opA = [BasicOperation basicOperationWithUrl:urlString withTaget:self select:@selector(jionFinishA:)];
+    [[AppDelegate shareQueue] addOperation:opA];
 
+    
 }
-
+-(void)jionFinish:(id)result{
+    NSLog(@"%@",result);
+}
+-(void)jionFinishA:(id)result{
+    NSLog(@"%@",result);
+}
 - (IBAction)share:(id)sender {
     
     svc = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil];
@@ -378,7 +383,7 @@ static NSString * const kRedirectUrl = @"http://www.douban.com/location/mobile";
 }
 -(void)photoTaped:(UITapGestureRecognizer *)tap{
     NetImageView *netImageView = (NetImageView *)tap.view;
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(netImageView.frame.origin.x+self.myPhotoScrollView.frame.origin.x, netImageView.frame.origin.y +self.myPhotoScrollView.frame.origin.y+44,netImageView.frame.size.width , netImageView.frame.size.height)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(netImageView.frame.origin.x+self.myPhotoScrollView.frame.origin.x-self.myPhotoScrollView.contentOffset.x, netImageView.frame.origin.y +self.myPhotoScrollView.frame.origin.y+44,netImageView.frame.size.width , netImageView.frame.size.height)];
     [view setBackgroundColor:[UIColor blackColor]];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:netImageView.image];
     imageView.tag = 110;
@@ -396,10 +401,10 @@ static NSString * const kRedirectUrl = @"http://www.douban.com/location/mobile";
     CGSize viewSize = view.frame.size;
     
     if (imageSize.width>viewSize.width) {
-        imageSize = CGSizeMake(viewSize.width, imageSize.height*viewSize.width/imageSize.height);
+        imageSize = CGSizeMake(viewSize.width, imageSize.height*viewSize.width/imageSize.width);
     }
     if (imageSize.height>viewSize.height) {
-        imageSize = CGSizeMake(imageSize.width*viewSize.width/imageSize.width, viewSize.height);
+        imageSize = CGSizeMake(imageSize.width*viewSize.height/imageSize.height, viewSize.height);
     }
     imageView.frame = CGRectMake(view.center.x-imageSize.width/2,view.center.y-imageSize.height/2, imageSize.width, imageSize.height);
     [UIView commitAnimations];

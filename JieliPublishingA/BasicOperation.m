@@ -11,11 +11,26 @@
 
 @interface BasicOperation (){
     NSString *urlString;
+    id target;
+    SEL sel;
 }
 
 @end
 
 @implementation BasicOperation
+
++(id)basicOperationWithUrl:(NSString *)url withTaget:(id)t select:(SEL)s{
+    return [[self alloc] initWithUrl:url withTaget:t select:s];
+}
+
+-(id)initWithUrl:(NSString *)url withTaget:(id)t select:(SEL)s{
+    if (self == [super init]) {
+        urlString = [url retain];
+        target = t;
+        sel = s;
+    }
+    return self;
+}
 -(id)initWithUrl:(NSString *)url{
     if (self == [super init]) {
         urlString = [url retain];
@@ -32,7 +47,12 @@
     }
     id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
     
-    [self performSelectorOnMainThread:@selector(finish:) withObject:result waitUntilDone:NO];
+    if (target) {
+        [target performSelectorOnMainThread:sel withObject:result waitUntilDone:NO];
+    }
+    else{
+        [self performSelectorOnMainThread:@selector(finish:) withObject:result waitUntilDone:NO];
+    }
 }
 
 -(void)finish:(id)result{
