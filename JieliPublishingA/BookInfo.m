@@ -16,10 +16,12 @@
 #define BookThumb @"bookThumb"
 #define BookBrief @"bookBrief"
 #define BookClickCount @"bookClickCount"
+#define BookEpubAll @"bookEpubAll"
+#define BookEpubUnAll @"bookEpubUnall"
 
 @implementation BookInfo
 
-+(NSArray *)bookInfoWithJSON:(NSArray *)dics{
++(NSArray *)bookInfoWithJSON:(id)dics{
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (NSDictionary *dic in dics) {
@@ -32,6 +34,8 @@
                                             withBookThumb:[dic objectForKey:@"bookThumb"]
                                             withBookBrief:[dic objectForKey:@"bookBrief"]
                                        withBookClickCount:[[dic objectForKey:@"bookClickCount"] intValue]
+                                          withBookEpubAll:[dic objectForKey:@"goods_bookimg_all"]
+                                        withBookEpubUnall:[dic objectForKey:@"goods_bookimg_unall"]
                               ];
         [array addObject:bookInfo];
     }
@@ -46,8 +50,10 @@
           withBookImage:(NSString *)bookImage
           withBookThumb:(NSString *)bookThumb
           withBookBrief:(NSString *)bookBrief
-     withBookClickCount:(int)bookClickCount{
-    return [[self alloc] initBookInfoWithBookId:bookId withBookName:bookName withBookAuthor:bookAuthor withBookDate:bookDate withBookPrice:bookPrice withBookImage:bookImage withBookThumb:bookThumb withBookBrief:bookBrief withBookClickCount:bookClickCount];
+     withBookClickCount:(int)bookClickCount            withBookEpubAll:(NSString *)epubAll
+      withBookEpubUnall:(NSString *)epubUnall
+{
+    return [[self alloc] initBookInfoWithBookId:bookId withBookName:bookName withBookAuthor:bookAuthor withBookDate:bookDate withBookPrice:bookPrice withBookImage:bookImage withBookThumb:bookThumb withBookBrief:bookBrief withBookClickCount:bookClickCount withBookEpubAll:epubAll withBookEpubUnall:epubUnall];
     
 }
 
@@ -59,7 +65,10 @@
               withBookImage:(NSString *)bookImage
               withBookThumb:(NSString *)bookThumb
               withBookBrief:(NSString *)bookBrief
-         withBookClickCount:(int)bookClickCount{
+         withBookClickCount:(int)bookClickCount
+            withBookEpubAll:(NSString *)epubAll
+          withBookEpubUnall:(NSString *)epubUnall
+{
     if (self = [super init]) {
         self.bookId = bookId;
         self.bookImage = bookImage;
@@ -70,6 +79,8 @@
         self.bookThumb = bookThumb;
         self.bookBrief = bookBrief;
         self.bookClickCount = bookClickCount;
+        self.epub_all = epubAll;
+        self.epub_unall = epubUnall;
     }
     return self;
 }
@@ -83,6 +94,8 @@
     [aCoder encodeObject:self.bookThumb forKey:BookThumb];
     [aCoder encodeObject:self.bookBrief forKey:BookBrief];
     [aCoder encodeObject:[NSNumber numberWithFloat:self.bookClickCount] forKey:BookClickCount];
+    [aCoder encodeObject:self.epub_all forKey:BookEpubAll];
+    [aCoder encodeObject:self.epub_unall forKey:BookEpubUnAll];
 }
 
 -(id)initWithCoder:(NSCoder*)decoder{
@@ -96,6 +109,8 @@
         self.bookThumb = [decoder decodeObjectForKey:BookThumb];
         self.bookBrief = [decoder decodeObjectForKey:BookBrief];
         self.bookClickCount = [[decoder decodeObjectForKey:BookBrief] integerValue];
+        self.epub_all = [decoder decodeObjectForKey:BookEpubAll];
+        self.epub_unall = [decoder decodeObjectForKey:BookEpubUnAll];
     }
     return self;
 }

@@ -45,4 +45,7 @@
 @property (assign, nonatomic) int activityId;
 @property (assign, nonatomic) int mainId;
 
+@property (assign,nonatomic) int joinNumber;
+@property (assign,nonatomic) int shareNumber;
+
 @end

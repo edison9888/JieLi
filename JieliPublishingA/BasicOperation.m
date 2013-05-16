@@ -13,11 +13,23 @@
     NSString *urlString;
     id target;
     SEL sel;
+    void (^myblock)(id);
 }
 
 @end
 
 @implementation BasicOperation
+
++(id)basicOperationWithUrl:(NSString *)url result:(void(^)(id result))result{
+    return [[self alloc] initWithUrl:url result:result];
+}
+
+-(id)initWithUrl:(NSString *)url  result:(void(^)(id result))result{
+    if (self = [self initWithUrl:url]) {
+        myblock = result;
+    }
+    return self;
+}
 
 +(id)basicOperationWithUrl:(NSString *)url withTaget:(id)t select:(SEL)s{
     return [[self alloc] initWithUrl:url withTaget:t select:s];
@@ -42,6 +54,7 @@
     NSURL *url = [NSURL URLWithString:[[BaseURL stringByAppendingString:urlString] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     NSData *data = [NSData dataWithContentsOfURL:url];
+//    NSLog(@"%@",data);
     if (!data) {
         return;
     }
@@ -61,6 +74,9 @@
     }
     else if ([self.delegate respondsToSelector:@selector(finishOperationWithOperation:result:)]){
         [self.delegate finishOperationWithOperation:self result:result];
+    }
+    else if (myblock){
+        myblock(result);
     }
 
 }

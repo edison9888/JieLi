@@ -18,7 +18,7 @@
     if (self) {
         open = NO;
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 0, 340, 45.5);
+        btn.frame = CGRectMake(0, 0, 300, 45.5);
         [btn addTarget:self action:@selector(doSelected) forControlEvents:UIControlEventTouchUpInside];
 
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

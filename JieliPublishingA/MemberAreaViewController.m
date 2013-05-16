@@ -35,6 +35,7 @@
 
 }
 -(void)finishOperation:(id)result{
+    NSLog(@"%@",result);
     [self.actI stopAnimating];
     [self.actI removeFromSuperview];
 

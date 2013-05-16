@@ -175,6 +175,7 @@ static NSArray *actionBtnTexts;
 -(NSArray *)viewControllers{
     if (!_viewControllers) {
         ContentViewController *vc1 = [[ContentViewController alloc] initWithNibName:@"ContentViewController" bundle:nil];
+        vc1.tabBarController = self;
         ShareViewController *vc2 = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil];
         CommentViewController *vc3 = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil];
         vc3.delegate = self;

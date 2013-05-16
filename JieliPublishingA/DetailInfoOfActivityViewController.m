@@ -25,22 +25,48 @@ static NSString * const kRedirectUrl = @"http://www.douban.com/location/mobile";
 
 @implementation DetailInfoOfActivityViewController
 
+
+-(void)setJoinNumber:(int)joinNumber{
+    if (!_joinNumber) {
+        _joinNumber = joinNumber;
+    }
+    NSString *num = [NSString stringWithFormat:@"参加(%d)",joinNumber];
+    [_myBtn_join setBackgroundImage:[PicNameMc defaultBackgroundImage:@"rb" withWidth:self.myBtn_join.frame.size.width withTitle:num withColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+
+}
+-(void)setShareNumber:(int)shareNumber{
+    if (!shareNumber) {
+        _shareNumber = shareNumber;
+    }
+    NSString *num = [NSString stringWithFormat:@"分享(%d)",shareNumber];
+    
+    [self.myBtn_share setBackgroundImage:[PicNameMc defaultBackgroundImage:@"rb" withWidth:self.myBtn_share.frame.size.width withTitle:num withColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+
+}
 - (IBAction)jion:(id)sender {
     NSString *urlString = [NSString stringWithFormat:@"?c=Activity&m=setDbJoinNum&id=%d&join_num=1",self.mainId];
     BasicOperation *op = [BasicOperation basicOperationWithUrl:urlString withTaget:self select:@selector(jionFinish:)];
     [[AppDelegate shareQueue] addOperation:op];
     
-    BasicOperation *opA = [BasicOperation basicOperationWithUrl:urlString withTaget:self select:@selector(jionFinishA:)];
-    [[AppDelegate shareQueue] addOperation:opA];
+//    BasicOperation *opA = [BasicOperation basicOperationWithUrl:urlString withTaget:self select:@selector(jionFinishA:)];
+//    [[AppDelegate shareQueue] addOperation:opA];
 
     
 }
 -(void)jionFinish:(id)result{
     NSLog(@"%@",result);
+    int flag = [[result objectForKey:@"result"] intValue];
+    if (flag) {
+        self.joinNumber ++;
+    }
+    else{
+        
+    }
+    
 }
--(void)jionFinishA:(id)result{
-    NSLog(@"%@",result);
-}
+//-(void)jionFinishA:(id)result{
+//    NSLog(@"%@",result);
+//}
 - (IBAction)share:(id)sender {
     
     svc = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil];
@@ -332,9 +358,13 @@ static NSString * const kRedirectUrl = @"http://www.douban.com/location/mobile";
 #define PhotoSize CGSizeMake(45,self.myPhotoScrollView.frame.size.height-10)
 
 -(void)finishOperation:(id)result{
-//    NSLog(@"%@",result);
-    NSArray *array = [NSArray arrayWithArray:[[result objectAtIndex:0] objectForKey:@"db_pics"]];
+    NSLog(@"%@",result);
+    result = [result objectAtIndex:0];
+    NSArray *array = [NSArray arrayWithArray:[result objectForKey:@"db_pics"]];
 //    NSLog(@"%@",array);
+    self.joinNumber = [[result objectForKey:@"join_num"] intValue];
+    self.shareNumber = [[result objectForKey:@"share_num"] intValue];
+    
     
     [self.myPhotoScrollView setShowsHorizontalScrollIndicator:NO];
     int numberOfPhoto = [array count];

@@ -30,21 +30,29 @@
     }
     
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
-    
+    if (![results count]) {
+        [cell.textLabel setText:@"返回（搜索无结果）"];
+    }
+    else{
     SearchResult* hit = (SearchResult*)[results objectAtIndex:[indexPath row]];
     cell.textLabel.text = [NSString stringWithFormat:@"...%@...", hit.neighboringText];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Chapter %d - page %d", hit.chapterIndex, hit.pageIndex+1];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"章节 %d - 页码 %d", hit.chapterIndex, hit.pageIndex+1];
+    }
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [results count];
+    return [results count]?[results count]:1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    SearchResult* hit = (SearchResult*)[results objectAtIndex:[indexPath row]];
+    if ([self.results count]) {
+        SearchResult* hit = (SearchResult*)[results objectAtIndex:[indexPath row]];
+        
+        [epubViewController loadSpine:hit.chapterIndex atPageIndex:hit.pageIndex highlightSearchResult:hit];
 
-    [epubViewController loadSpine:hit.chapterIndex atPageIndex:hit.pageIndex highlightSearchResult:hit];    
+    }
+    self.view.hidden = YES;
 }
 
 - (void) searchString:(NSString*)query{

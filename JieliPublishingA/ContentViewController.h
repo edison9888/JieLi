@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "BasicBookViewController.h"
-@interface ContentViewController : BasicBookViewController
+//#import "HCTadBarController.h"
+#import "HCDownLoad.h"
+
+@interface ContentViewController : BasicBookViewController<HCDownLoadDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *contentBgImageView;
 @property (strong, nonatomic) IBOutlet UITextView *contentTextView;
+@property (strong, nonatomic) UIViewController *tabBarController;
+@property (strong, nonatomic) BookInfo *bookInfo;
 -(void)readOnLine;
 @end

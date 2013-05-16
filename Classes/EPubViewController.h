@@ -13,8 +13,9 @@
 
 @class SearchResultsViewController;
 @class SearchResult;
+@class ChapterListViewController;
 
-@interface EPubViewController : UIViewController <UIWebViewDelegate, ChapterDelegate, UISearchBarDelegate> {
+@interface EPubViewController : UIViewController <UIWebViewDelegate, ChapterDelegate, UISearchBarDelegate,UIGestureRecognizerDelegate> {
     
     UIToolbar *toolbar;
         
@@ -44,6 +45,8 @@
 
     SearchResultsViewController* searchResViewController;
     SearchResult* currentSearchResult;
+    
+    ChapterListViewController *chapterListView;
 }
 
 - (IBAction) showChapterIndex:(id)sender;
@@ -56,6 +59,7 @@
 - (void) loadSpine:(int)spineIndex atPageIndex:(int)pageIndex highlightSearchResult:(SearchResult*)theResult;
 
 - (void) loadEpub:(NSURL*) epubURL;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 
 @property (nonatomic, retain) EPub* loadedEpub;
 

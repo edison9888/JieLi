@@ -45,6 +45,8 @@
     [self.delegate actionPressed:b];
 }
 -(void)loadBookInfo:(BookInfo *)info{
+    NSString *bookName = info.bookName;
+    NSLog(@"%@:%@",bookName,info);
     self.bookInfo = info;
     
     [self.coverImage setImage:[UIImage imageWithData:[DataBrain readFilewithImageId:info.bookId withFlolderName:BookCoverImage]]];

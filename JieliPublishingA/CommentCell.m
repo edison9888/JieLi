@@ -108,7 +108,23 @@
 
 }
 -(void)loadData:(NSDictionary *)dic{
+    NSLog(@"%@",dic);
+    
     self.cellDic = [NSDictionary dictionaryWithDictionary:dic];
+    int starNumber = [[dic objectForKey:@"comment_rank"] intValue];
+    for (int i = 0; i<5; i++) {
+        NSString *starName ;
+        if (i<starNumber) {
+            starName = @"star";
+        }
+        else{
+            starName = @"emptyStar";
+        }
+        UIImage *image = [UIImage imageNamed:starName];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.frame = CGRectMake(20+20*i , 10 , 36/2, 32/2);
+        [self addSubview:imageView];        
+    }
     [self.userName setText:[dic objectForKey:@"userName"]];
     [self.content setText:[dic objectForKey:@"content"]];
     [self.content setFont:[UIFont systemFontOfSize:14.f]];

@@ -99,28 +99,72 @@
 }
 
 - (void) parseOPF:(NSString*)opfPath{
+    NSLog(@"%@",[NSURL fileURLWithPath:opfPath]);
+    
+    int lastSlash = [opfPath rangeOfString:@"/" options:NSBackwardsSearch].location;
+	NSString* ebookBasePath = [opfPath substringToIndex:(lastSlash +1)];
+
 	CXMLDocument* opfFile = [[CXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:opfPath] options:0 error:nil];
 	NSArray* itemsArray = [opfFile nodesForXPath:@"//opf:item" namespaceMappings:[NSDictionary dictionaryWithObject:@"http://www.idpf.org/2007/opf" forKey:@"opf"] error:nil];
 //	NSLog(@"itemsArray size: %d", [itemsArray count]);
+    
+    
+    
     
     NSString* ncxFileName;
 	
     NSMutableDictionary* itemDictionary = [[NSMutableDictionary alloc] init];
 	for (CXMLElement* element in itemsArray) {
+        //处理图片文件，以适应屏幕大小
+        NSString *imagePath;
+        if([[[element attributeForName:@"media-type"] stringValue] isEqualToString:@"image/jpeg"]){
+            imagePath = [ebookBasePath stringByAppendingPathComponent:[[element attributeForName:@"href"] stringValue]];
+            NSURL *imageUrl = [[NSURL alloc] initFileURLWithPath:imagePath];
+            NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
+            UIImage *image = [UIImage imageWithData:imageData];
+            
+            CGSize imageSize = image.size;
+            CGSize viewSize = CGSizeMake(280, 338);
+            
+            if (imageSize.width>viewSize.width) {
+                imageSize = CGSizeMake(viewSize.width, imageSize.height*viewSize.width/imageSize.width);
+            }
+            if (imageSize.height>viewSize.height) {
+                imageSize = CGSizeMake(imageSize.width*viewSize.height/imageSize.height, viewSize.height);
+            }
+            
+            UIGraphicsBeginImageContext(imageSize);
+            CGRect rect = CGRectMake(0, 0, imageSize.width, imageSize.height);
+            [image drawInRect:rect];
+            UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            NSData *data = UIImageJPEGRepresentation(resultImage, 1);
+            
+            if ([[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil]) {
+//                NSLog(@"delete V");
+            }
+            
+            
+            if ( [data writeToFile:imagePath atomically:YES]) {
+//                NSLog(@"write V");
+            }
+            
+//            UIImage *imageB = [UIImage imageWithData:[NSData dataWithContentsOfFile:imagePath]];
+
+        }
+        
 		[itemDictionary setValue:[[element attributeForName:@"href"] stringValue] forKey:[[element attributeForName:@"id"] stringValue]];
-        if([[[element attributeForName:@"media-type"] stringValue] isEqualToString:@"application/x-dtbncx+xml"]){
+        if([[[element attributeForName:@"id"] stringValue] isEqualToString:@"ncx"]){
             ncxFileName = [[element attributeForName:@"href"] stringValue];
 //          NSLog(@"%@ : %@", [[element attributeForName:@"id"] stringValue], [[element attributeForName:@"href"] stringValue]);
         }
         
-        if([[[element attributeForName:@"media-type"] stringValue] isEqualToString:@"application/xhtml+xml"]){
-            ncxFileName = [[element attributeForName:@"href"] stringValue];
-//          NSLog(@"%@ : %@", [[element attributeForName:@"id"] stringValue], [[element attributeForName:@"href"] stringValue]);
-        }
+//        if([[[element attributeForName:@"media-type"] stringValue] isEqualToString:@"application/xhtml+xml"]){
+//            ncxFileName = [[element attributeForName:@"href"] stringValue];
+////          NSLog(@"%@ : %@", [[element attributeForName:@"id"] stringValue], [[element attributeForName:@"href"] stringValue]);
+//        }
 	}
 	
-    int lastSlash = [opfPath rangeOfString:@"/" options:NSBackwardsSearch].location;
-	NSString* ebookBasePath = [opfPath substringToIndex:(lastSlash +1)];
     CXMLDocument* ncxToc = [[CXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@%@", ebookBasePath, ncxFileName]] options:0 error:nil];
     NSMutableDictionary* titleDictionary = [[NSMutableDictionary alloc] init];
     for (CXMLElement* element in itemsArray) {

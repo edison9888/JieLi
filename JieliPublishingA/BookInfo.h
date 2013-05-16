@@ -19,6 +19,9 @@
 @property (nonatomic,strong) NSString *bookBrief;
 @property (nonatomic,assign) int bookClickCount;
 
+@property (nonatomic,strong) NSString *epub_all;
+@property (nonatomic,strong) NSString *epub_unall;
+
 +(id)bookInfoWithBookId:(int )bookId
            withBookName:(NSString *)bookName
          withBookAuthor:(NSString *)bookAuthor
@@ -27,7 +30,10 @@
           withBookImage:(NSString *)bookImage
           withBookThumb:(NSString *)bookThumb
           withBookBrief:(NSString *)bookBrief
-     withBookClickCount:(int)bookClickCount;
-+(NSArray *)bookInfoWithJSON:(NSArray *)dics;
+     withBookClickCount:(int)bookClickCount
+        withBookEpubAll:(NSString *)epubAll
+      withBookEpubUnall:(NSString *)epubUnall
+;
++(NSArray *)bookInfoWithJSON:(id)dics;
 
 @end

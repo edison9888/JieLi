@@ -12,8 +12,15 @@
 #import "SearchResult.h"
 #import "UIWebView+SearchWebView.h"
 #import "Chapter.h"
+#import "PicNameMc.h"
+
 
 @interface EPubViewController()
+@property (retain, nonatomic) IBOutlet UIView *topBar;
+@property (retain, nonatomic) IBOutlet UIButton *chapter;
+@property (retain, nonatomic) IBOutlet UIButton *small;
+@property (retain, nonatomic) IBOutlet UIButton *big;
+@property (retain, nonatomic) IBOutlet UIButton *back;
 
 
 - (void) gotoNextSpine;
@@ -38,7 +45,16 @@
 @synthesize currentPageLabel, pageSlider, searching;
 @synthesize currentSearchResult;
 
+
 #pragma mark -
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void) loadEpub:(NSURL*) epubURL{
     currentSpineIndex = 0;
@@ -189,7 +205,8 @@
 }
 
 - (IBAction) doneClicked:(id)sender{
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -221,18 +238,21 @@
 }
 
 - (IBAction) showChapterIndex:(id)sender{
-	if(chaptersPopover==nil){
-		ChapterListViewController* chapterListView = [[ChapterListViewController alloc] initWithNibName:@"ChapterListViewController" bundle:[NSBundle mainBundle]];
+	if(chapterListView==nil){
+		 chapterListView = [[ChapterListViewController alloc] initWithNibName:@"ChapterListViewController" bundle:[NSBundle mainBundle]];
 		[chapterListView setEpubViewController:self];
-		chaptersPopover = [[UIPopoverController alloc] initWithContentViewController:chapterListView];
-		[chaptersPopover setPopoverContentSize:CGSizeMake(400, 600)];
-		[chapterListView release];
+        chapterListView.view.frame = CGRectMake(0, 44, 320, 480-44-20);
+        [self.view addSubview:chapterListView.view];
 	}
-	if ([chaptersPopover isPopoverVisible]) {
-		[chaptersPopover dismissPopoverAnimated:YES];
-	}else{
-		[chaptersPopover presentPopoverFromBarButtonItem:chapterListButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];		
+    else{
+	if (chapterListView.view.hidden) {
+		chapterListView.view.hidden = NO;
 	}
+    else{
+        chapterListView.view.hidden = YES;
+
+	}
+    }
 }
 
 
@@ -295,14 +315,18 @@
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-	if(searchResultsPopover==nil){
-		searchResultsPopover = [[UIPopoverController alloc] initWithContentViewController:searchResViewController];
-		[searchResultsPopover setPopoverContentSize:CGSizeMake(400, 600)];
-	}
-	if (![searchResultsPopover isPopoverVisible]) {
-		[searchResultsPopover presentPopoverFromRect:searchBar.bounds inView:searchBar permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-	}
+    
+//	if(searchResultsPopover==nil){
+//		searchResultsPopover = [[UIPopoverController alloc] initWithContentViewController:searchResViewController];
+//		[searchResultsPopover setPopoverContentSize:CGSizeMake(400, 600)];
+//	}
+//	if (![searchResultsPopover isPopoverVisible]) {
+//		[searchResultsPopover presentPopoverFromRect:searchBar.bounds inView:searchBar permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//	}
 //	NSLog(@"Searching for %@", [searchBar text]);
+    if (searchResViewController.view.hidden) {
+        searchResViewController.view.hidden = NO;
+    }
 	if(!searching){
 		searching = YES;
 		[searchResViewController searchString:[searchBar text]];
@@ -327,6 +351,20 @@
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIImageView *topBarBg = [[UIImageView alloc] initWithFrame:self.topBar.frame];
+    UIImage *image = [PicNameMc defaultBackgroundImage:@"topBar_red" withWidth:320 withTitle:nil withColor:nil];
+    [topBarBg setImage:image];
+    [self.topBar addSubview:topBarBg];
+    [self.topBar sendSubviewToBack:topBarBg];
+    
+    [self.chapter setBackgroundImage:[PicNameMc redBg:self.chapter title:@"目录"] forState:UIControlStateNormal];
+    [self.small setBackgroundImage:[PicNameMc redBg:self.chapter title:@"-"] forState:UIControlStateNormal];
+    [self.big setBackgroundImage:[PicNameMc redBg:self.chapter title:@"+"] forState:UIControlStateNormal];
+    [self.back setBackgroundImage:[PicNameMc redBg:self.chapter title:@"返回"] forState:UIControlStateNormal];
+    
+    
+    
 	[webView setDelegate:self];
 		
 	UIScrollView* sv = nil;
@@ -337,26 +375,35 @@
 			sv.bounces = NO;
 		}
 	}
-	currentTextSize = 100;	 
+	currentTextSize = 100;
+    
 	
 	UISwipeGestureRecognizer* rightSwipeRecognizer = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gotoNextPage)] autorelease];
 	[rightSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
-	
+    
+    
 	UISwipeGestureRecognizer* leftSwipeRecognizer = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(gotoPrevPage)] autorelease];
 	[leftSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
-	
+    
 	[webView addGestureRecognizer:rightSwipeRecognizer];
 	[webView addGestureRecognizer:leftSwipeRecognizer];
-	
+
 	[pageSlider setThumbImage:[UIImage imageNamed:@"slider_ball.png"] forState:UIControlStateNormal];
 	[pageSlider setMinimumTrackImage:[[UIImage imageNamed:@"orangeSlide.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
 	[pageSlider setMaximumTrackImage:[[UIImage imageNamed:@"yellowSlide.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
     
 	searchResViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:[NSBundle mainBundle]];
 	searchResViewController.epubViewController = self;
+    searchResViewController.view.frame = CGRectMake(0, 44, 320, 480-44-20);
+    [self.view addSubview:searchResViewController.view];
+    searchResViewController.view.hidden = YES;
 }
-
 - (void)viewDidUnload {
+    [self setTopBar:nil];
+    [self setBack:nil];
+    [self setBig:nil];
+    [self setSmall:nil];
+    [self setChapter:nil];
 	self.toolbar = nil;
 	self.webView = nil;
 	self.chapterListButton = nil;
@@ -392,6 +439,11 @@
 	[searchResultsPopover release];
 	[searchResViewController release];
 	[currentSearchResult release];
+    [_chapter release];
+    [_small release];
+    [_big release];
+    [_back release];
+    [_topBar release];
     [super dealloc];
 }
 

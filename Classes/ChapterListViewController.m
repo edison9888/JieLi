@@ -114,6 +114,7 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [epubViewController loadSpine:[indexPath row] atPageIndex:0 highlightSearchResult:nil];
+    self.view.hidden =YES;
 }
 
 @end

@@ -52,11 +52,11 @@
     [_mapView setShowsUserLocation:YES];
 }
 -(void)removeMap{
+    [_mapView setShowsUserLocation:NO];
     if (_mapView) {
         [_mapView removeFromSuperview];
         _mapView = nil;
     }
-    [_mapView setShowsUserLocation:NO];
 }
 -(void)displayMapinfo:(BMKUserLocation *)userLocation{
     if (userLocation != nil) {
@@ -68,6 +68,11 @@
         
         [_search poiSearchNearBy:@"书店" center:userLocation.location.coordinate radius:5000 pageIndex:0];
         
+        for (UIView *view in _mapView.subviews) {
+            if ([view isKindOfClass:[BMKCircle class]]) {
+                return;
+            }
+        }
         BMKCircle *circle = [BMKCircle circleWithCenterCoordinate:userLocation.location.coordinate radius:5000];
         [_mapView addOverlay:circle];
 	}

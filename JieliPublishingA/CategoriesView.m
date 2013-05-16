@@ -7,7 +7,7 @@
 //
 
 #import "CategoriesView.h"
-
+#import "PicNameMc.h"
 @implementation CData
 
 +(id)CDataWithId:(int)n name:(NSString *)na{
@@ -62,7 +62,7 @@
 }
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(-10, 10,340,self.frame.size.height) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 10,300,self.frame.size.height) style:UITableViewStyleGrouped];
 
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -70,6 +70,7 @@
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.backgroundView = nil;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.showsVerticalScrollIndicator = NO;
         
         
     }
@@ -189,12 +190,13 @@
     [self readyForData:categories];
 
     for (int i= 0 ; i<[self.headList count]; i++) {
-        CData *d = [self.headList objectAtIndex:i];
+//        CData *d = [self.headList objectAtIndex:i];
         HeadView* headview = [[HeadView alloc] init];
         headview.delegate = self;
 		headview.section = i;
-        [headview.backBtn setTitle:d.Name forState:UIControlStateNormal];
-        
+//        [headview.backBtn setTitle:d.Name forState:UIControlStateNormal];
+        [headview.backBtn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"classification %d",i+1]] forState:UIControlStateNormal];
+
 		[self.headViewArray addObject:headview];
 //        headview = nil;
     }
@@ -243,15 +245,18 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
     if (!cell) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indentifier] autorelease];
+        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, 300, cell.frame.size.height);
+        [cell setBackgroundColor:[UIColor clearColor]];
         
-        UIImageView* line = [[UIImageView alloc]initWithFrame:CGRectMake(0, 44, 340, 1)];
-        line.backgroundColor = [UIColor grayColor];
-        [cell.contentView addSubview:line];
-        [line release];
+        UIImage *image = [UIImage imageNamed:@"the label.png"];
+        UIImage *backImage = [PicNameMc defaultBackgroundImage:@"the label.png" size:cell.bounds.size leftCapWidth:image.size.width/2 topCapHeight:0];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:backImage];
+        imageView.frame = CGRectMake(5, 0, cell.frame.size.width-10,cell.frame.size.height+1.5);
+        [cell addSubview:imageView];
+        [cell sendSubviewToBack:imageView];
         
     }
     HeadView* view = [self.headViewArray objectAtIndex:indexPath.section];
-    
     if (view.open) {
         if (indexPath.row == _currentRow) {
         }
@@ -260,9 +265,9 @@
     CData *d = [[self datilArrayWithPid:headCD.Id] objectAtIndex:indexPath.row];
 
     cell.textLabel.text = d.Name;
+    [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.textLabel.textColor = [UIColor blackColor];
-    [cell setBackgroundColor:[UIColor clearColor]];
     
     return cell;
 }

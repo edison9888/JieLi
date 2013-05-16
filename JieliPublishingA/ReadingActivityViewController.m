@@ -174,7 +174,6 @@ enum{
     [self loadDouBanEvent:result];
 }
 
-static float PosX = 0;
 -(void)loadDouBanEvent:(id)r{
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ReadingCard" owner:self options:nil];
     ReadingCard *view = [nib objectAtIndex:0];

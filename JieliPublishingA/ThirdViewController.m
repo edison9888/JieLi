@@ -9,6 +9,8 @@
 #import "ThirdViewController.h"
 #import "PicNameMc.h"
 #import "GoodBookViewController.h"
+#import "Reachability.h"
+
 @interface ThirdViewController ()
 @property (nonatomic,strong) BookShelfTableViewController *tC;
 
@@ -75,6 +77,7 @@
     }
 }
 -(void)pushOut:(HCTadBarController *)tab{
+    
     [self.navigationController pushViewController:tab animated:YES];
 }
 
@@ -82,6 +85,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)toGoodBook:(id)sender {
+    if ([self checkNetWorkState]) {
+        GoodBookViewController *viewController = [[GoodBookViewController alloc] initWithNibName:@"GoodBookViewController" bundle:nil];
+        [self.navigationController pushViewController:viewController animated:YES];
+        
+    }
+
 }
 
 - (void)viewDidUnload {
@@ -99,4 +110,21 @@
     [_noCollectButton release];
     [super dealloc];
 }
+-(BOOL)checkNetWorkState{
+    if (([Reachability reachabilityForInternetConnection].currentReachabilityStatus == NotReachable) &&
+        ([Reachability reachabilityForLocalWiFi].currentReachabilityStatus == NotReachable)) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"接力阅读小栈"
+                                                        message:@"当前无网络连接，请检查网络连接"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+        return NO;
+    }
+    return YES;
+    
+}
+
 @end

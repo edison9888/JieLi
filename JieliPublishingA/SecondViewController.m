@@ -149,6 +149,7 @@
 - (IBAction)onButtonRecognize:(id)sender {
     if([_iFlyRecognizeControl start])
 	{
+        [self.view bringSubviewToFront:_iFlyRecognizeControl];
 		[self disableButton];
 	}
 

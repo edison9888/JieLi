@@ -14,6 +14,7 @@
 #import "BasicOperation.h"
 
 @interface ReadingCard:UIView<GetImageOperationDelegate>
+
 @property (strong, nonatomic) IBOutlet UIImageView *myBgImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *ThumbImageView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
@@ -31,7 +32,10 @@
 @end 
 
 
-@interface ReadingActivityViewController : UIViewController<UIGestureRecognizerDelegate,UIScrollViewDelegate,DataBrainGetListDelegate,ReadEventOperationDelegate,BasicOperationDelegate>
+@interface ReadingActivityViewController : UIViewController<UIGestureRecognizerDelegate,UIScrollViewDelegate,DataBrainGetListDelegate,ReadEventOperationDelegate,BasicOperationDelegate>{
+    float PosX;
+
+}
 @property (strong, nonatomic) IBOutlet DiyTopBar *myTopBar;
 
 

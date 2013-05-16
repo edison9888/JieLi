@@ -170,20 +170,21 @@
                 NSLog(@"获取列表为空");
                 return;
             }
-            NSMutableArray *array = [NSMutableArray array];
-            for (NSDictionary *dic in result) {
-                BookInfo *bookInfo = [BookInfo bookInfoWithBookId:[[dic objectForKey:@"bookId"] intValue]
-                                                     withBookName:[dic objectForKey:@"bookName"]
-                                                   withBookAuthor:[dic objectForKey:@"bookAuthor"]
-                                                     withBookDate:[dic objectForKey:@"bookDate"]
-                                                    withBookPrice:[[dic objectForKey:@"bookPrice"] floatValue]
-                                                    withBookImage:[dic objectForKey:@"bookImage"]
-                                                    withBookThumb:[dic objectForKey:@"bookThumb"]
-                                                    withBookBrief:[dic objectForKey:@"bookBrief"]
-                                               withBookClickCount:[[dic objectForKey:@"bookClickCount"] intValue]
-                                      ];
-                [array addObject:bookInfo];
-            }
+            NSMutableArray *array = [NSMutableArray arrayWithArray:[BookInfo bookInfoWithJSON:result]];
+//            for (NSDictionary *dic in result) {
+//                BookInfo *bookInfo = [BookInfo bookInfoWithBookId:[[dic objectForKey:@"bookId"] intValue]
+//                                                     withBookName:[dic objectForKey:@"bookName"]
+//                                                   withBookAuthor:[dic objectForKey:@"bookAuthor"]
+//                                                     withBookDate:[dic objectForKey:@"bookDate"]
+//                                                    withBookPrice:[[dic objectForKey:@"bookPrice"] floatValue]
+//                                                    withBookImage:[dic objectForKey:@"bookImage"]
+//                                                    withBookThumb:[dic objectForKey:@"bookThumb"]
+//                                                    withBookBrief:[dic objectForKey:@"bookBrief"]
+//                                               withBookClickCount:[[dic objectForKey:@"bookClickCount"] intValue]
+//                                      
+//                                      ];
+//                [array addObject:bookInfo];
+//            }
             NSLog(@"获取列表成功。");
             NSNumber *typeNumber = [NSNumber numberWithInt:type];
             [array addObject:typeNumber];
@@ -362,7 +363,7 @@
             id result =[NSJSONSerialization JSONObjectWithData:data
                                                        options:kNilOptions error:&error];
             NSLog(@"%@",result);
-            NSMutableArray *array;
+            NSMutableArray *array = nil;
 
             NSDictionary *dic = result;
             
