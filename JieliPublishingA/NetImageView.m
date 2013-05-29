@@ -28,6 +28,13 @@ static NSOperationQueue *queue;
     }
     return self;
 }
+
+//提取文件名
++(NSString *)getFileNameWithUrlPath:(NSString *)urlPath{
+    int lastSlash = [urlPath rangeOfString:@"/" options:NSBackwardsSearch].location;
+	return [urlPath substringFromIndex:(lastSlash +1)];
+}
+
 //会在此operation加入队列后开始
 -(void)main{
     NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -37,7 +44,7 @@ static NSOperationQueue *queue;
         return;
     }
     //回归主线程
-    [[self class] writeFile:data withImageUrl:urlString];
+    [[self class] writeFile:data withImageUrl:[[self class] getFileNameWithUrlPath:urlString]];
     [self performSelectorOnMainThread:@selector(finish:) withObject:image waitUntilDone:NO];
 }
 //委托过去
@@ -76,22 +83,44 @@ static NSOperationQueue *queue;
 
 
 @implementation NetImageView
+
+-(NetImageViewState)netImageState{
+    return netImageState;
+}
+
 //初始化方法
 +(id)NetImageViewWithUrl:(NSString*)url{
-    return [[self alloc] initWithUrl:url];
+    return [[self alloc] initWithUrl:url withTarget:nil];
 }
--(id)initWithUrl:(NSString *)url{
++(id)NetImageViewWithUrl:(NSString*)url withTarget:(id)target{
+    return [[self alloc] initWithUrl:url withTarget:target];
+}
+
+-(id)initWithUrl:(NSString *)url withTarget:(id)target{
     if (self = [super init]) {
-        
-        NSData *data = [[self class] readFilewithImageUrl:url];
+        self.delegate = target;
+        netImageState = NetImageViewActive;
+        if ([self.delegate respondsToSelector:@selector(NetImageViewActive:)]) {
+            [self.delegate NetImageViewActive:self];
+
+        }
+        NSString *urlName = [[ImageOperation class] getFileNameWithUrlPath:url];
+        NSData *data = [[self class] readFilewithImageUrl:urlName];
         if (data) {
             UIImage *image = [UIImage imageWithData:data];
 //            [self performSelectorOnMainThread:@selector(finish:) withObject:image waitUntilDone:NO];
             [self setImage:image];
-
+            netImageState = NetImageViewFinish;
+            if ([self.delegate respondsToSelector:@selector(NetImageViewFinish:)]) {
+                [self.delegate NetImageViewFinish:self];
+            }
         }
         else{
             if (url == nil) {
+                netImageState = NetImageViewFail;
+                if ([self.delegate respondsToSelector:@selector(NetImageViewFail:)]) {
+                    [self.delegate NetImageViewFail:self];
+                }
             }
             else{
                 NSLog(@"从网络下载图片，url:%@",url);
@@ -110,6 +139,10 @@ static NSOperationQueue *queue;
 //ImageOperationDelegate方法
 -(void)ImageOprationFinish:(UIImage *)image{
     [self setImage:image];
+    netImageState = NetImageViewFinish;
+    if ([self.delegate respondsToSelector:@selector(NetImageViewFinish:)]) {
+        [self.delegate NetImageViewFinish:self];
+    }
 //    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, image.size.width, image.size.height);
 }
 +(NSData *)readFilewithImageUrl:(NSString *)imageUrl

@@ -97,7 +97,7 @@ enum{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self.myRootImageView setImage:[PicNameMc imageFromImageName:WoodPattern]];
+    [self.myRootImageView setImage:[PicNameMc backGroundImage]];
     
     
     self.myTopBar.myTitle.text = @"读书活动";

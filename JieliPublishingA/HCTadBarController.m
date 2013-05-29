@@ -180,6 +180,7 @@ static NSArray *actionBtnTexts;
         CommentViewController *vc3 = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil];
         vc3.delegate = self;
         BuyViewController *vc4 = [[BuyViewController alloc] initWithNibName:@"BuyViewController" bundle:nil];
+        vc4.tabBarController = self;
         
         _viewControllers = [[NSArray alloc] initWithObjects:vc1, vc2, vc3, vc4, nil];
     }
@@ -228,13 +229,13 @@ static NSArray *actionBtnTexts;
     NSString *text = [actionBtnTexts objectAtIndex:selectedIndex];
     UIButton *b = self.bookDetailController.actionButton;
     b.tag = selectedIndex;
-    if (selectedIndex == 3) {
-        b.hidden = YES;
-    }
-    else{
-        b.hidden = NO;
-    [b setImage:[PicNameMc defaultBackgroundImage:@"rb" withWidth:b.frame.size.width withTitle:text withColor:[UIColor whiteColor]] forState:UIControlStateNormal];
-    }
+//    if (selectedIndex == 3) {
+//        b.hidden = YES;
+//    }
+//    else{
+//        b.hidden = NO;
+    [b setImage:[PicNameMc buttonBg:b title:text] forState:UIControlStateNormal];
+//    }
     NSLog(@"index:%d",selectedIndex);
 
 }
@@ -278,7 +279,7 @@ static NSArray *actionBtnTexts;
 	// Do any additional setup after loading the view.
     isJudgePage = YES;
     if (!actionBtnTexts) {
-        actionBtnTexts = [[NSArray alloc] initWithObjects:@"在线阅读",@"发送分享",@"我要评价",@"比价购买", nil];
+        actionBtnTexts = [[NSArray alloc] initWithObjects:@"在线阅读",@"发送分享",@"我要评价",@"购买", nil];
     }
     [self.view addSubview:[[BackGroundImageView alloc] initWithFrame:self.view.frame]];
     
@@ -354,6 +355,9 @@ static NSArray *actionBtnTexts;
         case 2:
             [(CommentViewController *)vc iWantComment];
             break;
+        case 3:
+            [(BuyViewController *)vc buy];
+
         default:
             break;
     }

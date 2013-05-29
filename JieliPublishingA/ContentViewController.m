@@ -11,7 +11,10 @@
 #define kDocument_Folder [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
 
-@interface ContentViewController ()
+@interface ContentViewController (){
+    HCDownLoadingView *downingView;
+    HCDownLoad *hcd;
+}
 
 @end
 
@@ -26,62 +29,75 @@
     return self;
 }
 -(void)readOnLine{
-//    NSURL *url = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"testPdf1"] withExtension:@"pdf"];
-//    
-//    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 480-44)];
-//    [self.view.superview.superview addSubview:webView];
-//    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:url];
-//    [webView loadRequest:req];
-    
-//    EPubViewController *epub;
-//    [epub loadEpub:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"vhugo" ofType:@"epub"]]];
 
-    NSString *epubUrlString  = self.bookInfo.epub_all;
-    NSString *epubName = @"http://www.jielibj.com/download.php?path=images/201305/1368083752379138435.epub";
-    HCDownLoad *hcd = [HCDownLoad downLoadWithURL:[NSURL URLWithString:epubName]];
+//    NSString *epubUrlString  = self.bookInfo.epub_all;
+    downingView = [HCDownLoadingView DownLoadingView];
+    downingView.delegate =self;
+    UIWindow *window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+    [window addSubview:downingView];
+
+// 大鼻子    http://www.jielibj.com/download.php?path=images/201305/1368083752379138435.epub
+// 工作就这样炼成了   http://www.jielibj.com/download.php?path=images/201305/1368083672567368490.epub
+//人生百忌 http://www.jielibj.com/download.php?path=images/201305/1368082963753484197.epub
+    NSString *epubName = @"http://www.jielibj.com/download.php?path=images/201305/1368082963753484197.epub";
+    hcd = [HCDownLoad downLoadWithURL:[NSURL URLWithString:epubName]];
     hcd.delegate = self;
+    [hcd start];
     
-//    [HCDownLoad downLoadWithURL:[NSURL URLWithString:epubName] begin:^(void){
-//        
-//    }doing:^(float p){
-//        NSLog(@"p:%f",p);
-//        
-//    }finish:^(NSData *data) {
-//        NSLog(@"%d",[data length]);
-//    }fail:nil];
-    
-    
-    
-    
-
 }
-
+-(void)HCDownLoadingViewClose:(HCDownLoadingView *)view{
+    [hcd cancel];
+    [view removeFromSuperview];
+    view = nil;
+}
 -(void)HCdownloadDoing:(HCDownLoad *)downLoad progress:(float)progress{
     NSLog(@"p:%f",progress);
+    [downingView.proGressView setProgress:progress];
 }
--(void)HCdownloadFinish:(HCDownLoad *)downLoad withData:(NSData *)data{
-    NSString *epubName = @"http://www.jielibj.com/download.php?path=images/201305/1368083752379138435.epub";
-  
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager changeCurrentDirectoryPath:[kDocument_Folder stringByExpandingTildeInPath]];
-    NSString *path = [kDocument_Folder stringByAppendingPathComponent:@"136.epub"];
-    //5、创建数据缓冲区
-    NSMutableData  *writer = [[NSMutableData alloc] init];
-    //6、将字符串添加到缓冲中
-        [writer appendData:data];
-        //7、将其他数据添加到缓冲中
-        //将缓冲的数据写入到文件中
-        [writer writeToFile:path atomically:YES];
-
-
-        EPubViewController *epubController = [[EPubViewController alloc] initWithNibName:@"EPubView" bundle:nil];
-        [self.tabBarController.navigationController pushViewController:epubController animated:YES];
-
-    NSURL *urlA = [NSURL fileURLWithPath:path];
-    NSURL *urlB = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"人生百忌2" ofType:@"epub"]];
-        [epubController loadEpub:urlA];
-
-
+//-(void)HCdownloadFinish:(HCDownLoad *)downLoad withData:(NSData *)data{
+//    [downingView.proGressView setProgress:1];
+//    [downingView removeFromSuperview];
+//
+//
+//        EPubViewController *epubController = [[EPubViewController alloc] initWithNibName:@"EPubView" bundle:nil];
+//        [self.tabBarController.navigationController pushViewController:epubController animated:YES];
+//
+//    NSURL *urlA = [NSURL fileURLWithPath:path];
+////    NSURL *urlB = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"人生百忌2" ofType:@"epub"]];
+//        [epubController loadEpub:urlA];
+//}
+-(void)HCdownloadFinish:(HCDownLoad *)downLoad withFileUrl:(NSURL *)url{
+    [downingView.proGressView setProgress:1];
+    [downingView removeFromSuperview];
+    
+    
+    NSDictionary *dic = [[NSDictionary alloc] initWithObjects:@[self.bookInfo.bookName,self.bookInfo.bookThumb,[url absoluteString]] forKeys:@[@"bookName",@"bookThumb",@"fileUrl"]];
+    
+    NSMutableArray *array = [NSMutableArray arrayWithContentsOfFile:[kDocument_Folder stringByAppendingPathComponent:@"epubBooksList.plist"]];
+    if (!array) {
+        array = [NSMutableArray array];
+    }
+    
+    BOOL isNew = YES;
+    for (NSDictionary *d in array) {
+        if ([[d objectForKey:@"fileUrl"] isEqualToString:[dic objectForKey:@"fileUrl"]]) {
+            isNew = NO;
+        }
+    }
+    if (isNew) {
+        [array addObject:dic];
+        [array writeToFile:[kDocument_Folder stringByAppendingPathComponent:@"epubBooksList.plist"] atomically:YES];
+    }
+    
+    
+//    [[NSUserDefaults standardUserDefaults] setObject:[array retain] forKey:@"epubBooks"];
+    
+    EPubViewController *epubController = [[EPubViewController alloc] initWithNibName:@"EPubView" bundle:nil];
+    [self.tabBarController.navigationController pushViewController:epubController animated:YES];
+    
+//    NSURL *urlA = [NSURL fileURLWithPath:path];
+    //    NSURL *urlB = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"人生百忌2" ofType:@"epub"]];
+    [epubController loadEpub:url];
 
 }
 - (void)viewDidLoad

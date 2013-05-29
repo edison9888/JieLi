@@ -19,6 +19,7 @@ typedef void (^downLoadFail)(NSError *error);
 - (void)HCdownloadBegin:(HCDownLoad *)downLoad;
 - (void)HCdownloadDoing:(HCDownLoad *)downLoad progress:(float)progress;
 - (void)HCdownloadFinish:(HCDownLoad *)downLoad withData:(NSData *)data;
+- (void)HCdownloadFinish:(HCDownLoad *)downLoad withFileUrl:(NSURL *)url;
 - (void)HCdownloadFailed:(HCDownLoad *)downLoad withError:(NSError *)error;
 @end
 
@@ -37,6 +38,8 @@ typedef NSInteger HCDownloadState;
 @interface HCDownLoad : NSObject
 // State of the download
 @property(nonatomic, readonly) HCDownloadState downloadState;
+
+@property(nonatomic, readonly) NSString *urlPath;
 
 // Total size of the content, in bytes
 @property(nonatomic, readonly) unsigned long long contentLength;
@@ -63,7 +66,7 @@ typedef NSInteger HCDownloadState;
 +(id)downLoadWithURL:(NSURL *)url begin:(downLoadBegin)begin doing:(downLoadDoing)doing finish:(downLoadFinish)finish fail:(downLoadFail)fail;
 -(id)initDownLoadWithURL:(NSURL*)url;
 -(id)initDownLoadWithURL:(NSURL *)url begin:(downLoadBegin)begin doing:(downLoadDoing)doing finish:(downLoadFinish)finish fail:(downLoadFail)fail;
-
+-(void)start;
 -(void)cancel;
 
 @end

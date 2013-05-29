@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) NSString *myLink;
 
+@property (retain, nonatomic) IBOutlet UIImageView *linkImageView;
 
 @end
 

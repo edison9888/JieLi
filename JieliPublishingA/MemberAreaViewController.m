@@ -99,7 +99,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    [self.myBgImageView setImage:[PicNameMc imageFromImageName:WoodPattern]];
+    [self.myBgImageView setImage:[PicNameMc backGroundImage]];
     [self.meberAreaTopBar setImage:[PicNameMc imageFromImageName:F_image_bgOfVip1]];
 
 

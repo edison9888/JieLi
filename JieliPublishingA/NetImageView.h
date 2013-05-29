@@ -20,10 +20,29 @@
 -(id)initWithUrl:(NSString *)url;
 @end
 
+@class NetImageView;
+@protocol NetImageViewDelegate <NSObject>
+@optional
+-(void)NetImageViewActive:(NetImageView *)netImageView;
+-(void)NetImageViewFinish:(NetImageView *)netImageView;
+-(void)NetImageViewFail:(NetImageView *)netImageView;
 
+
+@end
+
+typedef enum {
+    NetImageViewActive,
+    NetImageViewFinish,
+    NetImageViewFail
+}NetImageViewState;
 
 //自定义uiimageview
-@interface NetImageView : UIImageView<ImageOperationDelegate>
+@interface NetImageView : UIImageView<ImageOperationDelegate>{
+    NetImageViewState netImageState;
+}
+@property (nonatomic,readonly,assign) NetImageViewState netImageState;
+@property (nonatomic,assign) id<NetImageViewDelegate>delegate;
 +(id)NetImageViewWithUrl:(NSString*)url;
++(id)NetImageViewWithUrl:(NSString*)url withTarget:(id)target;
 
 @end

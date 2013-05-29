@@ -7,6 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#define ThemeKey @"themes"
+#define ThemesRed @"red"
+#define ThemesBlue @"blue"
+#define ThemesGuoDong @"guodong"
+
 
 
 #define DefaultImage @"defaultImage"
@@ -116,7 +121,13 @@
 + (UIImage*)defaultBackgroundImage:(NSString *)imageName withWidth:(int)width withTitle:(NSString *)title withColor:(UIColor *)color;
 +(UIImage *)defaultBackgroundImage:(NSString *)imageName size:(CGSize)size leftCapWidth:(NSInteger )leftCapWidth topCapHeight:(NSInteger)topCapHeight;
 +(UIImage *)inputImagewithView:(UIView *)view;
-+(UIImage *)redBg:(UIView *)view title:(NSString *)title;
+
+//主题
++(UIImage *)buttonBg:(UIView *)view title:(NSString *)title;
 +(UIImage *)grayBg:(UIView *)view title:(NSString *)title;
++(UIImage *)diyTopBarBackGroundImage;
++(NSArray *)homeIcons;
++(UIImage *)PromotionActLinkImage;
++(UIImage*)backGroundImage;
 
 @end

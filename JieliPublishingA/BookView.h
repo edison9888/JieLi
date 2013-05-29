@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "BookInfo.h"
+#import "NetImageView.h"
+
+
+#define  ImageViewWith  80.f
+#define  ImageViewHight  116.f
+#define LabelHight 30.f
+#define AIViewWith 30.f
+#define AIViewHight 30.f
+
 @class BookView;
 
 @protocol BookViewDelegate <NSObject>
@@ -15,7 +24,7 @@
 
 @end
 
-@interface BookView : UIView<UIGestureRecognizerDelegate>
+@interface BookView : UIView<UIGestureRecognizerDelegate,NetImageViewDelegate>
 @property (strong, nonatomic)  UIImageView *imageView;
 @property (strong, nonatomic)  UILabel *labelView; 
 @property (strong,nonatomic) UIActivityIndicatorView *activityIndicatorView;
@@ -26,5 +35,9 @@
 
 +(id)BookViewWithBookInfo:(BookInfo*)bookInfo withPosition:(CGPoint)position;
 +(id)BookViewWithBookInfo:(BookInfo*)bookInfo;
+
+-(id)initWithFrame:(CGRect)frame withCoverImage:(UIImage *)coverImage withLableName:(NSString*)lableName;
+-(id)initWithFrame:(CGRect)frame withCoverImageUrl:(NSString *)coverImageUrl withLableName:(NSString *)lableName;
+
 //-(void)addTaget:(id)taget action:(SEL)action;
 @end

@@ -9,6 +9,7 @@
 #import "BookDetailViewController.h"
 #import "DataBrain.h"
 #import "PicNameMc.h"
+#import "NetImageView.h"
 @interface BookDetailViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *coverImage;
 @property (strong, nonatomic) IBOutlet UILabel *bookName;
@@ -33,7 +34,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.actionButton setImage:[PicNameMc defaultBackgroundImage:@"rb" withWidth:self.actionButton.frame.size.width withTitle:@"在线阅读" withColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+    [self.actionButton setImage:[PicNameMc buttonBg:self.actionButton title:@"在线阅读"] forState:UIControlStateNormal];
     [self.actionButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -49,7 +50,14 @@
     NSLog(@"%@:%@",bookName,info);
     self.bookInfo = info;
     
-    [self.coverImage setImage:[UIImage imageWithData:[DataBrain readFilewithImageId:info.bookId withFlolderName:BookCoverImage]]];
+//    [self.coverImage setImage:[UIImage imageWithData:[DataBrain readFilewithImageId:info.bookId withFlolderName:BookCoverImage]]];
+    NetImageView *niv = [NetImageView NetImageViewWithUrl:self.bookInfo.bookThumb];
+    niv.frame = self.coverImage.frame;
+    [self.coverImage.superview addSubview:niv];
+    [self.coverImage removeFromSuperview];
+    self.coverImage = nil;
+    self.coverImage = niv;
+    
     [self.bookName setText:[self.bookName.text stringByAppendingString:info.bookName]];
     [self.authorName setText:[self.authorName.text stringByAppendingString:info.bookAuthor]];
     [self.publisher setText:[self.publisher.text stringByAppendingString:@"接力出版社"]];

@@ -31,9 +31,12 @@
     [self.diyTopBar setType:DiyTopBarTypeBack];
     [self.diyTopBar.myTitle setText:@"关于我们"];
     [self.diyTopBar.backButton addTarget:self action:@selector(popBack) forControlEvents:UIControlEventTouchUpInside];
+    
+    
 }
+
 -(void)popBack{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning
 {

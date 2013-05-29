@@ -20,7 +20,13 @@
 
 -(void)awakeFromNib{
     [self setBackgroundColor:[UIColor clearColor]];
-    [self.myActLink setBackgroundImage:[PicNameMc defaultBackgroundImage:@"rb" withWidth:self.myActLink.frame.size.width withTitle:@"详情链接" withColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectInset(self.frame, 5, 2)];
+    [backImageView setImage:[PicNameMc defaultBackgroundImage:@"promotionbox" size:backImageView.frame.size leftCapWidth:7 topCapHeight:7]];
+    [self addSubview:backImageView];
+    [self sendSubviewToBack:backImageView];
+    
+    [self.linkImageView setImage:[PicNameMc PromotionActLinkImage] ];
+    
     [self.myimageBar setImage:[PicNameMc imageFromImageName:F_image_woodBar1]];
     self.myImageView.backgroundColor = [UIColor grayColor];
     [self.myImageView.layer setShadowRadius:2];
@@ -42,6 +48,10 @@
 
 }
 
+- (void)dealloc {
+    [_linkImageView release];
+    [super dealloc];
+}
 @end
 
 
@@ -95,7 +105,7 @@
     [self.myTopBar setType:DiyTopBarTypeBack];
     self.myTopBar.myTitle.text = @"促销优惠";
     [self.myTopBar.backButton addTarget:self action:@selector(popBack:) forControlEvents:UIControlEventTouchUpInside];
-    [self.myBgImageView setImage:[PicNameMc imageFromImageName:WoodPattern]];
+    [self.myBgImageView setImage:[PicNameMc backGroundImage]];
 }
 
 

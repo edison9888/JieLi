@@ -35,7 +35,18 @@
     }
     return self;
 }
-							
+-(void)viewWillAppear:(BOOL)animated{
+    NSArray *images = [PicNameMc homeIcons];
+    NSArray *buttons = [NSArray arrayWithObjects:self.firstButton,self.secondButton,self.thridButton,self.forthButton,self.fifthButton,self.sixButton, nil];
+    for (int i = 0; i<[buttons count]; i++) {
+        UIButton *button = [buttons objectAtIndex:i];
+        [button setImage:[images objectAtIndex:i] forState:UIControlStateNormal];
+    }
+    [self.myDiyTopBar updateThemeColor];
+    
+    [self.backGroundImageView setImage:[PicNameMc backGroundImage]];
+
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,22 +54,16 @@
     [self.myDiyTopBar setType:DiyTopBarTypeNone];
     [self.myDiyTopBar.myTitle setText:@"接力阅读小栈"];
     
-    NSArray *images = [PicNameMc imageName:@"home icon.png" numberOfH:2 numberOfW:3];
+    NSArray *images = [PicNameMc homeIcons];
     NSArray *buttons = [NSArray arrayWithObjects:self.firstButton,self.secondButton,self.thridButton,self.forthButton,self.fifthButton,self.sixButton, nil];
     for (int i = 0; i<[buttons count]; i++) {
         UIButton *button = [buttons objectAtIndex:i];
         [button setImage:[images objectAtIndex:i] forState:UIControlStateNormal];
     }
     
-//    [self.firstButton setImage:[images objectAtIndex:0] forState:UIControlStateNormal];
-//    [self.secondButton setImage:[PicNameMc imageFromImageName:F_btn_2] forState:UIControlStateNormal];
-//    [self.thridButton setImage:[PicNameMc imageFromImageName:F_btn_3] forState:UIControlStateNormal];
-//    [self.forthButton setImage:[PicNameMc imageFromImageName:F_btn_4] forState:UIControlStateNormal];
-//    [self.fifthButton setImage:[PicNameMc imageFromImageName:F_btn_5] forState:UIControlStateNormal];
-//    [self.sixButton setImage:[PicNameMc imageFromImageName:F_btn_6] forState:UIControlStateNormal];
-    
     
     [self.myWoodBg setImage:[PicNameMc imageFromImageName:F_bg]];
+    [self.backGroundImageView setImage:[PicNameMc backGroundImage]];
 
     self.tagIndex = 100;
     
@@ -196,6 +201,11 @@
     [self setMyNavigationBar:nil];
     [self setMyWoodBg:nil];
     [self setMyDiyTopBar:nil];
+    [self setBackGroundImageView:nil];
     [super viewDidUnload];
+}
+- (void)dealloc {
+    [_backGroundImageView release];
+    [super dealloc];
 }
 @end

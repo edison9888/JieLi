@@ -52,9 +52,14 @@
     }
 }
 
+-(void)updateThemeColor{
+    UIImage *image = [PicNameMc diyTopBarBackGroundImage];
+    [self.myImageView setImage:image];
+}
 -(void)addJob{
 //    [PicNameMc defaultBackgroundImage];
-    UIImage *image = [self defaultBackgroundImage];
+//    UIImage *image = [self defaultBackgroundImage];
+    UIImage *image = [PicNameMc diyTopBarBackGroundImage];
     self.myImageView = [[UIImageView alloc] initWithImage:image];
     self.myImageView.frame = self.frame;
     
@@ -107,20 +112,10 @@
     // Get the image that will form the top of the background
     UIImage* topImage = [UIImage imageNamed:@"topBar_red"];
     
-    // Create a new image context
-    //UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, topImage.size.height*2 + 5), NO, 0.0);
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, self.frame.size.height), NO, 0.0);
     
-    // Create a stretchable image for the top of the background and draw it
     UIImage* stretchedTopImage = [topImage stretchableImageWithLeftCapWidth:0 topCapHeight:0];
-    //[stretchedTopImage drawInRect:CGRectMake(0, 5, width, topImage.size.height)];
     [stretchedTopImage drawInRect:CGRectMake(0, 0, width, topImage.size.height)];
-    
-    // Draw a solid black color for the bottom of the background
-//    if (self.useGlossEffect) {
-//        [[UIColor blackColor] set];
-//        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, self.frame.size.height / 2, width, self.frame.size.height / 2));
-//    }
     
     // Generate a new image
     UIImage* resultImage = UIGraphicsGetImageFromCurrentImageContext();

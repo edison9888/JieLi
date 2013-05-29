@@ -13,7 +13,7 @@ enum{
     DiyTopBarTypeBack,
     DiyTopBarTypeCollect,
     DiyTopBarTypeBackAndCollect,
-}DiyTopBarType;
+} DiyTopBarType;
 
 @interface DiyTopBar : UIView
 @property(strong,nonatomic) UIImageView *myImageView;
@@ -26,5 +26,6 @@ enum{
 @property (strong,nonatomic) UIButton *collectButton;
 
 -(void)setType:(int)type;
+-(void)updateThemeColor;
 
 @end

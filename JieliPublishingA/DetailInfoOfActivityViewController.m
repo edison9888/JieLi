@@ -313,7 +313,7 @@ static NSString * const kRedirectUrl = @"http://www.douban.com/location/mobile";
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.myBgImageView setImage:[PicNameMc imageFromImageName:WoodPattern]];
+    [self.myBgImageView setImage:[PicNameMc backGroundImage]];
     
     [self.myBtn_join setBackgroundImage:[PicNameMc defaultBackgroundImage:@"rb" withWidth:self.myBtn_join.frame.size.width withTitle:@"参加" withColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     [self.myBtn_share setBackgroundImage:[PicNameMc defaultBackgroundImage:@"rb" withWidth:self.myBtn_share.frame.size.width withTitle:@"分享" withColor:[UIColor whiteColor]] forState:UIControlStateNormal];

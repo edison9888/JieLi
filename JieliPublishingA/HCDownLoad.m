@@ -7,9 +7,12 @@
 //
 
 #import "HCDownLoad.h"
+#define kDocument_Folder [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
 @interface HCDownLoad(){
     float p,speed;
+    NSString *downedFolder;
+    NSURL *downUrl;
     NSURLConnection *conn;
     NSNumber *totalSize;
     NSMutableData *receivedData;
@@ -28,13 +31,19 @@
 
 @implementation HCDownLoad
 
+//+(id)downLoadWithURL:(NSURL *)url fileFolder:(NSString *)folderName{
+//    
+//}
+
 +(id)downLoadWithURL:(NSURL *)url{
     return [[self alloc] initDownLoadWithURL:url];
 }
 +(id)downLoadWithURL:(NSURL *)url begin:(downLoadBegin)begin doing:(downLoadDoing)doing finish:(downLoadFinish)finish fail:(downLoadFail)fail{
     return [[self alloc] initDownLoadWithURL:url begin:begin doing:doing finish:finish fail:fail];
 }
-
+-(NSString*)urlPath{
+    return [downUrl absoluteString];
+}
 -(NSDictionary *)downLoadInfo{
     if (dlState == HCDownloadStateWaiting) {
         return nil;
@@ -124,28 +133,55 @@
 
 -(id)initDownLoadWithURL:(NSURL*)url{
     if (self = [super init]) {
+        downUrl = url;
         startTime = [NSDate new];
         dlState = HCDownloadStateWaiting;
-        NSURLRequest *rq = [NSURLRequest requestWithURL:url];
-        conn = [NSURLConnection connectionWithRequest:rq delegate:self];
-        if (conn) {
-            receivedData = [[NSMutableData alloc] init];
-//            [conn start];
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        }
-        else{
-            NSLog(@"创建下砸链接失败");
-        }
     }
     return self;
 }
+-(void)start{
+//    int lastSlash = [self.urlPath rangeOfString:@"/" options:NSBackwardsSearch].location;
+//	NSString* ebookName = [self.urlPath substringFromIndex:(lastSlash +1)];
+//    
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    [fileManager changeCurrentDirectoryPath:[kDocument_Folder stringByExpandingTildeInPath]];
+//    NSString *path = [kDocument_Folder stringByAppendingPathComponent:ebookName];
+//
+//    NSLog(@"isRead:%@",[fileManager isReadableFileAtPath:path]?@"Yes":@"No");
+//    NSData *data = [fileManager contentsAtPath:path];
+//    if (data) {
+//        if ([self.delegate respondsToSelector:@selector(HCdownloadFinish:withFileUrl:)]) {
+//            [self.delegate HCdownloadFinish:self withFileUrl:[NSURL URLWithString:path]];
+//        }
+//        if ([self.delegate respondsToSelector:@selector(HCdownloadFinish:withData:)]) {
+//            [self.delegate HCdownloadFinish:self withData:data];
+//        }
+//        return;
+//    }
+    
+    NSURLRequest *rq = [NSURLRequest requestWithURL:downUrl];
+    conn = [NSURLConnection connectionWithRequest:rq delegate:self];
+    if (conn) {
+        receivedData = [[NSMutableData alloc] init];
+        //            [conn start];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    }
+    else{
+        NSLog(@"创建下砸链接失败");
+    }
 
+}
 -(id)initDownLoadWithURL:(NSURL *)url begin:(downLoadBegin)begin doing:(downLoadDoing)doing finish:(downLoadFinish)finish fail:(downLoadFail)fail{
     if ((self = [self initDownLoadWithURL:url])) {
         _block_begin = begin;
         _block_doing = doing;
         _block_finish = finish;
         _block_fail = fail;
+    }
+    return self;
+}
+-(id)downLoadWithURL:(NSURL *)url fileFolder:(NSString *)folderName{
+    if ((self = [self initDownLoadWithURL:url])) {
     }
     return self;
 }
@@ -199,6 +235,28 @@
     if (_block_finish) {
         _block_finish(receivedData);
     }
+    
+    int lastSlash = [self.urlPath rangeOfString:@"/" options:NSBackwardsSearch].location;
+	NSString* ebookName = [self.urlPath substringFromIndex:(lastSlash +1)];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager changeCurrentDirectoryPath:[kDocument_Folder stringByExpandingTildeInPath]];
+    NSString *path = [kDocument_Folder stringByAppendingPathComponent:ebookName];
+    
+    //5、创建数据缓冲区
+    NSMutableData  *writer = [[NSMutableData alloc] init];
+    //6、将字符串添加到缓冲中
+    [writer appendData:receivedData];
+    //7、将其他数据添加到缓冲中
+    //将缓冲的数据写入到文件中
+    BOOL writeV = [writer writeToFile:path atomically:YES];
+    NSLog(@"isWriteSuccess:%@",writeV?@"Yes":@"No");
+    NSURL *fileUrl = [NSURL URLWithString:path];
+    if ([self.delegate respondsToSelector:@selector(HCdownloadFinish:withFileUrl:)]) {
+        [self.delegate HCdownloadFinish:self withFileUrl:fileUrl];
+    }
+
+
 }
 
 - (void)connection:(NSURLConnection *)conn didFailLoadWithError:(NSError *)error

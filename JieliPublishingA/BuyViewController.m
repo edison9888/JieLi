@@ -11,10 +11,15 @@
 #import "BuyBookCell.h"
 #import "CBuyOperation.h"
 #import "PicNameMc.h"
+#import "InAppJieLiIAPHelper.h"
+#import "EPubViewController.h"
+#define kDocument_Folder [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
 @interface BuyViewController (){
     NSMutableArray *arrayOfCells;
     CBuyOperation *op;
+    HCDownLoadingView *downingView;
+    HCDownLoad *hcd;
 }
 @end
 
@@ -29,10 +34,17 @@
     }
     return self;
 }
-
+-(void)viewDidUnload{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductsLoadedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductPurchasedNotification object:nil];
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(purchased:) name:kProductPurchasedNotification object:nil];
+    
     // Do any additional setup after loading the view from its nib.
     arrayOfCells = [[NSMutableArray alloc] init];
 
@@ -43,7 +55,92 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)buy{
+    InAppJieLiIAPHelper *inapp = [InAppJieLiIAPHelper sharedHelper];
+    [inapp requestProducts];
+}
+-(void)productsLoaded:(NSNotification *)notification{
+    NSObject *obj = [notification object];
+    if ([obj isKindOfClass:[NSArray class]]) {
+        NSArray *products = (NSArray *)obj;
+        [[InAppJieLiIAPHelper sharedHelper] buyProductIdentifier:products[0]];
+    }
+}
+-(void)purchased:(NSNotification *)notification{
+    [self readOnLine];
+}
+-(void)readOnLine{
+    
+    //    NSString *epubUrlString  = self.bookInfo.epub_all;
+    downingView = [HCDownLoadingView DownLoadingView];
+    downingView.delegate =self;
+    UIWindow *window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+    [window addSubview:downingView];
+    
+    // 大鼻子    http://www.jielibj.com/download.php?path=images/201305/1368083752379138435.epub
+    // 工作就这样炼成了   http://www.jielibj.com/download.php?path=images/201305/1368083672567368490.epub
+    //人生百忌 http://www.jielibj.com/download.php?path=images/201305/1368082963753484197.epub
+    NSString *epubName = @"http://www.jielibj.com/download.php?path=images/201305/1368082963753484197.epub";
+    hcd = [HCDownLoad downLoadWithURL:[NSURL URLWithString:epubName]];
+    hcd.delegate = self;
+    [hcd start];
+    
+}
+-(void)HCDownLoadingViewClose:(HCDownLoadingView *)view{
+    [hcd cancel];
+    [view removeFromSuperview];
+    view = nil;
+}
+-(void)HCdownloadDoing:(HCDownLoad *)downLoad progress:(float)progress{
+    NSLog(@"p:%f",progress);
+    [downingView.proGressView setProgress:progress];
+}
+//-(void)HCdownloadFinish:(HCDownLoad *)downLoad withData:(NSData *)data{
+//    [downingView.proGressView setProgress:1];
+//    [downingView removeFromSuperview];
+//
+//
+//        EPubViewController *epubController = [[EPubViewController alloc] initWithNibName:@"EPubView" bundle:nil];
+//        [self.tabBarController.navigationController pushViewController:epubController animated:YES];
+//
+//    NSURL *urlA = [NSURL fileURLWithPath:path];
+////    NSURL *urlB = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"人生百忌2" ofType:@"epub"]];
+//        [epubController loadEpub:urlA];
+//}
+-(void)HCdownloadFinish:(HCDownLoad *)downLoad withFileUrl:(NSURL *)url{
+    [downingView.proGressView setProgress:1];
+    [downingView removeFromSuperview];
+    
+    
+    NSDictionary *dic = [[NSDictionary alloc] initWithObjects:@[self.bookInfo.bookName,self.bookInfo.bookThumb,[url absoluteString]] forKeys:@[@"bookName",@"bookThumb",@"fileUrl"]];
+    
+    NSMutableArray *array = [NSMutableArray arrayWithContentsOfFile:[kDocument_Folder stringByAppendingPathComponent:@"epubBooksList.plist"]];
+    if (!array) {
+        array = [NSMutableArray array];
+    }
+    
+    BOOL isNew = YES;
+    for (NSDictionary *d in array) {
+        if ([[d objectForKey:@"fileUrl"] isEqualToString:[dic objectForKey:@"fileUrl"]]) {
+            isNew = NO;
+        }
+    }
+    if (isNew) {
+        [array addObject:dic];
+        [array writeToFile:[kDocument_Folder stringByAppendingPathComponent:@"epubBooksList.plist"] atomically:YES];
+    }
+    
+    
+    //    [[NSUserDefaults standardUserDefaults] setObject:[array retain] forKey:@"epubBooks"];
+    
+    EPubViewController *epubController = [[EPubViewController alloc] initWithNibName:@"EPubView" bundle:nil];
+    [self.tabBarController.navigationController pushViewController:epubController animated:YES];
+    
+    //    NSURL *urlA = [NSURL fileURLWithPath:path];
+    //    NSURL *urlB = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"人生百忌2" ofType:@"epub"]];
+    [epubController loadEpub:url];
+    
+}
 -(void)loadBookInfo:(BookInfo *)info{
     self.bookInfo = info;
 //    [self.dataBrain getCrawlList:self.bookInfo.bookId];

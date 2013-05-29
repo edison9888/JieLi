@@ -37,6 +37,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.backGroundImageView setImage:[PicNameMc backGroundImage]];
 
     self.myBookShelf.showPrice = NO;
     [self.myBookShelf reloadData];
@@ -49,6 +50,9 @@
 
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [self.myDiyTopBar updateThemeColor];
+    [self.backGroundImageView setImage:[PicNameMc backGroundImage]];
+
     if ([[AppDelegate getCollectedBooks] count]) {
         self.noCollectButton.hidden = YES;
         self.noCollectImageview.hidden = YES;
@@ -100,6 +104,7 @@
     [self setMyDiyTopBar:nil];
     [self setNoCollectImageview:nil];
     [self setNoCollectButton:nil];
+    [self setBackGroundImageView:nil];
     [super viewDidUnload];
 }
 
@@ -108,6 +113,7 @@
 - (void)dealloc {
     [_noCollectImageview release];
     [_noCollectButton release];
+    [_backGroundImageView release];
     [super dealloc];
 }
 -(BOOL)checkNetWorkState{

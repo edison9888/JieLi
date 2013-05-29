@@ -9,16 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "BasicBookViewController.h"
 #import "BookInfo.h"
-
-@interface BuyViewController : BasicBookViewController<UITableViewDataSource,UITableViewDelegate>
+#import "HCDownLoadingView.h"
+#import "HCDownLoad.h"
+@interface BuyViewController : BasicBookViewController<UITableViewDataSource,UITableViewDelegate,HCDownLoadDelegate,HCDownLoadingViewDelegate>
 
 
 
 @property (strong,nonatomic) BookInfo *bookInfo;
 @property (strong,nonatomic) NSArray *arrayOfBuyBoooks;
-
-
+@property (strong, nonatomic) UIViewController *tabBarController;
 @property (strong,nonatomic) IBOutlet UITableView *tableView;
-
+-(void)buy;
 -(void)loadData:(id)result;
 @end

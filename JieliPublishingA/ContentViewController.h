@@ -10,8 +10,10 @@
 #import "BasicBookViewController.h"
 //#import "HCTadBarController.h"
 #import "HCDownLoad.h"
+#import "HCDownLoadingView.h"
 
-@interface ContentViewController : BasicBookViewController<HCDownLoadDelegate>
+
+@interface ContentViewController : BasicBookViewController<HCDownLoadDelegate,HCDownLoadingViewDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *contentBgImageView;
 @property (strong, nonatomic) IBOutlet UITextView *contentTextView;
 @property (strong, nonatomic) UIViewController *tabBarController;
