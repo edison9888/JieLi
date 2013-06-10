@@ -13,6 +13,7 @@
 #import "UIWebView+SearchWebView.h"
 #import "Chapter.h"
 #import "PicNameMc.h"
+#import "InAppJieLiIAPHelper.h"
 
 
 @interface EPubViewController()
@@ -143,8 +144,34 @@
 	if(!paginating){
 		if(currentSpineIndex+1<[loadedEpub.spineArray count]){
 			[self loadSpine:++currentSpineIndex atPageIndex:0];
-		}	
+		}
+        else{
+            NSLog(@"已到达最后一页");
+            UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"" message:@"若要继续阅读，请购买全本" delegate:self cancelButtonTitle:@"返回" otherButtonTitles: @"购买",nil];
+            [al show];
+
+        }
 	}
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        return;
+    }
+    else if(buttonIndex == 1){
+        InAppJieLiIAPHelper *inapp = [InAppJieLiIAPHelper sharedHelper];
+        [inapp requestProducts];
+
+    }
+    else{
+        
+    };
+}
+-(void)productsLoaded:(NSNotification *)notification{
+    NSObject *obj = [notification object];
+    if ([obj isKindOfClass:[NSArray class]]) {
+        NSArray *products = (NSArray *)obj;
+        [[InAppJieLiIAPHelper sharedHelper] buyProductIdentifier:products[0]];
+    }
 }
 
 - (void) gotoPrevSpine {
@@ -352,16 +379,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
+
+    
     UIImageView *topBarBg = [[UIImageView alloc] initWithFrame:self.topBar.frame];
-    UIImage *image = [PicNameMc defaultBackgroundImage:@"topBar_red" withWidth:320 withTitle:nil withColor:nil];
+    UIImage *image = [PicNameMc defaultBackgroundImage:@"Readfunctionbox" withWidth:320 withTitle:nil withColor:nil];
     [topBarBg setImage:image];
     [self.topBar addSubview:topBarBg];
     [self.topBar sendSubviewToBack:topBarBg];
     
-    [self.chapter setBackgroundImage:[PicNameMc redBg:self.chapter title:@"目录"] forState:UIControlStateNormal];
-    [self.small setBackgroundImage:[PicNameMc redBg:self.chapter title:@"-"] forState:UIControlStateNormal];
-    [self.big setBackgroundImage:[PicNameMc redBg:self.chapter title:@"+"] forState:UIControlStateNormal];
-    [self.back setBackgroundImage:[PicNameMc redBg:self.chapter title:@"返回"] forState:UIControlStateNormal];
+    NSArray *array = [PicNameMc imageName:@"Readfunction@2x.png" numberOfH:1 numberOfW:4];
+
+    
+    [self.chapter setBackgroundImage:[array objectAtIndex:3] forState:UIControlStateNormal];
+    [self.small setBackgroundImage:[array objectAtIndex:1] forState:UIControlStateNormal];
+    [self.big setBackgroundImage:[array objectAtIndex:2] forState:UIControlStateNormal];
+    [self.back setBackgroundImage:[array objectAtIndex:0] forState:UIControlStateNormal];
     
     
     
@@ -388,9 +421,13 @@
 	[webView addGestureRecognizer:rightSwipeRecognizer];
 	[webView addGestureRecognizer:leftSwipeRecognizer];
 
-	[pageSlider setThumbImage:[UIImage imageNamed:@"slider_ball.png"] forState:UIControlStateNormal];
-	[pageSlider setMinimumTrackImage:[[UIImage imageNamed:@"orangeSlide.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
-	[pageSlider setMaximumTrackImage:[[UIImage imageNamed:@"yellowSlide.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
+	[pageSlider setThumbImage:[UIImage imageNamed:@"progress indicator.png"] forState:UIControlStateNormal];
+//	[pageSlider setMinimumTrackImage:[[UIImage imageNamed:@"orangeSlide.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
+//	[pageSlider setMaximumTrackImage:[[UIImage imageNamed:@"yellowSlide.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:0] forState:UIControlStateNormal];
+    [pageSlider setMinimumTrackImage:[UIImage imageNamed:@"the progress bar.png"] forState:UIControlStateNormal];
+    [pageSlider setMaximumTrackImage:[UIImage imageNamed:@"the progress bar.png"] forState:UIControlStateNormal];
+    
+    
     
 	searchResViewController = [[SearchResultsViewController alloc] initWithNibName:@"SearchResultsViewController" bundle:[NSBundle mainBundle]];
 	searchResViewController.epubViewController = self;
@@ -398,7 +435,16 @@
     [self.view addSubview:searchResViewController.view];
     searchResViewController.view.hidden = YES;
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productsLoaded:) name:kProductsLoadedNotification object:nil];
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductsLoadedNotification object:nil];
+}
 - (void)viewDidUnload {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:kProductsLoadedNotification object:nil];
+
     [self setTopBar:nil];
     [self setBack:nil];
     [self setBig:nil];

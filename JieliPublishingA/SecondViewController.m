@@ -41,12 +41,15 @@
 - (IBAction)viewTap:(id)sender {
     [self returnKeyBoard];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self.myDiyTopBar updateThemeColor];
+    [self.myBgImageView setImage:[PicNameMc backGroundImage]];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+    [self.myBgImageView setImage:[PicNameMc backGroundImage]];
     [self.myDiyTopBar.myTitle setText:@"图书搜索"];
     [self.sBackground setImage:[PicNameMc defaultBackgroundImage:@"sBg" withWidth:self.sBackground.frame.size.width withTitle:nil withColor:nil]];
     [self.myTextField setBackground:[PicNameMc defaultBackgroundImage:@"inputBox@2x.png" size:self.myTextField.frame.size leftCapWidth:10 topCapHeight:10]];

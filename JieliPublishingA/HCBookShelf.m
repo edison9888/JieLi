@@ -283,6 +283,10 @@ typedef enum {
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (self.headerView.hidden) {
+        return;
+    }
+
     CGFloat offsetY = self.contentOffset.y;
     NSInteger returnKey = k_RETURN_DO_NOTHING;
 ;

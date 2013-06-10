@@ -15,14 +15,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setImage:[UIImage imageNamed:@"WoodPattern.png"]];
+        [self setImage:[PicNameMc backGroundImage]];
 
     }
     return self;
 }
 
 -(void)awakeFromNib{
-    [self setImage:[PicNameMc imageFromImageName:WoodPattern]];
+    [self setImage:[PicNameMc backGroundImage]];
 }
 
 /*

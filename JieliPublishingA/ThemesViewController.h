@@ -10,5 +10,9 @@
 #import "DiyTopBar.h"
 @interface ThemesViewController : UIViewController
 @property (strong, nonatomic) IBOutlet DiyTopBar *diyTopBar;
+@property (retain, nonatomic) IBOutlet UILabel *redLabel;
+@property (retain, nonatomic) IBOutlet UILabel *blueLabel;
+@property (retain, nonatomic) IBOutlet UILabel *guodongLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *backGroundImageView;
 
 @end

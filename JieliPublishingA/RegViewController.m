@@ -54,7 +54,7 @@
     
     [iVA setImage:[[PicNameMc imageName:@"loginIcon@2x.png" numberOfH:2 numberOfW:1] objectAtIndex:0]];
     [iVB setImage:[[PicNameMc imageName:@"loginIcon@2x.png" numberOfH:2 numberOfW:1] objectAtIndex:1]];
-    [regButton setImage:[PicNameMc redBg:regButton title:@"注册"] forState:UIControlStateNormal];
+    [regButton setImage:[PicNameMc buttonBg:regButton title:@"注册"] forState:UIControlStateNormal];
 
 }
 -(BOOL)checkBeforePost{

@@ -72,8 +72,8 @@ enum{
 @protocol HCBookShelfDataSource <NSObject>
 @optional
 -(int)numberOfItemsForShell:(HCBookShelf *)bookShelf;
--(BookInfo *)bookShlef:(HCBookShelf *)bookShelf imageForItemAtIndex:(NSInteger)index;
--(int)bookShell:(HCBookShelf *)bookShelf priceForItemAtIndex:(NSInteger)index;
+//-(BookInfo *)bookShlef:(HCBookShelf *)bookShelf imageForItemAtIndex:(NSInteger)index;
+//-(int)bookShell:(HCBookShelf *)bookShelf priceForItemAtIndex:(NSInteger)index;
 -(BookView *)bookViewForIndex:(NSInteger)index;
 @end
 

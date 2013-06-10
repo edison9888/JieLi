@@ -26,6 +26,8 @@ enum {
 #import "ShareViewController.h"
 #import "CommentViewController.h"
 #import "BuyViewController.h"
+
+#import "EMagazineViewController.h"
 @interface GoodBookViewController ()
 @property (strong,nonatomic) NSMutableArray *items;
 
@@ -64,6 +66,7 @@ enum {
 //    self.items = [NSArray arrayWithObjects:@"新书上架", @"精品图书", @"畅销书榜", @"图书分类", nil];
 //    [self.horizMenu reloadData];
     
+    [self.backGroundImageView setImage:[PicNameMc backGroundImage]];
     
     self.topBarButton1.tag = topBarButtonTag1;
     self.topBarButton2.tag = topBarButtonTag2;
@@ -242,26 +245,31 @@ enum {
 #pragma mark HCBookShelf DataSource
 -(int)numberOfItemsForShell:(HCBookShelf *)bookShelf{
     if (self.bookShelfImageList) {
-        return [self.bookShelfImageList count];
+        return [self.bookShelfImageList count]+3;
     }
     else {
-        return 6;
+        return 6+3;
     }
     
 }
--(BookInfo *)bookShlef:(HCBookShelf *)bookShelf imageForItemAtIndex:(NSInteger)index{
-    if (self.bookShelfImageList) {
-        return [self.bookShelfImageList objectAtIndex:index];
-    }
-    else{
-        return nil;
-    }
-}
--(int)bookShell:(HCBookShelf *)bookShelf priceForItemAtIndex:(NSInteger)index{
-    return index;
-}
+//-(BookInfo *)bookShlef:(HCBookShelf *)bookShelf imageForItemAtIndex:(NSInteger)index{
+//    if (self.bookShelfImageList&&index>3) {
+//        return [self.bookShelfImageList objectAtIndex:index];
+//    }
+//    else{
+//        return nil;
+//    }
+//}
+//-(int)bookShell:(HCBookShelf *)bookShelf priceForItemAtIndex:(NSInteger)index{
+//    return index;
+//}
 -(BookView *)bookViewForIndex:(NSInteger)index{
-    BookInfo *info = [self.bookShelfImageList objectAtIndex:index];
+    if (index<3) {
+        BookView *bv = [[BookView alloc] initWithFrame:CGRectMake(0, 0, ImageViewWith, ImageViewHight+LabelHight) withCoverImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-1.jpg",index+1]] withLableName:[NSString stringWithFormat:@"杂志测试%d",index+1]];
+        
+        return bv;
+    }
+    BookInfo *info = [self.bookShelfImageList objectAtIndex:index-3];
     BookView *bookView = [BookView BookViewWithBookInfo:info];
     return bookView;
 }
@@ -270,7 +278,15 @@ enum {
 #pragma mark HCBookShelf delegate
 -(void)bookShellk:(HCBookShelf *)bookShelf itemSelectedAtIndex:(NSInteger)index{
     NSLog(@"buttonTouchedAt: %d",index);
-    BookInfo *info = [self.bookShelfImageList objectAtIndex:index];
+    if (index<3) {
+        EMagazineViewController *emvc = [[EMagazineViewController alloc] initWithNibName:@"EMagazineViewController" bundle:nil];
+        emvc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:emvc animated:YES];
+        [emvc addEMagazineWithIndex:index+1];
+
+        return;
+    }
+    BookInfo *info = [self.bookShelfImageList objectAtIndex:index-3];
     
     HCTadBarController *tabBarController = [[HCTadBarController alloc] init];
     tabBarController.bookInfo = info;
@@ -323,6 +339,11 @@ enum {
     [self setBgImageView:nil];
     [self setMyTopBar:nil];
     [self setMyBookShelf:nil];
+    [self setBackGroundImageView:nil];
     [super viewDidUnload];
+}
+- (void)dealloc {
+    [_backGroundImageView release];
+    [super dealloc];
 }
 @end

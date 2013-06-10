@@ -34,6 +34,7 @@
 @property (strong, nonatomic) IBOutlet FirstNavigationBar *myNavigationBar;
 
 @property (assign,nonatomic) int tagIndex;
+@property (retain, nonatomic) IBOutlet UIImageView *backGroundImageView;
 @end
 
 

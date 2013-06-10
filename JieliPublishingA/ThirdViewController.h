@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet DiyTopBar *myDiyTopBar;
 @property (retain, nonatomic) IBOutlet UIImageView *noCollectImageview;
 @property (retain, nonatomic) IBOutlet UIButton *noCollectButton;
+@property (retain, nonatomic) IBOutlet UIImageView *backGroundImageView;
 
 @end

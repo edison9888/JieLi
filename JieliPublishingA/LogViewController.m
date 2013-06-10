@@ -109,7 +109,7 @@
     [iVA setImage:[[PicNameMc imageName:@"loginIcon@2x.png" numberOfH:2 numberOfW:1] objectAtIndex:0]];
     [iVB setImage:[[PicNameMc imageName:@"loginIcon@2x.png" numberOfH:2 numberOfW:1] objectAtIndex:1]];
     
-    [logInButton setImage:[PicNameMc redBg:logInButton title:@"登录"] forState:UIControlStateNormal];
+    [logInButton setImage:[PicNameMc buttonBg:logInButton title:@"登录"] forState:UIControlStateNormal];
 
 }
 - (IBAction)bkTap:(id)sender {

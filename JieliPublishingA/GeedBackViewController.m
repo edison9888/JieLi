@@ -38,7 +38,7 @@
     
 }
 -(void)popBack{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     [self.textFildA setPlaceholder:@""];

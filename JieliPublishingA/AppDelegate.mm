@@ -15,6 +15,8 @@
 
 #import "CustomNavigationBar.h"
 #import "Reachability.h"
+
+#import "LocalEpubBookViewController.h"
 //#import "DOUAPIEngine.h"
 //sina
 #define SinaAppKey             @"1121796814"
@@ -190,9 +192,11 @@ static NSOperationQueue *queue;
     UINavigationController *navigationController3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
     [navigationController3 setNavigationBarHidden:YES];
 
-    UIViewController *viewController4 = [[ForthViewController alloc] initWithNibName:@"ForthViewController" bundle:nil];
+    LocalEpubBookViewController *viewController4 = [[LocalEpubBookViewController alloc] initWithNibName:@"LocalEpubBookViewController" bundle:nil];
+//    UIViewController *viewController4 = [[ForthViewController alloc] initWithNibName:@"ForthViewController" bundle:nil];
     UINavigationController *navigationController4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
     [navigationController4 setNavigationBarHidden:YES];
+    
 
     
     

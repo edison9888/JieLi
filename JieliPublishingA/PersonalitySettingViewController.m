@@ -9,6 +9,10 @@
 #import "PersonalitySettingViewController.h"
 #import "PicNameMc.h"
 #import "BDAccountViewController.h"
+#import "GeedBackViewController.h"
+#import "AboutUsViewController.h"
+#import "VisionUpDate.h"
+
 #define kDocument_Folder [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
 
@@ -28,31 +32,36 @@
     }
     return self;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [self.myTopBar updateThemeColor];
+    [self.myBgImageView setImage:[PicNameMc backGroundImage]];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.myBgImageView setImage:[PicNameMc backGroundImage]];
+
     [self.myTopBar setType:DiyTopBarTypeBack];
     self.myTopBar.myTitle.text = @"个性设置";
     [self.myTopBar.backButton addTarget:self action:@selector(popBack:) forControlEvents:UIControlEventTouchUpInside];
     
     leftImageArray = [[NSArray alloc] initWithObjects:
                       F_image_sina,
+                      
                       F_iamge_tencent,
                       F_image_renren,
-//                      F_image_qzone,
-//                      F_image_voicePoint,
-//                      F_image_newVersionPoint,
-//                      F_image_warningTone,
-//                      F_image_Time,
                       F_image_presetThemes,
-//                      F_image_diy,
                       F_image_themeD,
-//                      F_image_alwaysHD,
                       F_image_wifiHD,
-//                      F_image_cacheSettings,
                       F_image_removeCache,
+                      
+                      F_image_geedback,
+                      F_image_aboutUs,
+                      F_image_versionUpdate,
+                      F_image_help,
+
                       nil];
     
     
@@ -61,6 +70,8 @@
     
 
 }
+
+
 -(NSString *)calculatedCapacity{
     NSFileManager *fM = [NSFileManager defaultManager];
     NSArray *fileList = [fM contentsOfDirectoryAtPath:kDocument_Folder error:nil];
@@ -119,7 +130,7 @@
 
 #pragma Mark - tableDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -129,6 +140,9 @@
             break;
         case 1:
             return 3;
+            break;
+        case 2:
+            return 4;
             break;
         default:
             break;
@@ -143,6 +157,7 @@
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     NSArray *array = [PicNameMc imageName:@"icon-set5.png" numberOfH:5 numberOfW:1];
+    NSArray *arrayg = [PicNameMc imageName:@"icon-moer4@2x.png" numberOfH:4 numberOfW:1];
 
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20,(cell.frame.size.height-30)/2-2, 30, 30)];
@@ -184,6 +199,30 @@
             }
 
             break;
+            case 2:
+            switch (row) {
+
+                case 0:
+                    [imageView setImage:[arrayg objectAtIndex:0]];
+                    textLabel.text = @"意见反馈";
+                    break;
+                case 1:
+                    [imageView setImage:[arrayg objectAtIndex:1]];
+                    textLabel.text = @"关于我们";
+                    break;
+                case 2:
+                    [imageView setImage:[arrayg objectAtIndex:2]];
+                    textLabel.text = @"版本更新";
+                    break;
+                case 3:
+                    [imageView setImage:[arrayg objectAtIndex:3]];
+                    textLabel.text = @"使用帮助";
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
         default:
             break;
     }
@@ -218,12 +257,29 @@
             
             NSArray *fileList = [fileManager contentsOfDirectoryAtPath:documentsDirectory error:nil];
             NSLog(@"%@",fileList);
-            for (int i = 1; i<[fileList count]; i++) {
+            for (int i = 0; i<[fileList count]; i++) {
                 [fileManager removeItemAtPath:[fileList objectAtIndex:i] error:nil];
                 
             }
 
         }
+    }
+    else if (indexPath.section == 2){
+        int row = indexPath.row;
+        
+        if (row == 0) {
+            GeedBackViewController *viewController = [[GeedBackViewController alloc] initWithNibName:@"GeedBackViewController" bundle:nil];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        else if (row == 1){
+            AboutUsViewController *viewController = [[AboutUsViewController alloc] initWithNibName:@"AboutUsViewController" bundle:nil];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        else if (row == 2){
+            VisionUpDate *viewController = [[VisionUpDate alloc] initWithNibName:@"VisionUpDate" bundle:nil];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+
     }
 
 }

@@ -38,6 +38,7 @@ enum{
 @property (strong,nonatomic) DataBrain *dataBrain;
 
 @property (assign,nonatomic) BOOL isCategoriesViewOpen;
+@property (retain, nonatomic) IBOutlet UIImageView *backGroundImageView;
 
 @end
  
